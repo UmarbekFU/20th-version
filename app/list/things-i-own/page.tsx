@@ -2,82 +2,18 @@ import Navigation from '@/components/Navigation'
 import PlumBackground from '@/components/PlumBackground'
 
 export default function ThingsIOwnPage() {
-  // Sample items with categories and comments
+  // My actual items
   const items = [
     {
       category: "Tech",
       items: [
         {
-          name: "MacBook Pro 14\"",
+          name: "MacBook Air 13\"",
           comment: "My main work machine. Perfect balance of power and portability."
         },
         {
-          name: "iPhone 15 Pro",
-          comment: "Camera is incredible. I take most of my photos with this."
-        },
-        {
-          name: "iPad Air",
-          comment: "Perfect for reading, note-taking, and light work."
-        },
-        {
-          name: "AirPods Pro",
-          comment: "Essential for calls and podcasts. Noise cancellation is magic."
-        }
-      ]
-    },
-    {
-      category: "Books",
-      items: [
-        {
-          name: "Kindle Paperwhite",
-          comment: "I read more since getting this. Perfect for travel."
-        },
-        {
-          name: "Physical Books Collection",
-          comment: "About 50 books I've kept after reading. Only the ones that really mattered."
-        }
-      ]
-    },
-    {
-      category: "Clothing",
-      items: [
-        {
-          name: "Minimalist Wardrobe",
-          comment: "About 30 pieces total. Everything goes with everything else."
-        },
-        {
-          name: "Good Shoes",
-          comment: "Two pairs: one casual, one formal. Quality over quantity."
-        }
-      ]
-    },
-    {
-      category: "Kitchen",
-      items: [
-        {
-          name: "Cast Iron Pan",
-          comment: "The only pan I really need. Gets better with age."
-        },
-        {
-          name: "Coffee Grinder",
-          comment: "Fresh ground coffee every morning. Small luxury that matters."
-        },
-        {
-          name: "Good Knife",
-          comment: "One sharp knife is better than ten dull ones."
-        }
-      ]
-    },
-    {
-      category: "Outdoor",
-      items: [
-        {
-          name: "Running Shoes",
-          comment: "I run almost every day. These are essential."
-        },
-        {
-          name: "Backpack",
-          comment: "Simple, durable. Carries everything I need."
+          name: "iPhone 11",
+          comment: "Still works great. No need to upgrade just for the sake of it."
         }
       ]
     }

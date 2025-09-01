@@ -2,67 +2,49 @@ import Navigation from '@/components/Navigation'
 import PlumBackground from '@/components/PlumBackground'
 
 export default function MoviesListPage() {
-  // Sample movies with ratings and comments
+  // My actual movies with ratings
   const movies = [
     {
       title: "The Social Network",
       year: 2010,
-      rating: 9,
+      rating: 7,
       comment: "A masterclass in dialogue and pacing. Shows how the best stories are often about people, not events."
     },
     {
       title: "Inception",
       year: 2010,
-      rating: 8,
+      rating: 7,
       comment: "Mind-bending concept executed perfectly. The practical effects still hold up."
     },
     {
       title: "The Dark Knight",
       year: 2008,
-      rating: 9,
+      rating: 7,
       comment: "Redefined what superhero movies could be. Ledger's Joker is still unmatched."
     },
     {
       title: "Interstellar",
       year: 2014,
-      rating: 8,
+      rating: 6,
       comment: "Ambitious and flawed, but the emotional core and visual spectacle make it unforgettable."
     },
     {
       title: "Whiplash",
       year: 2014,
-      rating: 9,
+      rating: 7,
       comment: "Intense and relentless. Shows the price of greatness better than any film I've seen."
     },
     {
       title: "Her",
       year: 2013,
-      rating: 8,
+      rating: 6,
       comment: "Beautiful meditation on love and connection in the digital age."
-    },
-    {
-      title: "The Grand Budapest Hotel",
-      year: 2014,
-      rating: 8,
-      comment: "Wes Anderson at his most Wes Anderson. Pure visual and comedic delight."
-    },
-    {
-      title: "Mad Max: Fury Road",
-      year: 2015,
-      rating: 9,
-      comment: "Action filmmaking at its absolute peak. Every frame is perfect."
     },
     {
       title: "Arrival",
       year: 2016,
-      rating: 8,
+      rating: 6,
       comment: "Sci-fi that focuses on communication and understanding rather than conflict."
-    },
-    {
-      title: "La La Land",
-      year: 2016,
-      rating: 8,
-      comment: "Captures the magic of old Hollywood while feeling completely modern."
     }
   ]
 

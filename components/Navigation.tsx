@@ -6,9 +6,9 @@ import { Github, Mail, Search, RotateCcw } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
 const socialLinks = [
-  { name: 'GitHub', href: 'https://github.com', icon: Github },
-  { name: 'Email', href: 'mailto:hello@umarbek.com', icon: Mail },
-  { name: 'X', href: 'https://x.com', icon: 'X' },
+  { name: 'GitHub', href: 'https://github.com/UmarbekFU', icon: Github },
+  { name: 'Email', href: 'mailto:u.umarov.pro@gmail.com', icon: Mail },
+  { name: 'X', href: 'https://x.com/umarHQ', icon: 'X' },
 ]
 
 interface SearchResult {

@@ -2,38 +2,8 @@ import Navigation from '@/components/Navigation'
 import PlumBackground from '@/components/PlumBackground'
 
 export default function PodcastsListPage() {
-  // Sample podcasts with ratings and comments
+  // My actual podcasts with ratings
   const podcasts = [
-    {
-      title: "The Tim Ferriss Show",
-      host: "Tim Ferriss",
-      rating: 9,
-      comment: "The gold standard for long-form interviews. Ferriss has a unique ability to extract insights from high performers."
-    },
-    {
-      title: "Lex Fridman Podcast",
-      host: "Lex Fridman",
-      rating: 8,
-      comment: "Deep conversations about AI, science, and philosophy. Lex asks the questions I wish I could ask."
-    },
-    {
-      title: "The Joe Rogan Experience",
-      host: "Joe Rogan",
-      rating: 7,
-      comment: "Hit or miss depending on the guest, but when it's good, it's really good. Great for long drives."
-    },
-    {
-      title: "How I Built This",
-      host: "Guy Raz",
-      rating: 8,
-      comment: "Fascinating stories of how companies were built from nothing. Inspiring and educational."
-    },
-    {
-      title: "The Knowledge Project",
-      host: "Shane Parrish",
-      rating: 9,
-      comment: "Mental models and decision-making frameworks. Every episode makes me think differently."
-    },
     {
       title: "Acquired",
       host: "Ben Gilbert & David Rosenthal",
@@ -41,28 +11,28 @@ export default function PodcastsListPage() {
       comment: "Deep dives into company histories. Makes business history actually interesting."
     },
     {
-      title: "The All-In Podcast",
-      host: "Chamath, Jason, David, Friedberg",
+      title: "The Knowledge Project",
+      host: "Shane Parrish",
       rating: 7,
-      comment: "Tech and business insights from people who actually know what they're talking about."
+      comment: "Mental models and decision-making frameworks. Every episode makes me think differently."
     },
     {
       title: "Naval",
       host: "Naval Ravikant",
-      rating: 9,
+      rating: 8,
       comment: "Short, profound insights about life, work, and happiness. Every episode is quotable."
     },
     {
-      title: "The Ezra Klein Show",
-      host: "Ezra Klein",
-      rating: 8,
-      comment: "Thoughtful conversations about politics, policy, and big ideas. Nuanced and intelligent."
+      title: "Founders Podcast",
+      host: "David Senra",
+      rating: 6,
+      comment: "Biographies of great entrepreneurs. Good for understanding how successful people think and operate."
     },
     {
-      title: "Invest Like the Best",
-      host: "Patrick O'Shaughnessy",
-      rating: 8,
-      comment: "Investment insights that go beyond just money. Great for understanding how the world works."
+      title: "TBPN",
+      host: "Various",
+      rating: 7,
+      comment: "Tech and business insights from people who actually know what they're talking about."
     }
   ]
 
