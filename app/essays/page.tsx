@@ -18,53 +18,12 @@ export default function EssaysPage() {
             </p>
           </div>
 
-          {/* Essays Collection */}
-          <div className="mt-16 space-y-8">
-            {/* 2025 */}
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">2025</h2>
-              <div className="space-y-3">
-                <div>
-                  <Link 
-                    href="/essays/why-i-build" 
-                    className="text-lg text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                  >
-                    Why I Build
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            {/* 2024 */}
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">2024</h2>
-              <div className="space-y-3">
-                <div>
-                  <Link 
-                    href="/essays/learning-through-writing" 
-                    className="text-lg text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                  >
-                    Learning Through Writing
-                  </Link>
-                </div>
-                <div>
-                  <Link 
-                    href="/essays/the-value-of-experiments" 
-                    className="text-lg text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                  >
-                    The Value of Experiments
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            {/* Coming Soon */}
-            <div className="mt-12 text-center">
-              <p className="text-gray-600 dark:text-gray-400">
-                More essays coming soon. I'm working on ideas about systems thinking, 
-                creativity, and the intersection of technology and human experience.
-              </p>
-            </div>
+          {/* Coming Soon */}
+          <div className="mt-16 text-center">
+            <p className="text-gray-600 dark:text-gray-400">
+              Essays coming soon. I'm working on ideas about systems thinking, 
+              creativity, and the intersection of technology and human experience.
+            </p>
           </div>
         </div>
       </main>
