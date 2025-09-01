@@ -3,23 +3,12 @@ import PlumBackground from '@/components/PlumBackground'
 import Link from 'next/link'
 
 export default function AtomicIdeasPage() {
-  // Sample atomic ideas - these would be your actual ideas
+  // Atomic ideas - each leads to its own page
   const atomicIdeas = [
-    "The best tools are the ones you forget you're using",
-    "Complexity is the enemy of understanding",
-    "Most problems are actually communication problems",
-    "The internet made us all neighbors but strangers",
-    "Reading is thinking with someone else's brain",
-    "Simplicity is not the absence of complexity, but the mastery of it",
-    "The best learning happens when you're building something real",
-    "Time is the only truly finite resource",
-    "Most people optimize for the wrong things",
-    "The best ideas often come from combining existing ones",
-    "Failure is just feedback in disguise",
-    "The more you know, the more you realize you don't know",
-    "Consistency beats perfection every time",
-    "The best solutions are often the simplest ones",
-    "Your environment shapes your thinking more than you think"
+    {
+      title: "Everything is my fault",
+      href: "/atomic-ideas/everything-is-my-fault"
+    }
   ]
 
   return (
@@ -36,14 +25,15 @@ export default function AtomicIdeasPage() {
           {/* Atomic Ideas List */}
           <div className="space-y-6 max-w-2xl mx-auto">
             {atomicIdeas.map((idea, index) => (
-              <div 
+              <Link 
                 key={index}
-                className="group cursor-pointer"
+                href={idea.href}
+                className="group block"
               >
                 <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-relaxed">
-                  {idea}
+                  {idea.title}
                 </h3>
-              </div>
+              </Link>
             ))}
           </div>
 

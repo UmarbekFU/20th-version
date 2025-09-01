@@ -189,7 +189,7 @@ export default function ThisWebsiteProjectPage() {
       <footer className="border-t border-gray-200 dark:border-gray-700 mt-20">
         <div className="max-w-3xl mx-auto px-8 py-8">
           <div className="text-center text-sm text-gray-500 dark:text-gray-400">
-            <p>Last updated: August 31, 2024</p>
+            <p>Last updated: September 2, 2025</p>
           </div>
         </div>
       </footer>

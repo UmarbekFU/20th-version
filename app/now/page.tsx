@@ -20,7 +20,7 @@ export default function NowPage() {
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">What I'm reading</h3>
                   <p className="text-gray-700 dark:text-gray-300">
-                    Systems thinking and complexity theory. Books that challenge my assumptions about how the world works.
+                    The Count of Monte Cristo.
                   </p>
                 </div>
                 
@@ -53,23 +53,9 @@ export default function NowPage() {
               
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Social media scrolling</h3>
-                  <p className="text-gray-700 dark:text-gray-300">
-                    Avoiding endless feeds. Preferring deep work and meaningful conversations.
-                  </p>
-                </div>
-                
-                <div>
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Building for others first</h3>
                   <p className="text-gray-700 dark:text-gray-300">
                     Focusing on solving my own problems first. If it helps others, that's a bonus.
-                  </p>
-                </div>
-                
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Following trends</h3>
-                  <p className="text-gray-700 dark:text-gray-300">
-                    Avoiding the latest shiny thing. Sticking to what actually works for me.
                   </p>
                 </div>
               </div>
@@ -91,7 +77,7 @@ export default function NowPage() {
       <footer className="border-t border-gray-200 dark:border-gray-700 mt-20">
         <div className="max-w-3xl mx-auto px-8 py-8">
           <div className="text-center text-sm text-gray-500 dark:text-gray-400">
-            <p>Last updated: August 31, 2024</p>
+            <p>Last updated: September 2, 2025</p>
             <p>Location: Tashkent, Uzbekistan</p>
           </div>
         </div>
