@@ -171,7 +171,7 @@ export default function EverythingIsMyFaultPage() {
           {/* Read in Other Languages */}
           <section className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
             <p className="text-gray-600 dark:text-gray-400">
-              Read in: <Link href="/atomic-ideas/everything-is-my-fault/uz" className="text-blue-600 dark:text-blue-400 hover:underline">O'zbekcha</Link>, <Link href="/atomic-ideas/everything-is-my-fault/ru" className="text-blue-600 dark:text-blue-400 hover:underline">Русский</Link>
+              Read in: <Link href="/atomic-ideas/emf/uz" className="text-blue-600 dark:text-blue-400 hover:underline">O'zbekcha</Link>, <Link href="/atomic-ideas/emf/ru" className="text-blue-600 dark:text-blue-400 hover:underline">Русский</Link>
             </p>
           </section>
 
