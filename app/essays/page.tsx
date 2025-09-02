@@ -18,13 +18,21 @@ export default function EssaysPage() {
             </p>
           </div>
 
-          {/* Coming Soon */}
-          <div className="mt-16 text-center">
-            <p className="text-gray-600 dark:text-gray-400">
-              Essays coming soon. I'm working on ideas about systems thinking, 
-              creativity, and the intersection of technology and human experience.
-            </p>
+                  {/* Essays Collection */}
+        <div className="mt-16">
+          <div className="space-y-8">
+            <div className="group">
+              <Link href="/essays/just-do-more" className="block">
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-2">
+                  Just do more
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Why business leads to technology, which leads to science. The 100x principle and the power of iteration over perfection.
+                </p>
+              </Link>
+            </div>
           </div>
+        </div>
         </div>
       </main>
     </>
