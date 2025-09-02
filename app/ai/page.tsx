@@ -20,9 +20,9 @@ export default function AtomicIdeasPage() {
       <PlumBackground />
       <Navigation />
       <main className="min-h-screen pt-32">
-        <div className="max-w-4xl mx-auto px-8">
-          <h1 className="text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4 text-center">Atomic Ideas</h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 mb-16 text-center max-w-2xl mx-auto">
+        <div className="max-w-4xl mx-auto px-4 sm:px-8">
+          <h1 className="text-3xl sm:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4 text-center">Atomic Ideas</h1>
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-16 text-center max-w-2xl mx-auto">
             Half-formed thoughts I'm working through. Some will become something useful. Most won't. That's fine.
           </p>
 

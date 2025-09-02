@@ -12,13 +12,13 @@ export default function JustDoMore() {
       <PlumBackground />
       <Navigation />
       <main className="min-h-screen pt-32">
-        <div className="max-w-3xl mx-auto px-8">
+        <div className="max-w-3xl mx-auto px-4 sm:px-8">
           {/* Atomic Idea Header */}
           <header className="mb-12">
             <div className="text-sm text-gray-500 dark:text-gray-400 mb-4">
               Sep 2
             </div>
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-6">
               Just do more
             </h1>
             <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">

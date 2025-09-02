@@ -10,15 +10,15 @@ export default function HomePage() {
       
       {/* Main Content */}
       <main className="min-h-screen pt-32">
-        <div className="max-w-3xl mx-auto px-8">
+        <div className="max-w-3xl mx-auto px-4 sm:px-8">
           {/* Hero Section */}
           <section className="mb-20">
-            <h1 className="text-6xl md:text-7xl font-bold text-gray-900 dark:text-gray-100 mb-8 leading-tight text-center">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold text-gray-900 dark:text-gray-100 mb-8 leading-tight text-center">
               Umarbek
             </h1>
             
-            <div className="space-y-8 text-lg md:text-xl text-gray-800 dark:text-gray-200 leading-relaxed max-w-2xl mx-auto">
-              <p className="text-center text-xl">
+            <div className="space-y-6 sm:space-y-8 text-base sm:text-lg md:text-xl text-gray-800 dark:text-gray-200 leading-relaxed max-w-2xl mx-auto">
+              <p className="text-center text-lg sm:text-xl">
                 Hey! I'm Umarbek. Samarkand native, I now live in Tashkent, Uzbekistan.
               </p>
               

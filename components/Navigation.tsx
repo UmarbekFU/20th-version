@@ -118,21 +118,21 @@ export default function Navigation() {
     <>
       {/* Go Back Navigation - Hidden on homepage */}
       {!isHomePage && (
-        <div className="fixed top-6 left-6 z-30">
+        <div className="fixed top-4 left-4 sm:top-6 sm:left-6 z-30">
           <button 
             onClick={goBack}
-            className="group flex items-center gap-2 px-3 py-2 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 dark:hover:border-blue-500 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md"
+            className="group flex items-center gap-2 px-2 py-2 sm:px-3 sm:py-2 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 rounded-full text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-300 dark:hover:border-blue-500 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-md"
             title="Go back to previous page"
           >
-            <RotateCcw className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
+            <RotateCcw className="w-3 h-3 sm:w-4 sm:h-4 group-hover:rotate-180 transition-transform duration-300" />
             <span className="hidden sm:inline">Go back</span>
           </button>
         </div>
       )}
 
       {/* Right Social Links - Clean icons with no card/box styling */}
-      <div className="fixed right-8 top-8 z-30">
-        <div className="flex flex-col gap-6">
+      <div className="fixed right-4 top-4 sm:right-8 sm:top-8 z-30">
+        <div className="flex flex-col gap-4 sm:gap-6">
           {socialLinks.map((link) => {
             if (link.icon === 'X') {
               return (
@@ -141,10 +141,10 @@ export default function Navigation() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:rotate-12 active:rotate-45 hover:scale-110 flex items-center justify-center"
+                  className="p-1.5 sm:p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:rotate-12 active:rotate-45 hover:scale-110 flex items-center justify-center"
                   title={link.name}
                 >
-                  <span className="text-xl font-bold">𝕏</span>
+                  <span className="text-lg sm:text-xl font-bold">𝕏</span>
                 </a>
               )
             }
@@ -156,10 +156,10 @@ export default function Navigation() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:rotate-12 active:rotate-45 hover:scale-110"
+                className="p-1.5 sm:p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:rotate-12 active:rotate-45 hover:scale-110"
                 title={link.name}
               >
-                <Icon className="w-6 h-6" />
+                <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
               </a>
             )
           })}
@@ -167,20 +167,20 @@ export default function Navigation() {
       </div>
 
       {/* Search Button - Positioned closer to social icons, no card/box styling */}
-      <div className="fixed right-8 top-56 z-30">
+      <div className="fixed right-4 top-40 sm:right-8 sm:top-56 z-30">
         <button
           onClick={() => setIsSearchOpen(true)}
-          className="p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:rotate-12 active:rotate-45 hover:scale-110"
+          className="p-1.5 sm:p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:rotate-12 active:rotate-45 hover:scale-110"
           title="Search (⌘K)"
         >
-          <Search className="w-6 h-6" />
+          <Search className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
       </div>
 
       {/* Search Modal */}
       {isSearchOpen && (
-        <div className="fixed inset-0 bg-black/20 dark:bg-black/50 backdrop-blur-sm z-50 flex items-start justify-center pt-20">
-          <div className="w-full max-w-2xl mx-6">
+        <div className="fixed inset-0 bg-black/20 dark:bg-black/50 backdrop-blur-sm z-50 flex items-start justify-center pt-16 sm:pt-20">
+          <div className="w-full max-w-2xl mx-4 sm:mx-6">
             <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 rounded-lg p-4">
               {/* Search Input */}
               <div className="flex items-center gap-3 mb-4">

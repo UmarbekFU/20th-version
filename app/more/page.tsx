@@ -8,8 +8,8 @@ export default function MorePage() {
       <PlumBackground />
       <Navigation />
       <main className="min-h-screen pt-32">
-        <div className="max-w-4xl mx-auto px-8">
-          <h1 className="text-5xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">More</h1>
+        <div className="max-w-4xl mx-auto px-4 sm:px-8">
+          <h1 className="text-3xl sm:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-8 text-center">More</h1>
           
           <div className="space-y-8 text-lg md:text-xl text-gray-800 dark:text-gray-200 leading-relaxed max-w-2xl mx-auto text-center">
             <p className="text-gray-700 dark:text-gray-300">
