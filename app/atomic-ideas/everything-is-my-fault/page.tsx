@@ -1,6 +1,5 @@
 import Navigation from '@/components/Navigation'
 import PlumBackground from '@/components/PlumBackground'
-import BackLink from '@/components/BackLink'
 import TwitterComments from '@/components/TwitterComments'
 import Link from 'next/link'
 import { generateMetadata as genMeta } from '@/lib/metadata'
@@ -180,9 +179,6 @@ export default function EverythingIsMyFaultPage() {
           <TwitterComments 
             title="Everything is my fault"
           />
-
-          {/* Back Link */}
-          <BackLink />
         </div>
       </main>
     </>
