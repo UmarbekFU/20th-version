@@ -1,6 +1,18 @@
 import Navigation from '@/components/Navigation'
 import PlumBackground from '@/components/PlumBackground'
 import Link from 'next/link'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Essays - Umarbek',
+  description: 'Collection of essays and thoughts on various topics. I write essays when I try to explain something to myself.',
+  keywords: ['essays', 'writing', 'thinking', 'ideas', 'learning', 'personal development'],
+  openGraph: {
+    title: 'Essays - Umarbek',
+    description: 'Collection of essays and thoughts on various topics. I write essays when I try to explain something to myself.',
+    type: 'website',
+  },
+}
 
 export default function EssaysPage() {
   return (

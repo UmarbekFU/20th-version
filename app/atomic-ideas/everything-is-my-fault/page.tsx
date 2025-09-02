@@ -1,6 +1,18 @@
 import Navigation from '@/components/Navigation'
 import PlumBackground from '@/components/PlumBackground'
 import Link from 'next/link'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Everything is my fault - Atomic Ideas',
+  description: 'Taking responsibility and preserving agency. An atomic idea about how blaming yourself gives you control and power to solve problems.',
+  keywords: ['atomic ideas', 'responsibility', 'agency', 'fault', 'control', 'power', 'personal development'],
+  openGraph: {
+    title: 'Everything is my fault - Atomic Ideas',
+    description: 'Taking responsibility and preserving agency. An atomic idea about how blaming yourself gives you control and power to solve problems.',
+    type: 'article',
+  },
+}
 
 export default function EverythingIsMyFaultPage() {
   return (
