@@ -16,7 +16,7 @@ export default function JustDoMore() {
       </div>
 
       <div className="max-w-4xl mx-auto px-6 py-16">
-        {/* Essay Header */}
+        {/* Atomic Idea Header */}
         <header className="mb-12">
           <div className="text-sm text-gray-500 dark:text-gray-400 mb-4">
             Sep 2, 2025
@@ -26,7 +26,7 @@ export default function JustDoMore() {
           </h1>
         </header>
 
-        {/* Essay Content */}
+        {/* Atomic Idea Content */}
         <div className="prose prose-lg dark:prose-invert max-w-none">
           <p className="text-xl text-gray-800 dark:text-gray-200 leading-relaxed mb-8">
             People think science leads to technology, and technology leads to business.

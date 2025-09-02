@@ -4,12 +4,16 @@ import Link from 'next/link'
 
 export default function AtomicIdeasPage() {
   // Atomic ideas - each leads to its own page
-  const atomicIdeas = [
-    {
-      title: "Everything is my fault",
-      href: "/atomic-ideas/everything-is-my-fault"
-    }
-  ]
+          const atomicIdeas = [
+          {
+            title: "Everything is my fault",
+            href: "/atomic-ideas/everything-is-my-fault"
+          },
+          {
+            title: "Just do more",
+            href: "/atomic-ideas/just-do-more"
+          }
+        ]
 
   return (
     <>

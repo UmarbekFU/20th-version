@@ -31,7 +31,7 @@ async function buildSearchIndex(): Promise<SearchResult[]> {
       keywords: ['essays', 'writing', 'thinking', 'ideas', 'learning']
     },
     {
-      path: '/essays/just-do-more',
+      path: '/atomic-ideas/just-do-more',
       title: 'Just do more',
       description: 'Why business leads to technology, which leads to science. The 100x principle and the power of iteration over perfection.',
       keywords: ['trial', 'error', 'iteration', 'business', 'technology', 'science', '100x', 'principle', 'action', 'perfection']
