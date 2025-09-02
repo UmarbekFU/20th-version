@@ -94,10 +94,22 @@ export default function Navigation() {
 
   const goBack = () => {
     // Use Next.js router for better navigation handling
-    if (window.history.length > 1) {
-      router.back()
+    // In production environments like Vercel, history.length might not be reliable
+    // So we'll use a more robust approach
+    if (typeof window !== 'undefined') {
+      // Check if there's a referrer or if we can determine if user came from within the site
+      const referrer = document.referrer
+      const isFromSameSite = referrer && referrer.includes(window.location.hostname)
+      
+      // If user came from within the site or has history, try to go back
+      if (isFromSameSite || window.history.length > 1) {
+        router.back()
+      } else {
+        // No reliable history, go to home page
+        router.push('/')
+      }
     } else {
-      // Fallback to home page if no previous page
+      // Fallback for SSR
       router.push('/')
     }
   }
