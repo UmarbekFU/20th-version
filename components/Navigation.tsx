@@ -92,10 +92,28 @@ export default function Navigation() {
   }
 
   const goBack = () => {
-    if (window.history.length > 1) {
+    // Context-aware navigation based on current page
+    const getParentPath = (currentPath: string) => {
+      // Remove trailing slash and split
+      const segments = currentPath.replace(/\/$/, '').split('/').filter(Boolean)
+      
+      // If we're in a sub-page, go to parent
+      if (segments.length > 1) {
+        return '/' + segments.slice(0, -1).join('/')
+      }
+      
+      // If we're on a main page, go to homepage
+      return '/'
+    }
+
+    const parentPath = getParentPath(pathname)
+    
+    // Use browser history if available and we came from the same site
+    if (window.history.length > 1 && document.referrer.includes(window.location.origin)) {
       window.history.back()
     } else {
-      window.location.href = '/'
+      // Otherwise navigate to logical parent
+      window.location.href = parentPath
     }
   }
 
