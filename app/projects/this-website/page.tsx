@@ -172,15 +172,7 @@ export default function ThisWebsiteProjectPage() {
               </p>
             </section>
             
-            {/* Back to Projects */}
-            <section className="text-center pt-8">
-              <Link 
-                href="/projects" 
-                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
-              >
-                ← Back to Projects
-              </Link>
-            </section>
+
           </div>
         </div>
       </main>
