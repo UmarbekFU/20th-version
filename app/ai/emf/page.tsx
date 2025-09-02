@@ -161,12 +161,10 @@ export default function EverythingIsMyFaultPage() {
             </p>
           </article>
 
-          {/* Thanks Section */}
-          <section className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-            <p className="text-gray-600 dark:text-gray-400 italic">
-              Thanks to <Link href="/about" className="text-blue-600 dark:text-blue-400 hover:underline">myself</Link> for reading drafts of this.
-            </p>
-          </section>
+          {/* Twitter Comments */}
+          <TwitterComments 
+            title="Everything is my fault"
+          />
 
           {/* Read in Other Languages */}
           <section className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
@@ -174,11 +172,6 @@ export default function EverythingIsMyFaultPage() {
               Read in: <Link href="/ai/emf/uz" className="text-blue-600 dark:text-blue-400 hover:underline">O'zbekcha</Link>, <Link href="/ai/emf/ru" className="text-blue-600 dark:text-blue-400 hover:underline">Русский</Link>
             </p>
           </section>
-
-          {/* Twitter Comments */}
-          <TwitterComments 
-            title="Everything is my fault"
-          />
         </div>
       </main>
     </>
