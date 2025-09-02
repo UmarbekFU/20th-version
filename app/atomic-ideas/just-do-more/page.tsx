@@ -1,4 +1,4 @@
-import Navigation from '@/components/Navigation'
+import Navigation from '@/components/Navigation' 
 import PlumBackground from '@/components/PlumBackground'
 import TwitterComments from '@/components/TwitterComments'
 import Link from 'next/link'
@@ -219,17 +219,10 @@ export default function JustDoMore() {
             </p>
           </article>
 
-          {/* Thanks Section */}
-          <section className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-            <p className="text-gray-600 dark:text-gray-400 italic">
-              Thanks to <Link href="/about" className="text-blue-600 dark:text-blue-400 hover:underline">myself</Link> for reading drafts of this.
-            </p>
-          </section>
-
           {/* Read in Other Languages */}
-          <section className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+          <section className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
             <p className="text-gray-600 dark:text-gray-400">
-              Read in: <Link href="/atomic-ideas/just-do-more/uz" className="text-blue-600 dark:text-blue-400 hover:underline">O'zbekcha</Link>, <Link href="/atomic-ideas/just-do-more/ru" className="text-blue-600 dark:text-blue-400 hover:underline">Русский</Link>
+              Read in: <Link href="/atomic-ideas/just-do-more/uz" className="text-blue-600 dark:text-blue-400 hover:underline">Uzbek</Link>, <Link href="/atomic-ideas/just-do-more/ru" className="text-blue-600 dark:text-blue-400 hover:underline">Russian</Link>
             </p>
           </section>
 
