@@ -31,7 +31,7 @@ async function buildSearchIndex(): Promise<SearchResult[]> {
       keywords: ['essays', 'writing', 'thinking', 'ideas', 'learning']
     },
     {
-      path: '/atomic-ideas/jdm',
+      path: '/ai/jdm',
       title: 'Just do more',
       description: 'Why business leads to technology, which leads to science. The 100x principle and the power of iteration over perfection.',
       keywords: ['trial', 'error', 'iteration', 'business', 'technology', 'science', '100x', 'principle', 'action', 'perfection']
@@ -139,13 +139,13 @@ async function buildSearchIndex(): Promise<SearchResult[]> {
       keywords: ['disclaimer', 'personal', 'views', 'advice', 'responsibility']
     },
     {
-      path: '/atomic-ideas',
+      path: '/ai',
       title: 'Atomic Ideas',
       description: 'Half-formed thoughts I am working through',
       keywords: ['ideas', 'thoughts', 'collaboration', 'feedback', 'growth']
     },
     {
-      path: '/atomic-ideas/emf',
+      path: '/ai/emf',
       title: 'Everything is my fault',
       description: 'Taking responsibility and preserving agency',
       keywords: ['responsibility', 'agency', 'fault', 'control', 'power']

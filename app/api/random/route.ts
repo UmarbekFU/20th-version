@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 const pages = [
-  '/essays', '/projects', '/notes', '/atomic-ideas', '/list', '/uses', '/scrapbook',
+  '/essays', '/projects', '/notes', '/ai', '/list', '/uses', '/scrapbook',
   '/photos', '/impossible', '/naq', '/tweets', '/questions', '/lc',
   '/yr', '/secret', '/disclaimer', '/contact', '/about', '/now', '/more'
 ]

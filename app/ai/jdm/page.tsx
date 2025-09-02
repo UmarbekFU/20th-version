@@ -4,7 +4,7 @@ import TwitterComments from '@/components/TwitterComments'
 import Link from 'next/link'
 import { generateMetadata as genMeta } from '@/lib/metadata'
 
-export const metadata = genMeta('/atomic-ideas/jdm')
+export const metadata = genMeta('/ai/jdm')
 
 export default function JustDoMore() {
   return (
@@ -229,7 +229,7 @@ export default function JustDoMore() {
           {/* Read in Other Languages */}
           <section className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
             <p className="text-gray-600 dark:text-gray-400">
-              Read in: <Link href="/atomic-ideas/jdm/uz" className="text-blue-600 dark:text-blue-400 hover:underline">O'zbekcha</Link>, <Link href="/atomic-ideas/jdm/ru" className="text-blue-600 dark:text-blue-400 hover:underline">Русский</Link>
+              Read in: <Link href="/ai/jdm/uz" className="text-blue-600 dark:text-blue-400 hover:underline">O'zbekcha</Link>, <Link href="/ai/jdm/ru" className="text-blue-600 dark:text-blue-400 hover:underline">Русский</Link>
             </p>
           </section>
 

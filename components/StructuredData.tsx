@@ -77,7 +77,7 @@ export default function StructuredData() {
           "name": "Umarbek"
         }
       }
-    } else if (pathname.startsWith('/atomic-ideas/')) {
+    } else if (pathname.startsWith('/ai/')) {
       pageData = {
         ...pageData,
         "@type": "Article",

@@ -7,11 +7,11 @@ export default function AtomicIdeasPage() {
           const atomicIdeas = [
           {
             title: "Everything is my fault",
-            href: "/atomic-ideas/emf"
+            href: "/ai/emf"
           },
           {
             title: "Just do more",
-            href: "/atomic-ideas/jdm"
+            href: "/ai/jdm"
           }
         ]
 

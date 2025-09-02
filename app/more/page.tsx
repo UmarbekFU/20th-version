@@ -41,7 +41,7 @@ export default function MorePage() {
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Ideas & Thoughts</h2>
                 <div className="space-y-3">
                   <div>
-                    <Link href="/atomic-ideas" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors text-lg">
+                    <Link href="/ai" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors text-lg">
                       Atomic Ideas
                     </Link>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">

@@ -75,7 +75,7 @@ export function generateMetadata(page: string, customData?: Partial<PageMetadata
         url: currentUrl
       }
     },
-    '/atomic-ideas': {
+    '/ai': {
       title: 'Atomic Ideas - Umarbek',
       description: 'Half-formed thoughts I am working through. Smallest units of thought that stand alone.',
       keywords: ['atomic ideas', 'thoughts', 'collaboration', 'feedback', 'growth', 'ideas'],
@@ -86,7 +86,7 @@ export function generateMetadata(page: string, customData?: Partial<PageMetadata
         url: currentUrl
       }
     },
-    '/atomic-ideas/everything-is-my-fault': {
+    '/ai/emf': {
       title: 'Everything is my fault - Atomic Idea',
       description: 'Taking responsibility and preserving agency. When everything is your fault, you stop being a victim.',
       keywords: ['responsibility', 'agency', 'fault', 'control', 'power', 'atomic idea'],
@@ -97,7 +97,7 @@ export function generateMetadata(page: string, customData?: Partial<PageMetadata
         url: currentUrl
       }
     },
-    '/atomic-ideas/just-do-more': {
+    '/ai/jdm': {
       title: 'Just do more - Atomic Idea',
       description: 'Why business leads to technology, which leads to science. The 100x principle and the power of iteration over perfection.',
       keywords: ['trial', 'error', 'iteration', 'business', 'technology', 'science', '100x', 'principle', 'action'],

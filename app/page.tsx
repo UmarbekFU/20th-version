@@ -23,7 +23,7 @@ export default function HomePage() {
               </p>
               
               <p>
-                I write <Link href="/essays" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors underline decoration-gray-300 dark:decoration-gray-600 hover:decoration-blue-400 dark:hover:decoration-blue-500">essays</Link> when I try to explain something to myself. My <Link href="/atomic-ideas" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors underline decoration-gray-300 dark:decoration-gray-600 hover:decoration-blue-400 dark:hover:decoration-blue-500">atomic ideas</Link> are half-formed thoughts I'm working through.
+                I write <Link href="/essays" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors underline decoration-gray-300 dark:decoration-gray-600 hover:decoration-blue-400 dark:hover:decoration-blue-500">essays</Link> when I try to explain something to myself. My <Link href="/ai" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors underline decoration-gray-300 dark:decoration-gray-600 hover:decoration-blue-400 dark:hover:decoration-blue-500">atomic ideas</Link> are half-formed thoughts I'm working through.
               </p>
               
               <p>

@@ -27,9 +27,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/yr/2025',
     '/secret',
     '/disclaimer',
-    '/atomic-ideas',
-    '/atomic-ideas/emf',
-    '/atomic-ideas/jdm',
+    '/ai',
+    '/ai/emf',
+    '/ai/jdm',
     '/uses',
     '/more'
   ]
@@ -38,6 +38,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}${page}`,
     lastModified: new Date(),
     changeFrequency: page === '' ? 'daily' : 'weekly',
-    priority: page === '' ? 1 : page.startsWith('/atomic-ideas/') || page.startsWith('/essays/') ? 0.8 : 0.6,
+    priority: page === '' ? 1 : page.startsWith('/ai/') || page.startsWith('/essays/') ? 0.8 : 0.6,
   }))
 }
