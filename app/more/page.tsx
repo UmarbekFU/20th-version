@@ -126,7 +126,7 @@ export default function MorePage() {
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Life & Time</h2>
                 <div className="space-y-3">
                   <div>
-                    <Link href="/life-calendar" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors text-lg">
+                    <Link href="/lc" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors text-lg">
                       Life Calendar
                     </Link>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
@@ -134,7 +134,7 @@ export default function MorePage() {
                     </p>
                   </div>
                   <div>
-                    <Link href="/year-review" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors text-lg">
+                    <Link href="/yr" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors text-lg">
                       Year in Review
                     </Link>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">

@@ -4,7 +4,7 @@ import TwitterComments from '@/components/TwitterComments'
 import Link from 'next/link'
 import { generateMetadata as genMeta } from '@/lib/metadata'
 
-export const metadata = genMeta('/atomic-ideas/just-do-more')
+export const metadata = genMeta('/atomic-ideas/jdm')
 
 export default function JustDoMore() {
   return (

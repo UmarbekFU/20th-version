@@ -4,7 +4,7 @@ import TwitterComments from '@/components/TwitterComments'
 import Link from 'next/link'
 import { generateMetadata as genMeta } from '@/lib/metadata'
 
-export const metadata = genMeta('/atomic-ideas/everything-is-my-fault')
+export const metadata = genMeta('/atomic-ideas/emf')
 
 export default function EverythingIsMyFaultPage() {
   return (

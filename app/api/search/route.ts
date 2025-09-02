@@ -31,7 +31,7 @@ async function buildSearchIndex(): Promise<SearchResult[]> {
       keywords: ['essays', 'writing', 'thinking', 'ideas', 'learning']
     },
     {
-      path: '/atomic-ideas/just-do-more',
+      path: '/atomic-ideas/jdm',
       title: 'Just do more',
       description: 'Why business leads to technology, which leads to science. The 100x principle and the power of iteration over perfection.',
       keywords: ['trial', 'error', 'iteration', 'business', 'technology', 'science', '100x', 'principle', 'action', 'perfection']
@@ -43,7 +43,7 @@ async function buildSearchIndex(): Promise<SearchResult[]> {
       keywords: ['projects', 'building', 'solving', 'experiments', 'learning']
     },
     {
-      path: '/projects/this-website',
+      path: '/projects/tw',
       title: 'This Website',
       description: 'My personal website built with Next.js and Tailwind CSS',
       keywords: ['website', 'nextjs', 'tailwind', 'personal', 'portfolio']
@@ -73,7 +73,7 @@ async function buildSearchIndex(): Promise<SearchResult[]> {
       keywords: ['podcasts', 'shows', 'audio', 'learning', 'entertainment']
     },
     {
-      path: '/list/things-i-own',
+      path: '/list/tio',
       title: 'Things I Own',
       description: 'A curated list of possessions that actually matter to me',
       keywords: ['things', 'possessions', 'minimalism', 'tech', 'tools']
@@ -109,19 +109,19 @@ async function buildSearchIndex(): Promise<SearchResult[]> {
       keywords: ['questions', 'thinking', 'exploring', 'curiosity', 'understanding']
     },
     {
-      path: '/life-calendar',
+      path: '/lc',
       title: 'Life Calendar',
       description: 'A visual representation of my life, week by week',
       keywords: ['life', 'calendar', 'time', 'priorities', 'finite']
     },
     {
-      path: '/year-review',
+      path: '/yr',
       title: 'Year in Review',
       description: 'Annual reflection on what I have learned, built, and experienced',
       keywords: ['review', 'reflection', 'learning', 'progress', 'patterns']
     },
     {
-      path: '/year-review/2025',
+      path: '/yr/2025',
       title: '2025',
       description: 'Year in Review - 2025',
       keywords: ['2025', 'review', 'reflection', 'year']
@@ -145,7 +145,7 @@ async function buildSearchIndex(): Promise<SearchResult[]> {
       keywords: ['ideas', 'thoughts', 'collaboration', 'feedback', 'growth']
     },
     {
-      path: '/atomic-ideas/everything-is-my-fault',
+      path: '/atomic-ideas/emf',
       title: 'Everything is my fault',
       description: 'Taking responsibility and preserving agency',
       keywords: ['responsibility', 'agency', 'fault', 'control', 'power']

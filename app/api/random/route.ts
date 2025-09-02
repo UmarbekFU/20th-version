@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 
 const pages = [
   '/essays', '/projects', '/notes', '/atomic-ideas', '/list', '/uses', '/scrapbook',
-  '/photos', '/impossible', '/naq', '/tweets', '/questions', '/life-calendar',
-  '/year-review', '/secret', '/disclaimer', '/contact', '/about', '/now', '/more'
+  '/photos', '/impossible', '/naq', '/tweets', '/questions', '/lc',
+  '/yr', '/secret', '/disclaimer', '/contact', '/about', '/now', '/more'
 ]
 
 export async function GET(request: NextRequest) {

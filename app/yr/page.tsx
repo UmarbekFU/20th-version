@@ -16,7 +16,7 @@ export default function YearReviewPage() {
           
           <div className="space-y-6 max-w-2xl mx-auto">
             <Link 
-              href="/year-review/2025"
+              href="/yr/2025"
               className="group block"
             >
               <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">

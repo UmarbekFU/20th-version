@@ -19,7 +19,7 @@ export default function ListPage() {
     {
       title: "Things I Own",
       description: "A curated list of possessions that actually matter to me. I try to own fewer things, but the things I own, I use and appreciate.",
-      href: "/list/things-i-own",
+      href: "/list/tio",
       count: "100+ items"
     }
   ]

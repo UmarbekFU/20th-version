@@ -24,7 +24,7 @@ export default function ProjectsPage() {
               <div className="space-y-4">
                 <div>
                   <Link 
-                    href="/projects/this-website" 
+                    href="/projects/tw" 
                     className="text-lg text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                   >
                     This Website
