@@ -1,5 +1,7 @@
 import Navigation from '@/components/Navigation'
 import PlumBackground from '@/components/PlumBackground'
+import BackLink from '@/components/BackLink'
+import TwitterComments from '@/components/TwitterComments'
 import Link from 'next/link'
 import { generateMetadata as genMeta } from '@/lib/metadata'
 
@@ -231,6 +233,15 @@ export default function JustDoMore() {
               Read in: <Link href="/atomic-ideas/just-do-more/uz" className="text-blue-600 dark:text-blue-400 hover:underline">O'zbekcha</Link>, <Link href="/atomic-ideas/just-do-more/ru" className="text-blue-600 dark:text-blue-400 hover:underline">Русский</Link>
             </p>
           </section>
+
+          {/* Twitter Comments */}
+          <TwitterComments 
+            title="Just do more"
+            hashtags={['iteration', 'action', 'atomic-ideas', '100x']}
+          />
+
+          {/* Back Link */}
+          <BackLink />
         </div>
       </main>
     </>
