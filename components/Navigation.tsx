@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { Github, Mail, Search, RotateCcw } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
@@ -26,6 +26,7 @@ export default function Navigation() {
   const [searchResults, setSearchResults] = useState<SearchResult[]>([])
   const [isSearching, setIsSearching] = useState(false)
   const pathname = usePathname()
+  const router = useRouter()
   const isHomePage = pathname === '/'
 
   // Keyboard shortcuts
@@ -92,10 +93,12 @@ export default function Navigation() {
   }
 
   const goBack = () => {
+    // Use Next.js router for better navigation handling
     if (window.history.length > 1) {
-      window.history.back()
+      router.back()
     } else {
-      window.location.href = '/'
+      // Fallback to home page if no previous page
+      router.push('/')
     }
   }
 
