@@ -179,7 +179,6 @@ export default function EverythingIsMyFaultPage() {
           {/* Twitter Comments */}
           <TwitterComments 
             title="Everything is my fault"
-            hashtags={['responsibility', 'agency', 'atomic-ideas']}
           />
 
           {/* Back Link */}

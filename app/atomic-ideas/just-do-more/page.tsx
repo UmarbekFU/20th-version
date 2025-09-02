@@ -237,7 +237,6 @@ export default function JustDoMore() {
           {/* Twitter Comments */}
           <TwitterComments 
             title="Just do more"
-            hashtags={['iteration', 'action', 'atomic-ideas', '100x']}
           />
 
           {/* Back Link */}

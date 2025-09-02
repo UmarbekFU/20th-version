@@ -5,29 +5,26 @@ import { useEffect, useState } from 'react'
 interface TwitterCommentsProps {
   url?: string
   title?: string
-  hashtags?: string[]
   via?: string
 }
 
 export default function TwitterComments({ 
   url, 
   title, 
-  hashtags = [], 
   via = 'umarHQ' 
 }: TwitterCommentsProps) {
   const [currentUrl, setCurrentUrl] = useState('')
-  const [currentTitle, setCurrentTitle] = useState('')
+  const [currentTitle, setCurrentTitle] = useState(title || 'this post')
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setCurrentUrl(url || window.location.href)
-      setCurrentTitle(title || document.title)
+      setCurrentTitle(title || document.title || 'this post')
     }
   }, [url, title])
 
-  const tweetText = `Thoughts on "${currentTitle}"`
-  const hashtagString = hashtags.length > 0 ? `&hashtags=${hashtags.join(',')}` : ''
-  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(currentUrl)}&via=${via}${hashtagString}`
+  const tweetText = `Reading @${via}'s ${currentTitle}`
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(currentUrl)}`
 
   return (
     <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
