@@ -33,7 +33,7 @@ export default function StructuredData() {
     }
 
     // Page-specific structured data
-    let pageData = {
+    let pageData: any = {
       "@context": "https://schema.org",
       "@type": "WebPage",
       "url": currentUrl,
