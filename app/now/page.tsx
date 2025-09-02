@@ -1,5 +1,8 @@
 import Navigation from '@/components/Navigation'
 import PlumBackground from '@/components/PlumBackground'
+import { generateMetadata as genMeta } from '@/lib/metadata'
+
+export const metadata = genMeta('/now')
 
 export default function NowPage() {
   return (

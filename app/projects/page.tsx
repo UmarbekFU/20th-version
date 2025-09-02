@@ -1,18 +1,9 @@
 import Navigation from '@/components/Navigation'
 import PlumBackground from '@/components/PlumBackground'
 import Link from 'next/link'
-import type { Metadata } from 'next'
+import { generateMetadata as genMeta } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: 'Projects - Umarbek',
-  description: 'Things I have built and broken. A collection of projects, experiments, and tools I\'ve created to solve problems and learn new things.',
-  keywords: ['projects', 'portfolio', 'development', 'tools', 'experiments', 'building', 'solving problems'],
-  openGraph: {
-    title: 'Projects - Umarbek',
-    description: 'Things I have built and broken. A collection of projects, experiments, and tools I\'ve created to solve problems and learn new things.',
-    type: 'website',
-  },
-}
+export const metadata = genMeta('/projects')
 
 export default function ProjectsPage() {
   return (

@@ -4,70 +4,70 @@ import { usePathname } from 'next/navigation'
 
 export default function StructuredData() {
   const pathname = usePathname()
-  
-  const baseUrl = 'https://umarbek.dev'
-  const currentUrl = `${baseUrl}${pathname}`
-  
-  // Base organization data
-  const organizationData = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Umarbek",
-    "url": baseUrl,
-    "description": "Writer, Developer, Thinker from Samarkand, Uzbekistan",
-    "jobTitle": "Developer & Writer",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Tashkent",
-      "addressCountry": "UZ"
-    },
-    "sameAs": [
-      "https://github.com/UmarbekFU",
-      "https://x.com/umarHQ"
-    ],
-    "knowsAbout": [
-      "Web Development",
-      "Writing",
-      "Technology",
-      "Personal Development"
-    ]
-  }
 
-  // Website data
-  const websiteData = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Umarbek - Writer, Developer, Thinker",
-    "url": baseUrl,
-    "description": "Personal website of Umarbek - a developer and writer from Uzbekistan",
-    "author": {
+  const generateStructuredData = () => {
+    const baseUrl = 'https://umarbek.dev'
+    const currentUrl = `${baseUrl}${pathname}`
+    
+    // Base organization data
+    const organization = {
+      "@context": "https://schema.org",
       "@type": "Person",
-      "name": "Umarbek"
-    },
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": `${baseUrl}/api/search?q={search_term_string}`
+      "name": "Umarbek",
+      "url": baseUrl,
+      "description": "Writer, Developer, Thinker from Uzbekistan",
+      "jobTitle": "Developer & Writer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Independent"
       },
-      "query-input": "required name=search_term_string"
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Tashkent",
+        "addressCountry": "UZ"
+      },
+      "sameAs": [
+        "https://github.com/UmarbekFU",
+        "https://x.com/umarHQ"
+      ]
     }
-  }
 
-  // Article data for atomic ideas and essays
-  const getArticleData = () => {
-    if (pathname.includes('/atomic-ideas/') && pathname !== '/atomic-ideas') {
-      const title = pathname.includes('everything-is-my-fault') 
-        ? 'Everything is my fault' 
-        : pathname.includes('just-do-more')
-        ? 'Just do more'
-        : 'Atomic Idea'
-      
-      return {
-        "@context": "https://schema.org",
+    // Page-specific structured data
+    let pageData = {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "url": currentUrl,
+      "name": "Umarbek - Personal Website",
+      "description": "Personal website of Umarbek, a developer and writer from Uzbekistan",
+      "author": {
+        "@type": "Person",
+        "name": "Umarbek"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Umarbek"
+      }
+    }
+
+    // Customize based on page type
+    if (pathname === '/') {
+      pageData = {
+        ...pageData,
+        "@type": "WebSite",
+        "name": "Umarbek - Writer, Developer, Thinker",
+        "description": "Hey! I'm Umarbek. Samarkand native, I now live in Tashkent, Uzbekistan. I write essays, build stuff, and take notes.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": `${baseUrl}/api/search?q={search_term_string}`,
+          "query-input": "required name=search_term_string"
+        }
+      }
+    } else if (pathname.startsWith('/essays/')) {
+      pageData = {
+        ...pageData,
         "@type": "Article",
-        "headline": title,
-        "url": currentUrl,
+        "name": "Essay - " + pathname.split('/').pop(),
+        "description": "An essay by Umarbek exploring ideas and concepts",
         "author": {
           "@type": "Person",
           "name": "Umarbek"
@@ -75,42 +75,52 @@ export default function StructuredData() {
         "publisher": {
           "@type": "Person",
           "name": "Umarbek"
+        }
+      }
+    } else if (pathname.startsWith('/atomic-ideas/')) {
+      pageData = {
+        ...pageData,
+        "@type": "Article",
+        "name": "Atomic Idea - " + pathname.split('/').pop(),
+        "description": "An atomic idea by Umarbek - half-formed thoughts being worked through",
+        "author": {
+          "@type": "Person",
+          "name": "Umarbek"
         },
-        "datePublished": "2025-09-02",
-        "dateModified": "2025-09-02",
-        "mainEntityOfPage": {
-          "@type": "WebPage",
-          "@id": currentUrl
+        "publisher": {
+          "@type": "Person",
+          "name": "Umarbek"
+        }
+      }
+    } else if (pathname.startsWith('/projects/')) {
+      pageData = {
+        ...pageData,
+        "@type": "CreativeWork",
+        "name": "Project - " + pathname.split('/').pop(),
+        "description": "A project by Umarbek - things built and broken",
+        "creator": {
+          "@type": "Person",
+          "name": "Umarbek"
         }
       }
     }
-    return null
+
+    return [organization, pageData]
   }
 
-  const articleData = getArticleData()
+  const structuredData = generateStructuredData()
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(organizationData)
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(websiteData)
-        }}
-      />
-      {articleData && (
+      {structuredData.map((data, index) => (
         <script
+          key={index}
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(articleData)
+            __html: JSON.stringify(data, null, 2)
           }}
         />
-      )}
+      ))}
     </>
   )
 }

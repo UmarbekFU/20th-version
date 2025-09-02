@@ -1,18 +1,9 @@
 import Navigation from '@/components/Navigation'
 import PlumBackground from '@/components/PlumBackground'
 import Link from 'next/link'
-import type { Metadata } from 'next'
+import { generateMetadata as genMeta } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: 'About Me - Umarbek',
-  description: 'Learn about Umarbek - a Samarkand native living in Tashkent, Uzbekistan. Writer, developer, and thinker passionate about building tools and solving problems.',
-  keywords: ['about', 'umarbek', 'samarkand', 'tashkent', 'uzbekistan', 'developer', 'writer', 'personal'],
-  openGraph: {
-    title: 'About Me - Umarbek',
-    description: 'Learn about Umarbek - a Samarkand native living in Tashkent, Uzbekistan. Writer, developer, and thinker passionate about building tools and solving problems.',
-    type: 'profile',
-  },
-}
+export const metadata = genMeta('/about')
 
 export default function AboutPage() {
   return (

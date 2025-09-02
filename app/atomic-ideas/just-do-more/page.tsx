@@ -1,18 +1,9 @@
 import Navigation from '@/components/Navigation'
 import PlumBackground from '@/components/PlumBackground'
 import Link from 'next/link'
-import type { Metadata } from 'next'
+import { generateMetadata as genMeta } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: 'Just do more - Atomic Ideas',
-  description: 'Why business leads to technology, which leads to science. The 100x principle and the power of iteration over perfection through trial and error.',
-  keywords: ['atomic ideas', 'trial and error', 'iteration', 'business', 'technology', 'science', '100x principle', 'action'],
-  openGraph: {
-    title: 'Just do more - Atomic Ideas',
-    description: 'Why business leads to technology, which leads to science. The 100x principle and the power of iteration over perfection through trial and error.',
-    type: 'article',
-  },
-}
+export const metadata = genMeta('/atomic-ideas/just-do-more')
 
 export default function JustDoMore() {
   return (

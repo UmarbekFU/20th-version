@@ -45,10 +45,10 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} antialiased`}>
-        <StructuredData />
         <ThemeProvider>
           {children}
         </ThemeProvider>
+        <StructuredData />
       </body>
     </html>
   )
