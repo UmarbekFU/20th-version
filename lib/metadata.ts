@@ -176,7 +176,7 @@ export function generateMetadata(page: string, customData?: Partial<PageMetadata
     openGraph: {
       title: data.openGraph?.title || data.title,
       description: data.openGraph?.description || data.description,
-      type: data.openGraph?.type || 'website',
+      type: (data.openGraph?.type as 'website' | 'article') || 'website',
       url: data.openGraph?.url || currentUrl,
       siteName: 'Umarbek',
       locale: 'en_US',
