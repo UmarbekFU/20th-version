@@ -1,6 +1,8 @@
+/* stylelint-disable at-rule-no-unknown */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* stylelint-enable at-rule-no-unknown */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
@@ -11,31 +13,54 @@
   }
   
   body {
+    /* stylelint-disable-next-line at-rule-no-unknown */
     @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100;
     font-feature-settings: 'rlig' 1, 'calt' 1;
   }
   
   * {
+    /* stylelint-disable-next-line at-rule-no-unknown */
     @apply transition-colors duration-200;
   }
 }
 
 @layer components {
   .glass-effect {
+    /* stylelint-disable-next-line at-rule-no-unknown */
     @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50;
   }
   
   .link-hover {
+    /* stylelint-disable-next-line at-rule-no-unknown */
     @apply transition-colors duration-200 hover:text-blue-600 dark:hover:text-blue-400;
   }
   
   .section-padding {
+    /* stylelint-disable-next-line at-rule-no-unknown */
     @apply px-6 py-8 md:px-8 md:py-12 lg:px-12;
   }
 }
 
 @layer utilities {
   .text-balance {
-    text-wrap: balance;
+    /* Fallback for older browsers */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Modern browsers - text-wrap is supported in Chrome 114+ */
+  @supports (text-wrap: balance) {
+    .text-balance {
+      text-wrap: balance;
+    }
+  }
+  
+  .plum-mask {
+    -webkit-mask-image: radial-gradient(circle, transparent, black);
+    mask-image: radial-gradient(circle, transparent, black);
+  }
+  
+  .theme-hidden {
+    visibility: hidden;
   }
 }

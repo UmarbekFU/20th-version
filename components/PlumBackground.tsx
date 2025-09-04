@@ -182,11 +182,7 @@ export default function PlumBackground() {
 
   return (
     <div 
-      className="fixed inset-0 z-[-1] pointer-events-none print:hidden"
-      style={{
-        maskImage: 'radial-gradient(circle, transparent, black)',
-        WebkitMaskImage: 'radial-gradient(circle, transparent, black)'
-      }}
+      className="fixed inset-0 z-[-1] pointer-events-none print:hidden plum-mask"
     >
       <canvas
         ref={canvasRef}
