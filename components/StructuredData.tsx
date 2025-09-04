@@ -15,7 +15,7 @@ export default function StructuredData() {
       "@type": "Person",
       "name": "Umarbek",
       "url": baseUrl,
-      "description": "Writer, Developer, Thinker from Uzbekistan",
+      "description": "Building the future through code, writing, and meaningful conversations",
       "jobTitle": "Developer & Writer",
       "worksFor": {
         "@type": "Organization",
@@ -54,7 +54,7 @@ export default function StructuredData() {
       pageData = {
         ...pageData,
         "@type": "WebSite",
-        "name": "Umarbek - Writer, Developer, Thinker",
+        "name": "Umarbek",
         "description": "Hey! I'm Umarbek. Samarkand native, I now live in Tashkent, Uzbekistan. I write essays, build stuff, and take notes.",
         "potentialAction": {
           "@type": "SearchAction",

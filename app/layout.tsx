@@ -7,13 +7,13 @@ import StructuredData from '@/components/StructuredData'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Umarbek - Writer, Developer, Thinker',
+  title: 'Umarbek',
   description: 'Hey! I\'m Umarbek. Samarkand native, I now live in Tashkent, Uzbekistan. I write essays, build stuff, and take notes.',
   keywords: ['developer', 'writer', 'blog', 'portfolio', 'personal website', 'Uzbekistan', 'Tashkent', 'Samarkand'],
   authors: [{ name: 'Umarbek' }],
   creator: 'Umarbek',
   openGraph: {
-    title: 'Umarbek - Writer, Developer, Thinker',
+    title: 'Umarbek',
     description: 'Hey! I\'m Umarbek. Samarkand native, I now live in Tashkent, Uzbekistan.',
     type: 'website',
   },

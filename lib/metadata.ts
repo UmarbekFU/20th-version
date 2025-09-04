@@ -18,11 +18,11 @@ export function generateMetadata(page: string, customData?: Partial<PageMetadata
   
   // Default metadata
   const defaultData: PageMetadata = {
-    title: 'Umarbek - Writer, Developer, Thinker',
+    title: 'Umarbek',
     description: 'Hey! I\'m Umarbek. Samarkand native, I now live in Tashkent, Uzbekistan. I write essays, build stuff, and take notes.',
     keywords: ['developer', 'writer', 'blog', 'portfolio', 'personal website', 'Uzbekistan', 'Tashkent', 'Samarkand'],
     openGraph: {
-      title: 'Umarbek - Writer, Developer, Thinker',
+      title: 'Umarbek',
       description: 'Hey! I\'m Umarbek. Samarkand native, I now live in Tashkent, Uzbekistan.',
       type: 'website',
       url: currentUrl
@@ -32,11 +32,11 @@ export function generateMetadata(page: string, customData?: Partial<PageMetadata
   // Page-specific metadata
   const pageMetadata: Record<string, PageMetadata> = {
     '/': {
-      title: 'Umarbek - Writer, Developer, Thinker',
+      title: 'Umarbek',
       description: 'Hey! I\'m Umarbek. Samarkand native, I now live in Tashkent, Uzbekistan. I write essays, build stuff, and take notes.',
       keywords: ['developer', 'writer', 'blog', 'portfolio', 'personal website', 'Uzbekistan', 'Tashkent', 'Samarkand'],
       openGraph: {
-        title: 'Umarbek - Writer, Developer, Thinker',
+        title: 'Umarbek',
         description: 'Hey! I\'m Umarbek. Samarkand native, I now live in Tashkent, Uzbekistan.',
         type: 'website',
         url: currentUrl
