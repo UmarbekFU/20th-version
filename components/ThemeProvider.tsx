@@ -2,8 +2,14 @@
 
 import { createContext, useContext, useEffect, useState } from 'react'
 
+/**
+ * Available theme options
+ */
 type Theme = 'light' | 'dark' | 'system'
 
+/**
+ * Theme context interface for type safety
+ */
 interface ThemeContextType {
   theme: Theme
   setTheme: (theme: Theme) => void
@@ -12,6 +18,20 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
+/**
+ * Theme Provider Component
+ * 
+ * Manages theme state and provides theme context to child components.
+ * Features:
+ * - Supports light, dark, and system theme modes
+ * - Persists theme preference in localStorage
+ * - Handles system theme changes automatically
+ * - Prevents hydration mismatches with SSR
+ * - Graceful fallback for localStorage errors
+ * 
+ * @param children - React children components
+ * @returns JSX.Element
+ */
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>('system')
   const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light')

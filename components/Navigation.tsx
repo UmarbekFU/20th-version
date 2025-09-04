@@ -5,12 +5,19 @@ import { usePathname, useRouter } from 'next/navigation'
 import { Github, Mail, Search, RotateCcw } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
+/**
+ * Social media links configuration
+ * Each link includes name, href, and icon component
+ */
 const socialLinks = [
   { name: 'GitHub', href: 'https://github.com/UmarbekFU', icon: Github },
   { name: 'Email', href: 'mailto:u.umarov.pro@gmail.com', icon: Mail },
   { name: 'X', href: 'https://x.com/umarHQ', icon: 'X' },
 ]
 
+/**
+ * Search result interface for type safety
+ */
 interface SearchResult {
   path: string
   title: string
@@ -20,6 +27,18 @@ interface SearchResult {
   matches: string[]
 }
 
+/**
+ * Main Navigation Component
+ * 
+ * Features:
+ * - Responsive design with mobile-first approach
+ * - Search functionality with keyboard shortcuts (⌘K)
+ * - Social media links with hover animations
+ * - Go back button (hidden on homepage)
+ * - Theme-aware styling
+ * 
+ * @returns JSX.Element
+ */
 export default function Navigation() {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')

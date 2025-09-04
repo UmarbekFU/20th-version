@@ -2,6 +2,23 @@
 
 import { useEffect, useRef } from 'react'
 
+/**
+ * Plum Background Component
+ * 
+ * Creates an animated organic tree-like pattern using HTML5 Canvas.
+ * Features:
+ * - Procedural generation of branching patterns
+ * - Responsive to window resize events
+ * - Performance optimized with requestAnimationFrame
+ * - Subtle animation with randomized timing
+ * - Print-friendly (hidden in print mode)
+ * - Masked with radial gradient for subtle effect
+ * 
+ * The animation creates a fractal-like tree structure that grows organically
+ * from the edges of the screen, providing a subtle background effect.
+ * 
+ * @returns JSX.Element
+ */
 export default function PlumBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
