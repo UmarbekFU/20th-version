@@ -34,6 +34,9 @@ export default function PhotosPage() {
     }
   ]
 
+  // Randomize the order of photos each time the page loads
+  const shuffledPhotos = [...photos].sort(() => Math.random() - 0.5)
+
   return (
     <>
       <PlumBackground />
@@ -47,22 +50,34 @@ export default function PhotosPage() {
 
           {/* Photo Gallery Masonry Grid */}
           <div className="columns-2 md:columns-3 lg:columns-4 gap-3 max-w-6xl mx-auto">
-            {photos.map((photo) => (
-              <div 
-                key={photo.id}
-                className="group cursor-pointer mb-3 break-inside-avoid"
-              >
-                <div className="relative overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700">
-                  <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
+            {shuffledPhotos.map((photo, index) => {
+              // Add random sizing variations for visual interest
+              const sizeVariations = [
+                'aspect-square',
+                'aspect-[4/5]',
+                'aspect-[3/4]',
+                'aspect-[5/4]',
+                'aspect-[4/3]'
+              ]
+              const randomSize = sizeVariations[index % sizeVariations.length]
+              
+              return (
+                <div 
+                  key={photo.id}
+                  className="group cursor-pointer mb-3 break-inside-avoid"
+                >
+                  <div className={`relative overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700 ${randomSize}`}>
+                    <img
+                      src={photo.src}
+                      alt={photo.alt}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
 
           {/* Footer Note */}
