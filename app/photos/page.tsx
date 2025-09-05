@@ -27,12 +27,32 @@ export default function PhotosPage() {
     }
   ]
 
-  // Randomize the order of photos each time the page loads
-  // Use a more balanced randomization approach
-  const shuffledPhotos = [...photos].sort(() => Math.random() - 0.5)
+  // Create a more balanced distribution system
+  const createBalancedLayout = (photos) => {
+    // Shuffle photos
+    const shuffled = [...photos].sort(() => Math.random() - 0.5)
+    
+    // Create balanced size distribution
+    const sizeOptions = [
+      'aspect-square',
+      'aspect-[4/5]', 
+      'aspect-[3/4]',
+      'aspect-[5/4]',
+      'aspect-[4/3]',
+      'aspect-square',
+      'aspect-[3/4]',
+      'aspect-[4/3]'
+    ]
+    
+    // Distribute sizes evenly across photos
+    return shuffled.map((photo, index) => ({
+      ...photo,
+      size: sizeOptions[index % sizeOptions.length],
+      margin: ['mb-2', 'mb-3', 'mb-4'][index % 3]
+    }))
+  }
   
-  // Add random positioning offsets to ensure better distribution
-  const getRandomOffset = () => Math.floor(Math.random() * 3) - 1 // -1, 0, or 1
+  const balancedPhotos = createBalancedLayout(photos)
 
   return (
     <>
@@ -47,49 +67,22 @@ export default function PhotosPage() {
 
           {/* Photo Gallery Masonry Grid */}
           <div className="columns-2 md:columns-3 lg:columns-4 gap-3 max-w-6xl mx-auto">
-            {shuffledPhotos.map((photo, index) => {
-              // More balanced size distribution
-              const sizeVariations = [
-                'aspect-square',
-                'aspect-[4/5]',
-                'aspect-[3/4]',
-                'aspect-[5/4]',
-                'aspect-[4/3]',
-                'aspect-square',
-                'aspect-[3/4]',
-                'aspect-[4/3]'
-              ]
-              
-              // Use index-based selection with some randomization for better balance
-              const sizeIndex = (index + Math.floor(Math.random() * 2)) % sizeVariations.length
-              const randomSize = sizeVariations[sizeIndex]
-              
-              // Add random margin variations for better distribution
-              const marginVariations = ['mb-2', 'mb-3', 'mb-4', 'mb-3', 'mb-2']
-              const randomMargin = marginVariations[index % marginVariations.length]
-              
-              return (
-                <div 
-                  key={photo.id}
-                  className={`group cursor-pointer ${randomMargin} break-inside-avoid`}
-                  style={{
-                    // Add subtle random positioning to prevent clustering
-                    transform: `translateX(${getRandomOffset() * 2}px)`,
-                    transition: 'transform 0.3s ease'
-                  }}
-                >
-                  <div className={`relative overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700 ${randomSize}`}>
-                    <img
-                      src={photo.src}
-                      alt={photo.alt}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
-                  </div>
+            {balancedPhotos.map((photo) => (
+              <div 
+                key={photo.id}
+                className={`group cursor-pointer ${photo.margin} break-inside-avoid`}
+              >
+                <div className={`relative overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700 ${photo.size}`}>
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
                 </div>
-              )
-            })}
+              </div>
+            ))}
           </div>
 
           {/* Footer Note */}
