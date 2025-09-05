@@ -2,194 +2,245 @@ import Navigation from '@/components/Navigation'
 import PlumBackground from '@/components/PlumBackground'
 
 export default function ScrapbookPage() {
-  // Sample scrapbook items with varied content
+  // Real scrapbook items from the user's Scrapbook folder
   const scrapbookItems = [
     // Memes and funny images
     {
       id: 1,
-      src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop",
-      alt: "Funny meme about programming",
+      src: "/scrapbook/meme.png",
+      alt: "Programming meme",
       type: "meme"
     },
     {
       id: 2,
-      src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=250&h=300&fit=crop",
-      alt: "Another meme",
+      src: "/scrapbook/courage.png",
+      alt: "Courage meme",
       type: "meme"
     },
     {
       id: 3,
-      src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=150&fit=crop",
-      alt: "Programming joke",
+      src: "/scrapbook/mediocre.png",
+      alt: "Mediocre meme",
       type: "meme"
     },
-    // Code snippets
     {
       id: 4,
-      src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=350&h=250&fit=crop",
-      alt: "Code snippet",
-      type: "code"
+      src: "/scrapbook/whining.png",
+      alt: "Whining meme",
+      type: "meme"
     },
     {
       id: 5,
-      src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=400&fit=crop",
-      alt: "Another code snippet",
-      type: "code"
+      src: "/scrapbook/You are silly.png",
+      alt: "You are silly meme",
+      type: "meme"
     },
+    // Study and learning content
     {
       id: 6,
-      src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&h=300&fit=crop",
-      alt: "Code example",
-      type: "code"
+      src: "/scrapbook/study.png",
+      alt: "Study content",
+      type: "study"
     },
-    // Strange photos
     {
       id: 7,
-      src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=250&h=350&fit=crop",
-      alt: "Strange object",
-      type: "strange"
+      src: "/scrapbook/Taleb on bro scientist.png",
+      alt: "Taleb on bro scientist",
+      type: "study"
     },
+    // Professional content
     {
       id: 8,
-      src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=200&fit=crop",
-      alt: "Weird pattern",
-      type: "strange"
+      src: "/scrapbook/linkedin.png",
+      alt: "LinkedIn content",
+      type: "professional"
     },
     {
       id: 9,
-      src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=400&fit=crop",
-      alt: "Odd scene",
-      type: "strange"
+      src: "/scrapbook/PG with JL.png",
+      alt: "PG with JL",
+      type: "professional"
     },
+    // Photos from September 5, 2025
     {
       id: 10,
-      src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=200&h=300&fit=crop",
-      alt: "Random find",
-      type: "strange"
+      src: "/scrapbook/photo_2025-09-05 05.24.49.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
     },
-    // Screenshots
     {
       id: 11,
-      src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=350&h=250&fit=crop",
-      alt: "Interesting screenshot",
-      type: "screenshot"
+      src: "/scrapbook/photo_2025-09-05 05.24.59.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
     },
     {
       id: 12,
-      src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&h=300&fit=crop",
-      alt: "Another screenshot",
-      type: "screenshot"
+      src: "/scrapbook/photo_2025-09-05 05.25.16.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
     },
     {
       id: 13,
-      src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=250&h=400&fit=crop",
-      alt: "UI screenshot",
-      type: "screenshot"
+      src: "/scrapbook/photo_2025-09-05 05.25.20.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
     },
     {
       id: 14,
-      src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=200&fit=crop",
-      alt: "Error message",
-      type: "screenshot"
+      src: "/scrapbook/photo_2025-09-05 05.25.29.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
     },
-    // More memes
     {
       id: 15,
-      src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=300&fit=crop",
-      alt: "Tech meme",
-      type: "meme"
+      src: "/scrapbook/photo_2025-09-05 05.25.37.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
     },
     {
       id: 16,
-      src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=200&h=350&fit=crop",
-      alt: "Programming humor",
-      type: "meme"
+      src: "/scrapbook/photo_2025-09-05 05.25.42.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
     },
     {
       id: 17,
-      src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=350&h=250&fit=crop",
-      alt: "Developer joke",
-      type: "meme"
+      src: "/scrapbook/photo_2025-09-05 05.25.47.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
     },
-    // More strange things
     {
       id: 18,
-      src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&h=400&fit=crop",
-      alt: "Bizarre object",
-      type: "strange"
+      src: "/scrapbook/photo_2025-09-05 05.25.55.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
     },
     {
       id: 19,
-      src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=250&h=300&fit=crop",
-      alt: "Odd pattern",
-      type: "strange"
+      src: "/scrapbook/photo_2025-09-05 05.25.58.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
     },
     {
       id: 20,
-      src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=200&fit=crop",
-      alt: "Random find",
-      type: "strange"
+      src: "/scrapbook/photo_2025-09-05 05.26.01.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
     },
-    // More code
     {
       id: 21,
-      src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=300&fit=crop",
-      alt: "Algorithm snippet",
-      type: "code"
+      src: "/scrapbook/photo_2025-09-05 05.26.03.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
     },
     {
       id: 22,
-      src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=200&h=400&fit=crop",
-      alt: "Function example",
-      type: "code"
+      src: "/scrapbook/photo_2025-09-05 05.26.08.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
     },
     {
       id: 23,
-      src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=350&h=250&fit=crop",
-      alt: "Code pattern",
-      type: "code"
+      src: "/scrapbook/photo_2025-09-05 05.26.23.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
     },
     {
       id: 24,
-      src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&h=300&fit=crop",
-      alt: "Debug output",
-      type: "code"
+      src: "/scrapbook/photo_2025-09-05 05.26.28.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
     },
     {
       id: 25,
-      src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=250&h=350&fit=crop",
-      alt: "API response",
-      type: "code"
+      src: "/scrapbook/photo_2025-09-05 05.26.41.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
     },
     {
       id: 26,
-      src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=200&fit=crop",
-      alt: "Configuration file",
-      type: "code"
+      src: "/scrapbook/photo_2025-09-05 05.26.54.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
     },
     {
       id: 27,
-      src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=300&fit=crop",
-      alt: "Another meme",
-      type: "meme"
+      src: "/scrapbook/photo_2025-09-05 05.27.23.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
     },
     {
       id: 28,
-      src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=200&h=400&fit=crop",
-      alt: "Strange meme",
-      type: "meme"
+      src: "/scrapbook/photo_2025-09-05 05.27.35.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
     },
     {
       id: 29,
-      src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=350&h=250&fit=crop",
-      alt: "Weird screenshot",
-      type: "screenshot"
+      src: "/scrapbook/photo_2025-09-05 05.28.00.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
     },
     {
       id: 30,
-      src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&h=300&fit=crop",
-      alt: "Random image",
-      type: "strange"
+      src: "/scrapbook/photo_2025-09-05 05.28.22.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
+    },
+    {
+      id: 31,
+      src: "/scrapbook/photo_2025-09-05 05.28.27.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
+    },
+    {
+      id: 32,
+      src: "/scrapbook/photo_2025-09-05 05.28.32.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
+    },
+    {
+      id: 33,
+      src: "/scrapbook/photo_2025-09-05 05.28.36.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
+    },
+    {
+      id: 34,
+      src: "/scrapbook/photo_2025-09-05 05.28.58.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
+    },
+    {
+      id: 35,
+      src: "/scrapbook/photo_2025-09-05 05.29.09.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
+    },
+    {
+      id: 36,
+      src: "/scrapbook/photo_2025-09-05 05.29.22.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
+    },
+    {
+      id: 37,
+      src: "/scrapbook/photo_2025-09-05 05.29.30.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
+    },
+    {
+      id: 38,
+      src: "/scrapbook/photo_2025-09-05 05.30.18.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
+    },
+    {
+      id: 39,
+      src: "/scrapbook/photo_2025-09-05 05.30.52.jpeg",
+      alt: "Photo from September 5, 2025",
+      type: "photo"
     }
   ]
 
