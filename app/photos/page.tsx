@@ -6,34 +6,27 @@ export default function PhotosPage() {
   const photos = [
     {
       id: 1,
-      src: "/photos/001.jpg",
-      alt: "Photo 001",
-      caption: "Moment captured",
-      date: "2024"
-    },
-    {
-      id: 2,
       src: "/photos/2024-03-06-evening.jpg",
       alt: "Evening photo from March 6, 2024",
       caption: "Evening light",
       date: "2024-03-06"
     },
     {
-      id: 3,
+      id: 2,
       src: "/photos/IMG_0965.jpg",
       alt: "Photo IMG_0965",
       caption: "Digital memory",
       date: "2024"
     },
     {
-      id: 4,
+      id: 3,
       src: "/photos/me_cw.jpeg",
       alt: "Portrait photo",
       caption: "Self portrait",
       date: "2024"
     },
     {
-      id: 5,
+      id: 4,
       src: "/photos/samarkand2024.jpg",
       alt: "Samarkand 2024",
       caption: "Samarkand memories",
