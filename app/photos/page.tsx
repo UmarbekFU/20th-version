@@ -13,7 +13,7 @@ export default function PhotosPage() {
     },
     {
       id: 2,
-      src: "/photos/2024-03-06 9.39.41 PM.jpg",
+      src: "/photos/2024-03-06-evening.jpg",
       alt: "Evening photo from March 6, 2024",
       caption: "Evening light",
       date: "2024-03-06"
@@ -34,7 +34,7 @@ export default function PhotosPage() {
     },
     {
       id: 5,
-      src: "/photos/samarkand2024-20241108194935-9c358cbaa81a.jpg",
+      src: "/photos/samarkand2024.jpg",
       alt: "Samarkand 2024",
       caption: "Samarkand memories",
       date: "2024-11-08"
