@@ -52,12 +52,12 @@ export default function PhotosPage() {
             I take photos when I look up from the screen. Mostly things that catch my eye in unexpected ways.
           </p>
 
-          {/* Photo Gallery Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 max-w-6xl mx-auto">
+          {/* Photo Gallery Masonry Grid */}
+          <div className="columns-2 md:columns-3 lg:columns-4 gap-3 max-w-6xl mx-auto">
             {photos.map((photo) => (
               <div 
                 key={photo.id}
-                className="group cursor-pointer"
+                className="group cursor-pointer mb-3 break-inside-avoid"
               >
                 <div className="relative overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-700">
                   <img
