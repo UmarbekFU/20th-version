@@ -6,7 +6,7 @@ import { Lora } from 'next/font/google'
 
 const lora = Lora({ subsets: ['latin'], display: 'swap' })
 
-export default function AcquiredNetflixStoryPage() {
+export default function AcquirednetflixstoryPage() {
   const note = getNoteBySlug('acquired-netflix-story')
   
   if (!note) {
@@ -23,7 +23,7 @@ export default function AcquiredNetflixStoryPage() {
             <img
               src={note.coverImage}
               alt={note.title}
-              className="w-32 h-32 md:w-40 md:h-40 object-cover rounded-lg shadow-lg flex-shrink-0"
+              className="w-32 h-40 md:w-40 md:h-52 object-cover rounded border border-gray-200 dark:border-gray-700 flex-shrink-0"
             />
             <div className="flex-1">
               <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">
@@ -33,7 +33,7 @@ export default function AcquiredNetflixStoryPage() {
                 by {note.author}
               </p>
               <p className="text-gray-500 dark:text-gray-500 mb-6">
-                Listened: {note.date} • Rating: {note.rating}/10 • Duration: {note.duration}
+                Listened: {note.date} • Rating: {note.rating}/10 • Duration: 2.5 hours
               </p>
             </div>
           </div>
@@ -47,7 +47,7 @@ export default function AcquiredNetflixStoryPage() {
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">My Notes</h2>
             <div className="space-y-4 text-gray-700 dark:text-gray-300">
               <p>
-                This is where my detailed notes and thoughts about "The Netflix Story" would go. 
+                This is where my detailed notes and thoughts about "The Netflix Story: From DVD Rentals to Global Streaming Empire" would go. 
                 I'm still working on organizing and sharing my thoughts on this podcast.
               </p>
               <p>

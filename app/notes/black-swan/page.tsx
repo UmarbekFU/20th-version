@@ -6,7 +6,7 @@ import { Lora } from 'next/font/google'
 
 const lora = Lora({ subsets: ['latin'], display: 'swap' })
 
-export default function BlackSwanPage() {
+export default function BlackswanPage() {
   const note = getNoteBySlug('black-swan')
   
   if (!note) {

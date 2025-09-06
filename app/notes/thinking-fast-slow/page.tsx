@@ -6,7 +6,7 @@ import { Lora } from 'next/font/google'
 
 const lora = Lora({ subsets: ['latin'], display: 'swap' })
 
-export default function ThinkingFastSlowPage() {
+export default function ThinkingfastslowPage() {
   const note = getNoteBySlug('thinking-fast-slow')
   
   if (!note) {
