@@ -167,13 +167,13 @@ export function Bookshelf({ notes }: BookshelfProps) {
       >
         {/* Left scroll button */}
         <div
-          className={`absolute -left-7 h-full ${
+          className={`absolute -left-4 sm:-left-7 h-full ${
             scroll > minScroll ? "block" : "hidden"
           }`}
         >
           <div
             ref={scrollLeftRef}
-            className="flex items-center justify-center h-full w-7 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-colors"
+            className="flex items-center justify-center h-full w-6 sm:w-7 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-colors"
           >
             <ChevronLeft className="w-3 h-3" />
           </div>
@@ -300,13 +300,13 @@ export function Bookshelf({ notes }: BookshelfProps) {
 
         {/* Right scroll button */}
         <div
-          className={`absolute -right-7 h-full top-0 ${
+          className={`absolute -right-4 sm:-right-7 h-full top-0 ${
             scroll < maxScroll ? "block" : "hidden"
           }`}
         >
           <div
             ref={scrollRightRef}
-            className="flex items-center justify-center h-full w-7 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-colors"
+            className="flex items-center justify-center h-full w-6 sm:w-7 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-colors"
           >
             <ChevronRight className="w-3 h-3" />
           </div>

@@ -174,30 +174,9 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
   };
 
   return (
-    <div className="flex gap-8">
-      {/* Sidebar Navigation */}
-      <div className="hidden lg:block w-32 flex-shrink-0">
-        <div className="fixed left-8 top-1/2 transform -translate-y-1/2 z-10">
-          <div className="space-y-1">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
-                className={`w-full text-center px-3 py-2 rounded transition-all duration-200 ${
-                  activeTab === tab.id
-                    ? 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800'
-                }`}
-              >
-                <span className="text-sm font-medium">{tab.label}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
+    <div className="flex flex-col lg:flex-row gap-4 lg:gap-8">
       {/* Mobile Tab Navigation */}
-      <div className="lg:hidden w-full mb-6">
+      <div className="lg:hidden w-full mb-4">
         <div className="relative bg-gray-100 dark:bg-gray-800 rounded-lg p-1 flex">
           {/* Sliding Background */}
           <div
@@ -221,6 +200,27 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
                   <span>{tab.label}</span>
             </button>
           ))}
+        </div>
+      </div>
+
+      {/* Sidebar Navigation */}
+      <div className="hidden lg:block w-32 flex-shrink-0">
+        <div className="fixed left-8 top-1/2 transform -translate-y-1/2 z-10">
+          <div className="space-y-1">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id as any)}
+                className={`w-full text-center px-3 py-2 rounded transition-all duration-200 ${
+                  activeTab === tab.id
+                    ? 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800'
+                }`}
+              >
+                <span className="text-sm font-medium">{tab.label}</span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
