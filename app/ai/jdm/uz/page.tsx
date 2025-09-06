@@ -12,7 +12,7 @@ export default function JustDoMoreUzbek() {
       <PlumBackground />
       <Navigation />
       <main className="min-h-screen pt-32">
-        <div className="max-w-3xl mx-auto px-4 sm:px-8">
+        <div className="max-w-3xl mx-auto px-8">
           {/* Atomic Idea Header */}
           <header className="mb-12">
             <div className="text-sm text-gray-500 dark:text-gray-400 mb-4">

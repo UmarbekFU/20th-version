@@ -10,7 +10,7 @@ export default function HomePage() {
       
       {/* Main Content */}
       <main className="min-h-screen pt-32">
-        <div className="max-w-3xl mx-auto px-4 sm:px-8">
+        <div className="max-w-3xl mx-auto px-8">
           {/* Hero Section */}
           <section className="mb-20">
             <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold text-gray-900 dark:text-gray-100 mb-8 leading-tight text-center">
