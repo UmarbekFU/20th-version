@@ -82,6 +82,9 @@ export default function TweetsPage() {
                 <p className="text-lg text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-relaxed">
                   {tweet}
                 </p>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                  March 9, 2025
+                </p>
               </div>
             ))}
           </div>
