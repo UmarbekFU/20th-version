@@ -72,10 +72,12 @@ export function Bookshelf({ notes }: BookshelfProps) {
     }
   }, [selectedNote, hoveredNote, boundedRelativeScroll, notesInViewport]);
 
-  // Scroll event handlers
+  // Mobile/Desktop responsive scroll events
   useEffect(() => {
     const currentScrollRightRef = scrollRightRef.current;
     const currentScrollLeftRef = scrollLeftRef.current;
+
+    if (!currentScrollRightRef || !currentScrollLeftRef) return;
 
     let scrollInterval: NodeJS.Timeout | null = null;
 
@@ -100,28 +102,72 @@ export function Bookshelf({ notes }: BookshelfProps) {
       }
     };
 
-    // Mouse events for desktop
-    currentScrollRightRef?.addEventListener('mouseenter', setScrollRightInterval);
-    currentScrollRightRef?.addEventListener('mouseleave', clearScrollInterval);
-    currentScrollLeftRef?.addEventListener('mouseenter', setScrollLeftInterval);
-    currentScrollLeftRef?.addEventListener('mouseleave', clearScrollInterval);
+    // Function to determine scroll events based on screen size
+    const getScrollEvents = () => {
+      const isMobile = window.innerWidth < 640; // sm breakpoint
+      return isMobile 
+        ? { start: "touchstart", stop: "touchend" }
+        : { start: "mouseenter", stop: "mouseleave" };
+    };
 
-    // Touch events for mobile
-    currentScrollRightRef?.addEventListener('touchstart', setScrollRightInterval);
-    currentScrollRightRef?.addEventListener('touchend', clearScrollInterval);
-    currentScrollLeftRef?.addEventListener('touchstart', setScrollLeftInterval);
-    currentScrollLeftRef?.addEventListener('touchend', clearScrollInterval);
+    // Create a copy of the scroll events to save for clean-up
+    const currentScrollEvents = getScrollEvents();
+
+    const addEventListeners = () => {
+      currentScrollRightRef.addEventListener(
+        currentScrollEvents.start,
+        setScrollRightInterval
+      );
+      currentScrollRightRef.addEventListener(
+        currentScrollEvents.stop,
+        clearScrollInterval
+      );
+
+      currentScrollLeftRef.addEventListener(
+        currentScrollEvents.start,
+        setScrollLeftInterval
+      );
+      currentScrollLeftRef.addEventListener(
+        currentScrollEvents.stop,
+        clearScrollInterval
+      );
+    };
+
+    const removeEventListeners = () => {
+      currentScrollRightRef.removeEventListener(
+        currentScrollEvents.start,
+        setScrollRightInterval
+      );
+      currentScrollRightRef.removeEventListener(
+        currentScrollEvents.stop,
+        clearScrollInterval
+      );
+      currentScrollLeftRef.removeEventListener(
+        currentScrollEvents.start,
+        setScrollLeftInterval
+      );
+      currentScrollLeftRef.removeEventListener(
+        currentScrollEvents.stop,
+        clearScrollInterval
+      );
+    };
+
+    addEventListeners();
+
+    // Handle window resize to switch between mobile/desktop events
+    const handleResize = () => {
+      removeEventListeners();
+      const newScrollEvents = getScrollEvents();
+      Object.assign(currentScrollEvents, newScrollEvents);
+      addEventListeners();
+    };
+
+    window.addEventListener('resize', handleResize);
 
     return () => {
       clearScrollInterval();
-      currentScrollRightRef?.removeEventListener('mouseenter', setScrollRightInterval);
-      currentScrollRightRef?.removeEventListener('mouseleave', clearScrollInterval);
-      currentScrollLeftRef?.removeEventListener('mouseenter', setScrollLeftInterval);
-      currentScrollLeftRef?.removeEventListener('mouseleave', clearScrollInterval);
-      currentScrollRightRef?.removeEventListener('touchstart', setScrollRightInterval);
-      currentScrollRightRef?.removeEventListener('touchend', clearScrollInterval);
-      currentScrollLeftRef?.removeEventListener('touchstart', setScrollLeftInterval);
-      currentScrollLeftRef?.removeEventListener('touchend', clearScrollInterval);
+      removeEventListeners();
+      window.removeEventListener('resize', handleResize);
     };
   }, [boundedRelativeScroll]);
 
@@ -167,13 +213,17 @@ export function Bookshelf({ notes }: BookshelfProps) {
       >
         {/* Left scroll button */}
         <div
-          className={`absolute -left-4 sm:-left-7 h-full ${
+          className={`absolute h-full -left-7 md:-left-9 ${
             scroll > minScroll ? "block" : "hidden"
           }`}
         >
           <div
             ref={scrollLeftRef}
-            className="flex items-center justify-center h-full w-6 sm:w-7 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-colors"
+            className="flex items-center justify-center h-full w-7 md:w-9 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-colors"
+            style={{
+              borderTopRightRadius: 0, // Mobile: no right border radius
+              borderBottomRightRadius: 0,
+            }}
           >
             <ChevronLeft className="w-3 h-3" />
           </div>
@@ -300,13 +350,17 @@ export function Bookshelf({ notes }: BookshelfProps) {
 
         {/* Right scroll button */}
         <div
-          className={`absolute -right-4 sm:-right-7 h-full top-0 ${
+          className={`absolute h-full top-0 -right-7 md:-right-9 pl-2.5 ${
             scroll < maxScroll ? "block" : "hidden"
           }`}
         >
           <div
             ref={scrollRightRef}
-            className="flex items-center justify-center h-full w-6 sm:w-7 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-colors"
+            className="flex items-center justify-center h-full w-7 md:w-9 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-colors"
+            style={{
+              borderTopLeftRadius: 0, // Mobile: no left border radius
+              borderBottomLeftRadius: 0,
+            }}
           >
             <ChevronRight className="w-3 h-3" />
           </div>
