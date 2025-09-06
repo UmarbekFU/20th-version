@@ -12,6 +12,10 @@ export default function AtomicIdeasPage() {
           {
             title: "Just do more",
             href: "/ai/jdm"
+          },
+          {
+            title: "Free will fallacy",
+            href: "/ai/fwf"
           }
         ]
 

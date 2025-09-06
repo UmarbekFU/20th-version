@@ -68,6 +68,9 @@ export default function StartPage() {
               <p>
                 <Link href="/ai/jdm" className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium">Just do more</Link> — The power of consistent action and effort
               </p>
+              <p>
+                <Link href="/ai/fwf" className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium">Free will fallacy</Link> — Why reductionism fails to explain human choice
+              </p>
             </div>
           </div>
 
