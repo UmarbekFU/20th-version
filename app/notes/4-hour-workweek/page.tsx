@@ -6,7 +6,7 @@ import { Lora } from 'next/font/google'
 
 const lora = Lora({ subsets: ['latin'], display: 'swap' })
 
-export default function 4hourworkweekPage() {
+export default function FourHourWorkweekPage() {
   const note = getNoteBySlug('4-hour-workweek')
   
   if (!note) {
