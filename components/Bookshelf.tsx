@@ -12,7 +12,8 @@ interface BookshelfProps {
 export function Bookshelf({ notes }: BookshelfProps) {
   const router = useRouter();
   const [selectedNote, setSelectedNote] = useState(-1);
-  const [scroll, setScroll] = useState(0);
+  const [hoveredNote, setHoveredNote] = useState(-1);
+  const [scroll, setScroll] = useState(-200);
   const [isScrolling, setIsScrolling] = useState(false);
   const [notesInViewport, setNotesInViewport] = useState(0);
 
@@ -31,12 +32,13 @@ export function Bookshelf({ notes }: BookshelfProps) {
 
   const minScroll = 0;
   const maxScroll = useMemo(() => {
+    const activeNote = selectedNote > -1 ? selectedNote : hoveredNote;
     return (
       (width + 12) * (notes.length - notesInViewport) +
-      (selectedNote > -1 ? width * 4 : 0) +
+      (activeNote > -1 ? width * 4 : 0) +
       5
     );
-  }, [selectedNote, notes.length, notesInViewport]);
+  }, [selectedNote, hoveredNote, notes.length, notesInViewport]);
 
   const boundedScroll = (scrollX: number) => {
     setScroll(Math.max(minScroll, Math.min(maxScroll, scrollX)));
@@ -60,14 +62,15 @@ export function Bookshelf({ notes }: BookshelfProps) {
     }
   }, []);
 
-  // Auto-scroll to selected note
+  // Auto-scroll to selected or hovered note
   useEffect(() => {
-    if (selectedNote === -1) {
+    const activeNote = selectedNote > -1 ? selectedNote : hoveredNote;
+    if (activeNote === -1) {
       boundedRelativeScroll(0);
     } else {
-      boundedScroll((selectedNote - (notesInViewport - 4.5) / 2) * (width + 11));
+      boundedScroll((activeNote - (notesInViewport - 4.5) / 2) * (width + 11));
     }
-  }, [selectedNote, boundedRelativeScroll, notesInViewport]);
+  }, [selectedNote, hoveredNote, boundedRelativeScroll, notesInViewport]);
 
   // Scroll event handlers
   useEffect(() => {
@@ -79,15 +82,15 @@ export function Bookshelf({ notes }: BookshelfProps) {
     const setScrollRightInterval = () => {
       setIsScrolling(true);
       scrollInterval = setInterval(() => {
-        boundedRelativeScroll(0.3);
-      }, 20);
+        boundedRelativeScroll(3);
+      }, 10);
     };
 
     const setScrollLeftInterval = () => {
       setIsScrolling(true);
       scrollInterval = setInterval(() => {
-        boundedRelativeScroll(-1.2);
-      }, 20);
+        boundedRelativeScroll(-3);
+      }, 10);
     };
 
     const clearScrollInterval = () => {
@@ -122,6 +125,11 @@ export function Bookshelf({ notes }: BookshelfProps) {
     };
   }, [boundedRelativeScroll]);
 
+  // Handle mouse leave on the entire bookshelf to clear hover
+  const handleBookshelfMouseLeave = () => {
+    setHoveredNote(-1);
+  };
+
   return (
     <>
       {/* SVG filter for paper texture */}
@@ -152,18 +160,22 @@ export function Bookshelf({ notes }: BookshelfProps) {
         </defs>
       </svg>
 
-      <div className="relative" ref={bookshelfRef}>
+      <div 
+        className="relative" 
+        ref={bookshelfRef}
+        onMouseLeave={handleBookshelfMouseLeave}
+      >
         {/* Left scroll button */}
         <div
-          className={`absolute -left-1 h-full ${
+          className={`absolute -left-7 h-full ${
             scroll > minScroll ? "block" : "hidden"
           }`}
         >
           <div
             ref={scrollLeftRef}
-            className="flex items-center justify-center h-full w-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-colors"
+            className="flex items-center justify-center h-full w-7 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-colors"
           >
-            <ChevronLeft className="w-1 h-1" />
+            <ChevronLeft className="w-3 h-3" />
           </div>
         </div>
 
@@ -172,34 +184,34 @@ export function Bookshelf({ notes }: BookshelfProps) {
           ref={viewportRef}
           className="flex items-center gap-1 overflow-x-hidden cursor-grab"
         >
-          {notes.map((note, index) => (
-            <button
-              key={note.title}
-              onClick={() => {
-                if (index === selectedNote) {
-                  setSelectedNote(-1);
-                } else {
-                  setSelectedNote(index);
-                  // Navigate to the note page after a short delay for animation
-                  setTimeout(() => {
+          {notes.map((note, index) => {
+            const isActive = selectedNote === index || hoveredNote === index;
+            return (
+              <button
+                key={note.title}
+                onClick={() => {
+                  if (index === selectedNote) {
+                    setSelectedNote(-1);
+                    router.push(`/notes`);
+                  } else {
+                    setSelectedNote(index);
                     router.push(`/notes/${note.slug}`);
-                  }, 300);
-                }
-              }}
-              onMouseEnter={() => setSelectedNote(index)}
-              onMouseLeave={() => setSelectedNote(-1)}
-              className="flex flex-row items-center justify-start outline-none flex-shrink-0 gap-0"
-              style={{
-                transform: `translateX(-${scroll}px)`,
-                width: selectedNote === index ? bookWidth : spineWidth,
-                perspective: "1000px",
-                WebkitPerspective: "1000px",
-                transition: isScrolling
-                  ? `transform 100ms linear`
-                  : `all 500ms ease`,
-                willChange: "auto",
-              }}
-            >
+                  }
+                }}
+                onMouseEnter={() => setHoveredNote(index)}
+                onMouseLeave={() => setHoveredNote(-1)}
+                className="flex flex-row items-center justify-start outline-none flex-shrink-0 gap-0"
+                style={{
+                  transform: `translateX(-${scroll}px)`,
+                  width: isActive ? bookWidth : spineWidth,
+                  perspective: "1000px",
+                  WebkitPerspective: "1000px",
+                  transition: isScrolling
+                    ? `transform 100ms linear`
+                    : `all 500ms ease`,
+                  willChange: "auto",
+                }}
+              >
               {/* Book spine */}
               <div
                 className="flex items-start justify-center flex-shrink-0"
@@ -209,7 +221,7 @@ export function Bookshelf({ notes }: BookshelfProps) {
                   backgroundColor: note.spineColor,
                   color: note.textColor,
                   transform: `translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(${
-                    selectedNote === index ? "-60deg" : "0deg"
+                    isActive ? "-60deg" : "0deg"
                   }) rotateZ(0deg) skew(0deg, 0deg)`,
                   transition: "all 500ms ease",
                   willChange: "auto",
@@ -243,7 +255,7 @@ export function Bookshelf({ notes }: BookshelfProps) {
                 className="relative flex-shrink-0 overflow-hidden"
                 style={{
                   transform: `translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(${
-                    selectedNote === index ? "30deg" : "88.8deg"
+                    isActive ? "30deg" : "88.8deg"
                   }) rotateZ(0deg) skew(0deg, 0deg)`,
                   transition: "all 500ms ease",
                   willChange: "auto",
@@ -282,20 +294,21 @@ export function Bookshelf({ notes }: BookshelfProps) {
                 />
               </div>
             </button>
-          ))}
+            );
+          })}
         </div>
 
         {/* Right scroll button */}
         <div
-          className={`absolute -right-1 h-full top-0 ${
+          className={`absolute -right-7 h-full top-0 ${
             scroll < maxScroll ? "block" : "hidden"
           }`}
         >
           <div
             ref={scrollRightRef}
-            className="flex items-center justify-center h-full w-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-colors"
+            className="flex items-center justify-center h-full w-7 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-colors"
           >
-            <ChevronRight className="w-1 h-1" />
+            <ChevronRight className="w-3 h-3" />
           </div>
         </div>
       </div>
