@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Lora } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import StructuredData from '@/components/StructuredData'
 
 const inter = Inter({ subsets: ['latin'] })
+const lora = Lora({ subsets: ['latin'], display: 'swap' })
 
 export const metadata: Metadata = {
   title: 'Umarbek',

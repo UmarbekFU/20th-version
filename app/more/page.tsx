@@ -103,6 +103,14 @@ export default function MorePage() {
                       My thoughts in 280 characters or less
                     </p>
                   </div>
+                  <div>
+                    <Link href="/notes" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors text-lg">
+                      Notes
+                    </Link>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      Short pieces that made me pause from books, podcasts, and courses
+                    </p>
+                  </div>
                 </div>
               </div>
 

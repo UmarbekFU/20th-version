@@ -1,9 +1,17 @@
 import Navigation from '@/components/Navigation'
 import PlumBackground from '@/components/PlumBackground'
 
+type Photo = {
+  id: number
+  src: string
+  alt: string
+  caption: string
+  date: string
+}
+
 export default function PhotosPage() {
   // Real photos from the user's Pictures folder
-  const photos = [
+  const photos: Photo[] = [
     {
       id: 1,
       src: "/photos/IMG_0965.jpg",
@@ -28,7 +36,7 @@ export default function PhotosPage() {
   ]
 
   // Create a more balanced distribution system
-  const createBalancedLayout = (photos) => {
+  const createBalancedLayout = (photos: Photo[]) => {
     // Shuffle photos
     const shuffled = [...photos].sort(() => Math.random() - 0.5)
     
