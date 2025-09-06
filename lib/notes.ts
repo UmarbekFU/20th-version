@@ -959,6 +959,43 @@ export const notes: Note[] = [
     summary: "A personal account of financial failure and lessons learned. Paul's honest reflection on trading mistakes.",
     category: "book"
   },
+  // Kevin Kelly Collection
+  {
+    title: "Cool Tools",
+    author: "Kevin Kelly",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://m.media-amazon.com/images/I/81Q+5Kz0QJL.jpg",
+    spineColor: "#1e40af",
+    textColor: "#ffffff",
+    slug: "cool-tools",
+    summary: "A catalog of possibilities. Kelly's comprehensive guide to tools and technologies that can enhance human capabilities and creativity.",
+    category: "book"
+  },
+  {
+    title: "The Inevitable",
+    author: "Kevin Kelly",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://m.media-amazon.com/images/I/71Q+5Kz0QJL.jpg",
+    spineColor: "#7c3aed",
+    textColor: "#ffffff",
+    slug: "the-inevitable",
+    summary: "Understanding the 12 technological forces that will shape our future. Kelly's vision of how technology will transform our world in the coming decades.",
+    category: "book"
+  },
+  {
+    title: "Excellent Advice for Living",
+    author: "Kevin Kelly",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://m.media-amazon.com/images/I/81Q+5Kz0QJL.jpg",
+    spineColor: "#059669",
+    textColor: "#ffffff",
+    slug: "excellent-advice-for-living",
+    summary: "Wisdom I wish I'd known earlier. Kelly's collection of practical insights and life lessons learned over decades of exploration and innovation.",
+    category: "book"
+  },
   // Additional Books
   {
     title: "The Easy Way to Stop Drinking",
