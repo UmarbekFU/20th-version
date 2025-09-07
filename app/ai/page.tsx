@@ -21,10 +21,6 @@ export default function AtomicIdeasPage() {
             title: "Telegram Culture: 10 Commandments",
             href: "/ai/tc"
           },
-          {
-            title: "Simple vs Easy",
-            href: "/ai/sve"
-          }
         ]
 
   return (
@@ -33,8 +29,8 @@ export default function AtomicIdeasPage() {
       <Navigation />
       <main className="min-h-screen pt-32">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4 text-center">Atomic Ideas</h1>
-          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-16 text-center max-w-2xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4 text-center font-sans tracking-tight">Atomic Ideas</h1>
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-16 text-center max-w-2xl mx-auto font-sans leading-relaxed">
             Half-formed thoughts I'm working through. Some will become something useful. Most won't. That's fine.
           </p>
 
@@ -46,7 +42,7 @@ export default function AtomicIdeasPage() {
                 href={idea.href}
                 className="group block"
               >
-                <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-relaxed">
+                <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-relaxed font-sans tracking-tight">
                   {idea.title}
                 </h3>
               </Link>
@@ -55,7 +51,7 @@ export default function AtomicIdeasPage() {
 
           {/* Footer Note */}
           <div className="mt-16 text-center">
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-sm text-gray-500 dark:text-gray-400 font-sans">
               More atomic ideas are brewing. These are just the ones I've captured so far.
             </p>
           </div>
