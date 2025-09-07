@@ -101,10 +101,52 @@ function extractPageContent(filePath: string): { title: string; content: string 
     // Extract text content from JSX, focusing on actual content
     let textContent = ''
     
-    // First, try to extract content from AtomicPage component
-    const atomicPageMatch = fileContent.match(/<AtomicPage[^>]*>([\s\S]*?)<\/AtomicPage>/)
-    if (atomicPageMatch) {
-      textContent = atomicPageMatch[1]
+    // For AtomicPage components, extract content from AtomicParagraph components
+    if (fileContent.includes('<AtomicPage')) {
+      // Extract all AtomicParagraph content
+      const atomicParagraphMatches = fileContent.match(/<AtomicParagraph[^>]*>([\s\S]*?)<\/AtomicParagraph>/g)
+      if (atomicParagraphMatches) {
+        textContent = atomicParagraphMatches
+          .map(match => {
+            // Extract text content from each AtomicParagraph
+            const contentMatch = match.match(/<AtomicParagraph[^>]*>([\s\S]*?)<\/AtomicParagraph>/)
+            if (contentMatch) {
+              return contentMatch[1]
+            }
+            return ''
+          })
+          .join(' ')
+      }
+      
+      // Also extract from AtomicHeading components
+      const atomicHeadingMatches = fileContent.match(/<AtomicHeading[^>]*>([\s\S]*?)<\/AtomicHeading>/g)
+      if (atomicHeadingMatches) {
+        const headingContent = atomicHeadingMatches
+          .map(match => {
+            const contentMatch = match.match(/<AtomicHeading[^>]*>([\s\S]*?)<\/AtomicHeading>/)
+            if (contentMatch) {
+              return contentMatch[1]
+            }
+            return ''
+          })
+          .join(' ')
+        textContent += ' ' + headingContent
+      }
+      
+      // Also extract from AtomicQuote components
+      const atomicQuoteMatches = fileContent.match(/<AtomicQuote[^>]*>([\s\S]*?)<\/AtomicQuote>/g)
+      if (atomicQuoteMatches) {
+        const quoteContent = atomicQuoteMatches
+          .map(match => {
+            const contentMatch = match.match(/<AtomicQuote[^>]*>([\s\S]*?)<\/AtomicQuote>/)
+            if (contentMatch) {
+              return contentMatch[1]
+            }
+            return ''
+          })
+          .join(' ')
+        textContent += ' ' + quoteContent
+      }
     } else {
       // Fallback: Extract text from JSX content (for non-AtomicPage components)
       const jsxContent = fileContent.match(/<main[^>]*>([\s\S]*?)<\/main>/)
