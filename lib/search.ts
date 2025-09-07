@@ -177,6 +177,7 @@ function discoverPages(): SearchResult[] {
       const aiSubdirs = fs.readdirSync(aiDir, { withFileTypes: true })
         .filter(dirent => dirent.isDirectory())
         .map(dirent => dirent.name)
+        .filter(name => name !== '_template') // Exclude template directory
       
       for (const subdir of aiSubdirs) {
         const pageFile = path.join(aiDir, subdir, 'page.tsx')
