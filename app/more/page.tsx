@@ -11,8 +11,8 @@ export default function MorePage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-6 sm:mb-8 text-center">More</h1>
           
-          <div className="space-y-8 text-lg md:text-xl text-gray-800 dark:text-gray-200 leading-relaxed max-w-2xl mx-auto">
-            <p className="text-gray-700 dark:text-gray-300">
+          <div className="text-center mb-16">
+            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
               Additional pages and sections that might interest you.
             </p>
           </div>
