@@ -17,63 +17,63 @@ const staticPages = [
   {
     path: '/',
     title: 'Homepage',
-    description: 'Umarbek - Personal website with essays, projects, notes, and more',
+    description: 'Hey! I\'m Umarbek. Samarkand native, I now live in Tashkent, Uzbekistan. I write essays, build stuff, and take notes.',
     content: 'Hey! I\'m Umarbek. Samarkand native, I now live in Tashkent, Uzbekistan. I write essays, build stuff, and take notes. I write essays when I try to explain something to myself. My atomic ideas are half-formed thoughts I\'m working through. I build stuff. I\'m solving my own problem. If it helps you too, even better. I take notes when I read. Not polished summaries, just the parts that made me stop and think. I list everything I consume—books, films, podcasts etc. If you care about tools I use, I keep that updated. You can find screenshots that made me think, code snippets I might need later, memes that contain truth on scrapbook. Read more about me.',
     keywords: ['umarbek', 'samarkand', 'tashkent', 'essays', 'projects', 'notes', 'list', 'uses', 'scrapbook']
   },
   {
     path: '/essays',
     title: 'Essays',
-    description: 'Collection of essays and thoughts on various topics',
+    description: 'I write essays when I try to explain something to myself. These are my attempts to understand ideas, concepts, and the world around me through writing.',
     content: 'I write essays when I try to explain something to myself. These are my attempts to understand ideas, concepts, and the world around me through writing. Essays coming soon. I\'m working on ideas about systems thinking, creativity, and the intersection of technology and human experience.',
     keywords: ['essays', 'writing', 'thinking', 'ideas', 'learning']
   },
   {
     path: '/projects',
     title: 'Projects',
-    description: 'Things I have built and broken',
+    description: 'Things I\'ve built and broken. I build things to solve my own problems first. If they help others too, that\'s a bonus.',
     content: 'Things I\'ve built and broken. Current Projects: This Website - My personal website built with Next.js and Tailwind CSS. A place to share thoughts, projects, and ideas without the constraints of social media. Coming Soon: More projects are in development. I\'m working on tools and applications that solve real problems I encounter in my daily work and life. My Approach: I build things to solve my own problems first. If they help others too, that\'s a bonus. I prefer simple, focused solutions over complex, feature-rich applications. Most of my projects start as experiments or prototypes. I iterate quickly, learn from failures, and only polish what actually works. This approach has taught me more than any amount of planning ever could.',
     keywords: ['projects', 'building', 'solving', 'experiments', 'learning']
   },
   {
     path: '/notes',
     title: 'Notes',
-    description: 'My notes from books, articles, and conversations',
+    description: 'These aren\'t summaries—they\'re my thoughts, questions, and reactions to what I\'m reading and learning. I don\'t summarize books—I argue with them.',
     content: 'My notes from books, articles, and conversations. These aren\'t summaries—they\'re my thoughts, questions, and reactions to what I\'m reading and learning. I don\'t summarize books—I argue with them. I write down questions, challenge assumptions, and connect ideas to my own experiences. The goal is to understand, not just remember. I use a simple system: one note per book, organized by themes rather than chapters. This helps me see patterns and connections across different authors and ideas.',
     keywords: ['notes', 'books', 'reading', 'thinking', 'learning']
   },
   {
     path: '/uses',
     title: 'Uses',
-    description: 'A complete list of my setup: hardware, software, apps, daily routines, and tools I use and recommend',
+    description: 'My computer setup, phone, and other physical tools. I prefer simple, reliable hardware that gets out of the way and lets me focus on what matters.',
     content: 'A complete list of my setup: hardware, software, apps, daily routines, and tools I use and recommend. My computer setup, phone, and other physical tools. I prefer simple, reliable hardware that gets out of the way and lets me focus on what matters. Applications, tools, and services that make my work and life easier. I\'m always experimenting with new tools, but I stick with what actually works. Habits, workflows, and processes that help me stay productive and creative. These are the routines that have stood the test of time.',
     keywords: ['uses', 'setup', 'hardware', 'software', 'tools']
   },
   {
     path: '/about',
     title: 'About Me',
-    description: 'Personal background and philosophy',
+    description: 'I\'m Samarkandi. I was born in 2006 in a village in the Past Darg\'om district of Samarkand. The last few years, I\'ve been living in Tashkent.',
     content: 'I\'m Samarkandi. I was born in 2006 in a village in the Past Darg\'om district of Samarkand. The last few years, I\'ve been living in Tashkent. I want to create things — tools, websites, essays, startups, apps, systems, and especially new ideas. I also want to learn — new ways of thinking, new ways of living. That\'s why I read books. I want to connect with people who feel the same: who stretch, strive, and grow. My favorite days are the ones where I work from morning to night, pausing only to move a little. I call it "work," but really it\'s play — writing, learning, improving, and creating. I don\'t like labels. In my mind, someone self-identified with something typically means that person is a fraud. I like to identify with the problem I\'m currently working on. I believe in skin in the game. This means: don\'t tell me what to do if you don\'t pay the price when you\'re wrong. Don\'t give advice you won\'t take yourself. Don\'t pretend to be a hero on other people\'s risks. I do not believe in perfect plans. Plans collapse on contact with reality. The world is too uncertain to be predicted with confidence. Instead of trying to know the future, I try to position myself so I don\'t need to know it. I do not chase rigid goals. Goals can blind me to opportunities. I prefer experiments. Experiments cost little, fail safely, and teach me something every time. Most of life\'s best outcomes come from tinkering, not planning. The world rewards those who try things, fail cheaply, and double down when something clicks. I have no respect whatsoever for authority. Someone\'s title, position, or reputation means absolutely nothing. Their words either make sense or they don\'t. Forget who said it and instead look what he starts with, where he ends up, and ask yourself, \'Is it reasonable?\'',
     keywords: ['about', 'personal', 'background', 'philosophy', 'values']
   },
   {
     path: '/now',
     title: 'Now',
-    description: 'What I am doing now and what I am not doing',
+    description: 'What I\'m reading: The Count of Monte Cristo. What I\'m writing: This website and essays about ideas outside of code. What I\'m building: This website.',
     content: 'What I am doing now and what I am not doing. Current activities, focus, and trends. What I\'m reading: The Count of Monte Cristo. What I\'m writing: This website and essays about ideas outside of code. Trying to explain things to myself. What I\'m building: This website. Trying to make it feel like a real place, not another portfolio. A new thing: Exploring how to write about ideas outside of programming. Wondering why more programmers don\'t do this. What I\'m not doing: Building for others first. Focusing on solving my own problems first. If it helps others, that\'s a bonus. Always looking for: People working on interesting problems. The kind where you can\'t Google the answer. If you\'re around Tashkent, let\'s have coffee or work together.',
     keywords: ['now', 'current', 'activities', 'focus', 'trends']
   },
   {
     path: '/contact',
     title: 'Contact',
-    description: 'Get in touch with me',
+    description: 'I love meeting new people, and I reply to every email. Say hello! I\'m always open to conversations, collaborations, and coffee meetings in Tashkent.',
     content: 'I love meeting new people, and I reply to every email. Say hello! I\'m always open to conversations, collaborations, and coffee meetings in Tashkent. Get in touch with me. I\'m always open to conversations, collaborations, and coffee meetings in Tashkent. Coming soon.',
     keywords: ['contact', 'email', 'coffee', 'work', 'tashkent']
   },
   {
     path: '/more',
     title: 'More',
-    description: 'Additional pages and sections that might interest you',
+    description: 'Atomic Ideas - Half-formed thoughts I\'m working through. Questions - Questions I\'m asking myself. Collections: List, Scrapbook, Photos, Tweets.',
     content: 'Additional pages and sections that might interest you. Current: Now - What I\'m doing and not doing right now. Ideas & Thoughts: Atomic Ideas - Half-formed thoughts I\'m working through. Questions - Questions I\'m asking myself. NAQ - Never Asked Questions. Collections: List - Things I consume, own, and do. Scrapbook - Screenshots, snippets, and unfinished thoughts. Photos - Visual moments that caught my attention. Tweets - My thoughts in 280 characters or less. Tools & Setup: Uses - My complete setup and tools. Life & Time: Life Calendar - My life visualized week by week. Year in Review - Annual reflection on what I\'ve learned. Fun & Misc: Impossible Page - Things that seem impossible but might not be. Secret - Hidden things for those who discover them. Click Me - Go to a random page on this website. Disclaimer - Important information about this website.',
     keywords: ['more', 'additional', 'pages', 'sections', 'collections', 'tools']
   }
@@ -84,26 +84,39 @@ function extractPageContent(filePath: string): { title: string; content: string 
   try {
     const fileContent = fs.readFileSync(filePath, 'utf-8')
     
-    // Extract title from h1 tag
-    const titleMatch = fileContent.match(/<h1[^>]*>([^<]+)<\/h1>/)
+    let title = 'Untitled'
+    
+    // First, try to extract title from AtomicPage component's title prop
+    const atomicPageTitleMatch = fileContent.match(/title\s*=\s*["']([^"']+)["']/)
+    if (atomicPageTitleMatch) {
+      title = atomicPageTitleMatch[1].trim()
+    } else {
+      // Fallback: Extract title from h1 tag
+      const titleMatch = fileContent.match(/<h1[^>]*>([^<]+)<\/h1>/)
+      if (titleMatch) {
+        title = titleMatch[1].trim()
+      }
+    }
     
     // Extract text content from JSX, focusing on actual content
-    let textContent = fileContent
+    let textContent = ''
     
-    // Remove imports and exports
-    textContent = textContent.replace(/import\s+.*?from\s+['"][^'"]+['"];?\n?/g, '')
-    textContent = textContent.replace(/export\s+default\s+function\s+\w+/g, '')
-    textContent = textContent.replace(/export\s+default\s+/g, '')
-    
-    // Remove function declarations and variable assignments
-    textContent = textContent.replace(/const\s+\w+\s*=\s*[^;]+;?\n?/g, '')
-    textContent = textContent.replace(/function\s+\w+\([^)]*\)\s*{/g, '')
-    textContent = textContent.replace(/return\s*\(/g, '')
-    
-    // Extract text from JSX content
-    const jsxContent = textContent.match(/<main[^>]*>([\s\S]*?)<\/main>/)
-    if (jsxContent) {
-      textContent = jsxContent[1]
+    // First, try to extract content from AtomicPage component
+    const atomicPageMatch = fileContent.match(/<AtomicPage[^>]*>([\s\S]*?)<\/AtomicPage>/)
+    if (atomicPageMatch) {
+      textContent = atomicPageMatch[1]
+    } else {
+      // Fallback: Extract text from JSX content (for non-AtomicPage components)
+      const jsxContent = fileContent.match(/<main[^>]*>([\s\S]*?)<\/main>/)
+      if (jsxContent) {
+        textContent = jsxContent[1]
+      } else {
+        // Last resort: extract from return statement
+        const returnContent = fileContent.match(/return\s*\(\s*([\s\S]*?)\s*\)\s*;?\s*}/)
+        if (returnContent) {
+          textContent = returnContent[1]
+        }
+      }
     }
     
     // Remove JSX/HTML tags but keep text content
@@ -116,8 +129,6 @@ function extractPageContent(filePath: string): { title: string; content: string 
       .replace(/[{}();]/g, ' ') // Remove brackets and semicolons
       .replace(/\s+/g, ' ') // Normalize whitespace
       .trim()
-    
-    const title = titleMatch ? titleMatch[1].trim() : 'Untitled'
     
     return {
       title,
