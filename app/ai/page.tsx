@@ -16,6 +16,14 @@ export default function AtomicIdeasPage() {
           {
             title: "Free will fallacy",
             href: "/ai/fwf"
+          },
+          {
+            title: "Telegram Culture: 10 Commandments",
+            href: "/ai/tc"
+          },
+          {
+            title: "Simple vs Easy",
+            href: "/ai/sve"
           }
         ]
 

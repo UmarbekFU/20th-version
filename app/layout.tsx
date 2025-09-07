@@ -3,6 +3,8 @@ import { Inter, Lora } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import StructuredData from '@/components/StructuredData'
+import ProgressBar from '@/components/ProgressBar'
+import SearchProvider from '@/components/SearchProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 const lora = Lora({ subsets: ['latin'], display: 'swap' })
@@ -31,23 +33,22 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              (function() {
-                try {
-                  var theme = localStorage.getItem('theme');
-                  var systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                  var resolvedTheme = theme === 'system' ? systemTheme : theme;
-                  if (resolvedTheme) {
-                    document.documentElement.classList.add(resolvedTheme);
-                  }
-                } catch (e) {}
-              })();
+              try {
+                var theme = localStorage.getItem('theme') || 'system';
+                var systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                var resolvedTheme = theme === 'system' ? systemTheme : theme;
+                document.documentElement.classList.add(resolvedTheme);
+              } catch (e) {}
             `,
           }}
         />
       </head>
       <body className={`${inter.className} antialiased`}>
+        <ProgressBar />
         <ThemeProvider>
-          {children}
+          <SearchProvider>
+            {children}
+          </SearchProvider>
         </ThemeProvider>
         <StructuredData />
       </body>

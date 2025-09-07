@@ -14,6 +14,20 @@ const createMockRequest = (query: string) => {
   return new NextRequest(url)
 }
 
+// Mock the console methods to avoid noise in tests
+const originalConsoleWarn = console.warn
+const originalConsoleError = console.error
+
+beforeAll(() => {
+  console.warn = jest.fn()
+  console.error = jest.fn()
+})
+
+afterAll(() => {
+  console.warn = originalConsoleWarn
+  console.error = originalConsoleError
+})
+
 describe('/api/search', () => {
   it('should return empty results for empty query', async () => {
     const request = createMockRequest('')
@@ -111,5 +125,41 @@ describe('/api/search', () => {
         expect(data.results[i].score).toBeGreaterThanOrEqual(data.results[i + 1].score)
       }
     }
+  })
+
+  it('should handle regex injection attempts safely', async () => {
+    const maliciousQuery = 'test.*+?^${}()|[\\]'
+    const request = createMockRequest(maliciousQuery)
+    const response = await GET(request)
+    const data = await response.json()
+
+    expect(response.status).toBe(200)
+    expect(data.results).toBeDefined()
+    expect(Array.isArray(data.results)).toBe(true)
+    expect(data.error).toBeNull()
+    // Should not crash or return error due to regex injection
+  })
+
+  it('should handle empty query gracefully', async () => {
+    const request = createMockRequest('')
+    const response = await GET(request)
+    const data = await response.json()
+
+    expect(response.status).toBe(200)
+    expect(data.results).toEqual([])
+    expect(data.totalResults).toBe(0)
+    expect(data.error).toBeNull()
+  })
+
+  it('should handle very long queries', async () => {
+    const longQuery = 'a'.repeat(1000)
+    const request = createMockRequest(longQuery)
+    const response = await GET(request)
+    const data = await response.json()
+
+    expect(response.status).toBe(200)
+    expect(data.results).toBeDefined()
+    expect(Array.isArray(data.results)).toBe(true)
+    expect(data.error).toBeNull()
   })
 })

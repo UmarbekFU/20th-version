@@ -13,6 +13,20 @@ const createMockRequest = () => {
   return new NextRequest(url)
 }
 
+// Mock the console methods to avoid noise in tests
+const originalConsoleWarn = console.warn
+const originalConsoleError = console.error
+
+beforeAll(() => {
+  console.warn = jest.fn()
+  console.error = jest.fn()
+})
+
+afterAll(() => {
+  console.warn = originalConsoleWarn
+  console.error = originalConsoleError
+})
+
 describe('/api/random', () => {
   it('should redirect to a valid page', async () => {
     const request = createMockRequest()
