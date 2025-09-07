@@ -240,7 +240,7 @@ function discoverPages(): SearchResult[] {
 // Cache for search index
 let searchIndexCache: SearchResult[] | null = null
 let cacheTimestamp = 0
-const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
+const CACHE_DURATION = 0 // Disable cache for debugging
 
 export function getSearchIndex(): SearchResult[] {
   const now = Date.now()

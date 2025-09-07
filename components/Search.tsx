@@ -88,6 +88,10 @@ export default function Search({ isOpen, onClose }: SearchProps) {
         throw new Error(data.error)
       }
       
+      console.log('Search API response:', data)
+      console.log('Results count:', data.results?.length)
+      console.log('Results:', data.results)
+      
       setResults(data.results || [])
     } catch (error) {
       if (error instanceof Error && error.name === 'AbortError') {
