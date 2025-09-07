@@ -237,24 +237,29 @@ function discoverPages(): SearchResult[] {
   return pages
 }
 
-// Cache for search index
+// Cache for search index - using a more robust caching approach
 let searchIndexCache: SearchResult[] | null = null
 let cacheTimestamp = 0
-const CACHE_DURATION = 0 // Disable cache for debugging
+const CACHE_DURATION = 2 * 60 * 1000 // 2 minutes (shorter for Vercel)
 
 export function getSearchIndex(): SearchResult[] {
   const now = Date.now()
   
-  // Return cached index if it's still fresh
-  if (searchIndexCache && (now - cacheTimestamp) < CACHE_DURATION) {
-    return searchIndexCache
+  // Always regenerate cache in development or if cache is stale
+  if (process.env.NODE_ENV === 'development' || !searchIndexCache || (now - cacheTimestamp) > CACHE_DURATION) {
+    console.log('Regenerating search index...')
+    searchIndexCache = discoverPages()
+    cacheTimestamp = now
   }
   
-  // Generate new index
-  searchIndexCache = discoverPages()
-  cacheTimestamp = now
-  
   return searchIndexCache
+}
+
+// Function to clear cache and force regeneration
+export function clearSearchCache(): void {
+  searchIndexCache = null
+  cacheTimestamp = 0
+  console.log('Search cache cleared')
 }
 
 export function searchContent(query: string): SearchResult[] {

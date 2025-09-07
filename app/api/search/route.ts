@@ -18,6 +18,10 @@ export async function GET(request: NextRequest) {
 
     // Use dynamic search
     const results = searchContent(query)
+    
+    // Debug logging for Vercel
+    console.log(`Search query: "${query}", Results count: ${results.length}`)
+    console.log('Results paths:', results.map(r => r.path))
 
     return NextResponse.json({
       results,
