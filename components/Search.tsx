@@ -90,7 +90,7 @@ export default function Search({ isOpen, onClose }: SearchProps) {
       
       setResults(data.results || [])
     } catch (error) {
-      if (error.name === 'AbortError') {
+      if (error instanceof Error && error.name === 'AbortError') {
         return
       }
       console.error('Search error:', error)
