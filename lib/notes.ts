@@ -1317,6 +1317,18 @@ export const notes: Note[] = [
     summary: "A spiritual journey of self-discovery. Hesse's classic novel about the search for meaning and enlightenment.",
     category: "book"
   },
+  {
+    title: "The Life of Samuel Johnson",
+    author: "James Boswell",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Life%20of%20Samuel%20Johnson+by+James%20Boswell",
+    spineColor: "#7c3aed",
+    textColor: "#ffffff",
+    slug: "life-of-samuel-johnson",
+    summary: "The definitive biography of Dr. Samuel Johnson, one of the most influential figures in English literature. Boswell's masterpiece of biographical writing that captures Johnson's wit, wisdom, and character.",
+    category: "book"
+  },
   // Additional Books
   {
     title: "The Easy Way to Stop Drinking",
