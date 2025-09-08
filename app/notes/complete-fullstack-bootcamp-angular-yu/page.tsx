@@ -45,6 +45,7 @@ export default function CompleteFullstackBootcampAngularYuPage() {
             </p>
             
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">My Notes</h2>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Last updated: {new Date().toLocaleDateString()}</p>
             <div className="space-y-6 text-gray-700 dark:text-gray-300">
               <div>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">What is the Internet?</h3>
