@@ -1317,6 +1317,19 @@ export const notes: Note[] = [
     summary: "A spiritual journey of self-discovery. Hesse's classic novel about the search for meaning and enlightenment.",
     category: "book"
   },
+  // Political Memoirs
+  {
+    title: "Freedom: Memoirs 1954 – 2021",
+    author: "Angela Merkel",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Freedom%3A%20Memoirs%201954%20%E2%80%93%202021+by+Angela%20Merkel",
+    spineColor: "#1e40af",
+    textColor: "#ffffff",
+    slug: "freedom-memoirs-merkel",
+    summary: "The personal and political memoirs of Germany's longest-serving chancellor. Merkel's reflections on leadership, crisis management, and the challenges of governing in an interconnected world.",
+    category: "book"
+  },
   {
     title: "The Life of Samuel Johnson",
     author: "James Boswell",
