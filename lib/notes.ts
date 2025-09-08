@@ -1169,6 +1169,21 @@ export const notes: Note[] = [
     duration: "8 hours",
     url: "https://kentcdodds.com/",
     tags: ["react", "javascript", "frontend", "programming"]
+  },
+  {
+    title: "The Complete Full-Stack Web Development Bootcamp",
+    author: "Angela Yu",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%23f59e0b/ffffff?text=The%20Complete%20Full-Stack%20Web%20Development%20Bootcamp+by+Angela%20Yu",
+    spineColor: "#f59e0b",
+    textColor: "#ffffff",
+    slug: "complete-fullstack-bootcamp-angular-yu",
+    summary: "A comprehensive bootcamp covering HTML, CSS, JavaScript, Node.js, React, MongoDB, and more. Perfect for beginners looking to become full-stack developers.",
+    category: "course",
+    duration: "65+ hours",
+    url: "https://www.udemy.com/course/the-complete-web-development-bootcamp/",
+    tags: ["web-development", "javascript", "react", "nodejs", "mongodb", "html", "css"]
   }
 ];
 

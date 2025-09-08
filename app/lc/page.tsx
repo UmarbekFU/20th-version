@@ -1,15 +1,38 @@
+'use client'
+
 import Navigation from '@/components/Navigation'
 import PlumBackground from '@/components/PlumBackground'
+import { useState, useEffect } from 'react'
 
 export default function LifeCalendarPage() {
-  // Life calendar calculations
+  const [currentTime, setCurrentTime] = useState(new Date())
+  
+  // Update time every minute for real-time updates
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date())
+    }, 60000) // Update every minute
+    
+    return () => clearInterval(timer)
+  }, [])
+
+  // Life calendar calculations - all dynamic
   const birthDate = new Date('2006-03-18')
-  const today = new Date()
+  const today = currentTime
   const totalWeeks = 65 * 52 // 65 years * 52 weeks
+  
+  // More accurate week calculation
   const weeksLived = Math.floor((today.getTime() - birthDate.getTime()) / (1000 * 60 * 60 * 24 * 7))
-  const weeksRemaining = totalWeeks - weeksLived
-  const percentageLived = (weeksLived / totalWeeks) * 100
-  const age = Math.floor((today.getTime() - birthDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25))
+  const weeksRemaining = Math.max(0, totalWeeks - weeksLived)
+  const percentageLived = Math.min(100, (weeksLived / totalWeeks) * 100)
+  
+  // More accurate age calculation accounting for leap years
+  const ageInMilliseconds = today.getTime() - birthDate.getTime()
+  const age = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24 * 365.25))
+  
+  // Calculate days lived for more precision
+  const daysLived = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24))
+  const daysRemaining = Math.max(0, (65 * 365.25) - daysLived)
 
   // Create grid of weeks
   const weeks = []
@@ -21,20 +44,37 @@ export default function LifeCalendarPage() {
     })
   }
 
-  // Major life events/milestones
+  // Calculate milestone dates dynamically
+  const getMilestoneDate = (years: number) => {
+    const milestoneDate = new Date(birthDate)
+    milestoneDate.setFullYear(birthDate.getFullYear() + years)
+    return milestoneDate.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    })
+  }
+
+  const getMilestoneWeek = (years: number) => {
+    const milestoneDate = new Date(birthDate)
+    milestoneDate.setFullYear(birthDate.getFullYear() + years)
+    return Math.floor((milestoneDate.getTime() - birthDate.getTime()) / (1000 * 60 * 60 * 24 * 7)) + 1
+  }
+
+  // Major life events/milestones - all calculated dynamically
   const milestones = [
-    { week: 1, label: 'Birth', description: 'March 18, 2006' },
-    { week: 52, label: '1st Birthday', description: 'March 18, 2007' },
-    { week: 260, label: '5th Birthday', description: 'March 18, 2011' },
-    { week: 520, label: '10th Birthday', description: 'March 18, 2016' },
-    { week: 780, label: '15th Birthday', description: 'March 18, 2021' },
-    { week: 936, label: '18th Birthday', description: 'March 18, 2024' },
+    { week: 1, label: 'Birth', description: getMilestoneDate(0) },
+    { week: getMilestoneWeek(1), label: '1st Birthday', description: getMilestoneDate(1) },
+    { week: getMilestoneWeek(5), label: '5th Birthday', description: getMilestoneDate(5) },
+    { week: getMilestoneWeek(10), label: '10th Birthday', description: getMilestoneDate(10) },
+    { week: getMilestoneWeek(15), label: '15th Birthday', description: getMilestoneDate(15) },
+    { week: getMilestoneWeek(18), label: '18th Birthday', description: getMilestoneDate(18) },
     { week: weeksLived, label: 'Today', description: `Week ${weeksLived} of ${totalWeeks}` },
-    { week: 1300, label: '25th Birthday', description: 'March 18, 2031' },
-    { week: 1820, label: '35th Birthday', description: 'March 18, 2041' },
-    { week: 2340, label: '45th Birthday', description: 'March 18, 2051' },
-    { week: 2860, label: '55th Birthday', description: 'March 18, 2061' },
-    { week: 3380, label: '65th Birthday', description: 'March 18, 2071' }
+    { week: getMilestoneWeek(25), label: '25th Birthday', description: getMilestoneDate(25) },
+    { week: getMilestoneWeek(35), label: '35th Birthday', description: getMilestoneDate(35) },
+    { week: getMilestoneWeek(45), label: '45th Birthday', description: getMilestoneDate(45) },
+    { week: getMilestoneWeek(55), label: '55th Birthday', description: getMilestoneDate(55) },
+    { week: getMilestoneWeek(65), label: '65th Birthday', description: getMilestoneDate(65) }
   ]
 
   return (
@@ -49,7 +89,7 @@ export default function LifeCalendarPage() {
           </p>
 
           {/* Stats Overview */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
               <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">{age}</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Years Old</div>
@@ -65,6 +105,29 @@ export default function LifeCalendarPage() {
             <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
               <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">{percentageLived.toFixed(1)}%</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Life Completed</div>
+            </div>
+          </div>
+
+          {/* Additional Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
+              <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">{daysLived.toLocaleString()}</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Days Lived</div>
+            </div>
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
+              <div className="text-2xl font-bold text-pink-600 dark:text-pink-400">{daysRemaining.toLocaleString()}</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Days Remaining</div>
+            </div>
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
+              <div className="text-2xl font-bold text-teal-600 dark:text-teal-400">
+                {today.toLocaleDateString('en-US', { 
+                  weekday: 'long', 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric' 
+                })}
+              </div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Current Date</div>
             </div>
           </div>
 
@@ -132,27 +195,6 @@ export default function LifeCalendarPage() {
             </div>
           </div>
 
-          {/* Reflection Section */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-sm">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">Reflection</h2>
-            <div className="prose dark:prose-invert max-w-none">
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
-                Looking at this calendar, I'm reminded that time is our most precious resource. 
-                Each square represents a week of my life - some filled with memories, others yet to be written.
-              </p>
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
-                I've lived approximately <strong>{percentageLived.toFixed(1)}%</strong> of my expected 65 years. 
-                That's <strong>{weeksLived.toLocaleString()} weeks</strong> of experiences, learning, and growth.
-              </p>
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
-                I have roughly <strong>{weeksRemaining.toLocaleString()} weeks</strong> remaining to make an impact, 
-                build meaningful relationships, and pursue what matters most to me.
-              </p>
-              <p className="text-lg text-gray-700 dark:text-gray-300">
-                This visualization helps me stay mindful of time's passage and motivates me to make each week count.
-              </p>
-            </div>
-          </div>
 
           {/* Footer */}
           <div className="text-center mt-16 text-gray-500 dark:text-gray-400">
