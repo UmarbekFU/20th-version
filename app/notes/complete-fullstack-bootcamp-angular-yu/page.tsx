@@ -45,7 +45,12 @@ export default function CompleteFullstackBootcampAngularYuPage() {
             </p>
             
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">My Notes</h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Last updated: {new Date().toLocaleDateString()} - Vercel Debug</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Last updated: {new Date().toLocaleDateString()}</p>
+            
+            {/* Force Vercel update - this section should appear on live site */}
+            <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
+              <strong>Vercel Update Test:</strong> If you can see this green box, the page has been updated successfully!
+            </div>
             <div className="space-y-6 text-gray-700 dark:text-gray-300">
               <div>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">What is the Internet?</h3>
