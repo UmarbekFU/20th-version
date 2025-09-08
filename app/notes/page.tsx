@@ -10,6 +10,7 @@ export default function NotesPage() {
   
   // Debug: Log courses to console
   console.log('Courses found:', courses.length, courses.map(c => c.title));
+  console.log('DEBUG: Notes page is loading on Vercel!');
 
   return (
     <>
