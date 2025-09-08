@@ -7,6 +7,9 @@ export default function NotesPage() {
   const books = getNotesByCategory('book');
   const podcasts = getNotesByCategory('podcast');
   const courses = getNotesByCategory('course');
+  
+  // Debug: Log courses to console
+  console.log('Courses found:', courses.length, courses.map(c => c.title));
 
   return (
     <>
