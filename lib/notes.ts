@@ -1005,6 +1005,318 @@ export const notes: Note[] = [
     summary: "Wisdom I wish I'd known earlier. Kelly's collection of practical insights and life lessons learned over decades of exploration and innovation.",
     category: "book"
   },
+  // Risk and Systems Theory
+  {
+    title: "Normal Accidents",
+    author: "Charles Perrow",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Normal%20Accidents+by+Charles%20Perrow",
+    spineColor: "#dc2626",
+    textColor: "#ffffff",
+    slug: "normal-accidents",
+    summary: "Living with high-risk technologies. Perrow's analysis of how complex systems inevitably fail and the paradox of safety measures.",
+    category: "book"
+  },
+  {
+    title: "Silent Risk",
+    author: "Nassim Nicholas Taleb",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Silent%20Risk+by+Nassim%20Nicholas%20Taleb",
+    spineColor: "#7c2d12",
+    textColor: "#ffffff",
+    slug: "silent-risk",
+    summary: "Taleb's technical work on hidden risks and the mathematics of uncertainty. A deeper dive into the statistical foundations of his philosophy.",
+    category: "book"
+  },
+  {
+    title: "The Collapse of Complex Societies",
+    author: "Joseph Tainter",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Collapse%20of%20Complex%20Societies+by+Joseph%20Tainter",
+    spineColor: "#ea580c",
+    textColor: "#ffffff",
+    slug: "collapse-complex-societies",
+    summary: "Why civilizations fall and what we can learn from their demise. Tainter's analysis of diminishing returns in complex systems.",
+    category: "book"
+  },
+  {
+    title: "The Failure of Risk Management",
+    author: "Douglas Hubbard",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Failure%20of%20Risk%20Management+by+Douglas%20Hubbard",
+    spineColor: "#1e40af",
+    textColor: "#ffffff",
+    slug: "failure-risk-management",
+    summary: "Why risk management fails and how to fix it. Hubbard's critique of common risk management practices and his proposed solutions.",
+    category: "book"
+  },
+  // Philosophy and Reality
+  {
+    title: "Information and the Nature of Reality",
+    author: "Paul Davies & Niels Henrik Gregersen",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Information%20and%20the%20Nature%20of%20Reality+by+Paul%20Davies%20%26%20Niels%20Henrik%20Gregersen",
+    spineColor: "#7c3aed",
+    textColor: "#ffffff",
+    slug: "information-nature-reality",
+    summary: "From physics to biology to mind. A multidisciplinary exploration of information as the fundamental building block of reality.",
+    category: "book"
+  },
+  {
+    title: "Why Does the World Exist?",
+    author: "Jim Holt",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Why%20Does%20the%20World%20Exist%3F+by+Jim%20Holt",
+    spineColor: "#059669",
+    textColor: "#ffffff",
+    slug: "why-world-exist",
+    summary: "An existential detective story. Holt's philosophical investigation into the deepest question of all: why is there something rather than nothing?",
+    category: "book"
+  },
+  {
+    title: "The Road to Reality",
+    author: "Roger Penrose",
+    date: "2024",
+    rating: 10,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Road%20to%20Reality+by+Roger%20Penrose",
+    spineColor: "#7c2d12",
+    textColor: "#ffffff",
+    slug: "road-to-reality",
+    summary: "A complete guide to the laws of the universe. Penrose's comprehensive journey through physics, mathematics, and the nature of reality.",
+    category: "book"
+  },
+  // Economics and Society
+  {
+    title: "The Sovereign Individual",
+    author: "James Dale Davidson & William Rees-Mogg",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Sovereign%20Individual+by+James%20Dale%20Davidson%20%26%20William%20Rees-Mogg",
+    spineColor: "#dc2626",
+    textColor: "#ffffff",
+    slug: "sovereign-individual",
+    summary: "How to survive and thrive during the collapse of the welfare state. A prescient analysis of the digital revolution's impact on society.",
+    category: "book"
+  },
+  {
+    title: "Finite and Infinite Games",
+    author: "James P. Carse",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Finite%20and%20Infinite%20Games+by+James%20P.%20Carse",
+    spineColor: "#ea580c",
+    textColor: "#ffffff",
+    slug: "finite-infinite-games",
+    summary: "A vision of life as play and possibility. Carse's profound distinction between finite games (played to win) and infinite games (played to keep playing).",
+    category: "book"
+  },
+  {
+    title: "The Rational Optimist",
+    author: "Matt Ridley",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Rational%20Optimist+by+Matt%20Ridley",
+    spineColor: "#1e40af",
+    textColor: "#ffffff",
+    slug: "rational-optimist",
+    summary: "How prosperity evolves. Ridley's argument that human progress comes from the exchange of ideas and specialization.",
+    category: "book"
+  },
+  // Stoicism and Ancient Wisdom
+  {
+    title: "Meditations",
+    author: "Marcus Aurelius",
+    date: "2024",
+    rating: 10,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Meditations+by+Marcus%20Aurelius",
+    spineColor: "#7c3aed",
+    textColor: "#ffffff",
+    slug: "meditations-aurelius",
+    summary: "The personal writings of the Roman emperor and Stoic philosopher. Aurelius's timeless wisdom on virtue, duty, and the art of living.",
+    category: "book"
+  },
+  {
+    title: "Discourses & Enchiridion",
+    author: "Epictetus",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Discourses%20%26%20Enchiridion+by+Epictetus",
+    spineColor: "#059669",
+    textColor: "#ffffff",
+    slug: "discourses-enchiridion",
+    summary: "The complete works of the former slave turned Stoic philosopher. Epictetus's practical philosophy of freedom through acceptance.",
+    category: "book"
+  },
+  {
+    title: "Letters from a Stoic",
+    author: "Seneca",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Letters%20from%20a%20Stoic+by+Seneca",
+    spineColor: "#7c2d12",
+    textColor: "#ffffff",
+    slug: "letters-stoic-seneca",
+    summary: "Seneca's essays and letters on Stoic philosophy. Practical wisdom on virtue, mortality, and the good life from ancient Rome's greatest philosopher.",
+    category: "book"
+  },
+  // Prediction and Decision Making
+  {
+    title: "Superforecasting",
+    author: "Philip Tetlock",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Superforecasting+by+Philip%20Tetlock",
+    spineColor: "#dc2626",
+    textColor: "#ffffff",
+    slug: "superforecasting",
+    summary: "The art and science of prediction. Tetlock's study of what makes some people remarkably good at forecasting the future.",
+    category: "book"
+  },
+  {
+    title: "The Halo Effect",
+    author: "Phil Rosenzweig",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Halo%20Effect+by+Phil%20Rosenzweig",
+    spineColor: "#ea580c",
+    textColor: "#ffffff",
+    slug: "halo-effect",
+    summary: "The delusion of connecting winning with winning. Rosenzweig's critique of business success stories and the illusions they create.",
+    category: "book"
+  },
+  {
+    title: "Models of My Life",
+    author: "Herbert A. Simon",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Models%20of%20My%20Life+by+Herbert%20A.%20Simon",
+    spineColor: "#1e40af",
+    textColor: "#ffffff",
+    slug: "models-my-life",
+    summary: "The autobiography of a Nobel Prize winner in economics. Simon's reflections on bounded rationality and the limits of human decision-making.",
+    category: "book"
+  },
+  {
+    title: "The Checklist Manifesto",
+    author: "Atul Gawande",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Checklist%20Manifesto+by+Atul%20Gawande",
+    spineColor: "#7c3aed",
+    textColor: "#ffffff",
+    slug: "checklist-manifesto",
+    summary: "How to get things right. Gawande's argument for the power of simple checklists in complex environments.",
+    category: "book"
+  },
+  // Psychology and Meaning
+  {
+    title: "The Denial of Death",
+    author: "Ernest Becker",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Denial%20of%20Death+by+Ernest%20Becker",
+    spineColor: "#059669",
+    textColor: "#ffffff",
+    slug: "denial-of-death",
+    summary: "A Pulitzer Prize-winning exploration of human psychology. Becker's analysis of how our awareness of mortality shapes human behavior and culture.",
+    category: "book"
+  },
+  // Anthropology and History
+  {
+    title: "The Dawn of Everything",
+    author: "David Graeber",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Dawn%20of%20Everything+by+David%20Graeber",
+    spineColor: "#7c2d12",
+    textColor: "#ffffff",
+    slug: "dawn-of-everything",
+    summary: "A new history of humanity. Graeber's radical reimagining of human social evolution and the origins of inequality.",
+    category: "book"
+  },
+  {
+    title: "The Lessons of History",
+    author: "Will & Ariel Durant",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Lessons%20of%20History+by+Will%20%26%20Ariel%20Durant",
+    spineColor: "#dc2626",
+    textColor: "#ffffff",
+    slug: "lessons-of-history",
+    summary: "A distillation of human experience. The Durants' concise summary of patterns and lessons from thousands of years of human history.",
+    category: "book"
+  },
+  // Philosophy and Metaphysics
+  {
+    title: "Invariances",
+    author: "Robert Nozick",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Invariances+by+Robert%20Nozick",
+    spineColor: "#ea580c",
+    textColor: "#ffffff",
+    slug: "invariances",
+    summary: "The structure of the objective world. Nozick's exploration of what remains constant across different perspectives and frameworks.",
+    category: "book"
+  },
+  // Neuroscience and Mind
+  {
+    title: "Mapping the Mind",
+    author: "Rita Carter",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Mapping%20the%20Mind+by+Rita%20Carter",
+    spineColor: "#1e40af",
+    textColor: "#ffffff",
+    slug: "mapping-mind",
+    summary: "A visual guide to the brain and consciousness. Carter's accessible exploration of how the brain creates the mind.",
+    category: "book"
+  },
+  // Eastern Philosophy
+  {
+    title: "Tao Te Ching",
+    author: "Lao Tzu",
+    date: "2024",
+    rating: 10,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Tao%20Te%20Ching+by+Lao%20Tzu",
+    spineColor: "#7c3aed",
+    textColor: "#ffffff",
+    slug: "tao-te-ching",
+    summary: "The fundamental text of Taoism. Lao Tzu's timeless wisdom on the nature of reality, virtue, and the way of effortless action.",
+    category: "book"
+  },
+  // Genetics and Human Origins
+  {
+    title: "Who We Are and How We Got Here",
+    author: "David Reich",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Who%20We%20Are%20and%20How%20We%20Got%20Here+by+David%20Reich",
+    spineColor: "#059669",
+    textColor: "#ffffff",
+    slug: "who-we-are-how-got-here",
+    summary: "Ancient DNA and the new science of the human past. Reich's revolutionary insights into human migration and genetic history.",
+    category: "book"
+  },
+  // Literature
+  {
+    title: "Siddhartha",
+    author: "Hermann Hesse",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Siddhartha+by+Hermann%20Hesse",
+    spineColor: "#7c2d12",
+    textColor: "#ffffff",
+    slug: "siddhartha",
+    summary: "A spiritual journey of self-discovery. Hesse's classic novel about the search for meaning and enlightenment.",
+    category: "book"
+  },
   // Additional Books
   {
     title: "The Easy Way to Stop Drinking",
@@ -1016,6 +1328,431 @@ export const notes: Note[] = [
     textColor: "#ffffff",
     slug: "easy-way-stop-drinking",
     summary: "A revolutionary approach to quitting alcohol without willpower. Carr's method focuses on changing your mindset rather than relying on discipline.",
+    category: "book"
+  },
+  // Logic and Reasoning
+  {
+    title: "A Few Lessons from Sherlock Holmes",
+    author: "Peter Bevelin",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=A%20Few%20Lessons%20from%20Sherlock%20Holmes+by+Peter%20Bevelin",
+    spineColor: "#7c2d12",
+    textColor: "#ffffff",
+    slug: "few-lessons-sherlock-holmes",
+    summary: "Lessons in logic and reasoning from the world's greatest detective. Bevelin extracts practical wisdom from Holmes's methods of deduction.",
+    category: "book"
+  },
+  {
+    title: "Alchemy",
+    author: "Rory Sutherland",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Alchemy+by+Rory%20Sutherland",
+    spineColor: "#ea580c",
+    textColor: "#ffffff",
+    slug: "alchemy-sutherland",
+    summary: "The surprising power of ideas that don't make sense. Sutherland explores how illogical solutions often work better than logical ones.",
+    category: "book"
+  },
+  // Finance and Economics
+  {
+    title: "The Hour Between Dog and Wolf",
+    author: "John Coates",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Hour%20Between%20Dog%20and%20Wolf+by+John%20Coates",
+    spineColor: "#1e40af",
+    textColor: "#ffffff",
+    slug: "hour-between-dog-wolf",
+    summary: "How risk taking transforms us, body and mind. Coates explores the biology of financial decision-making and market behavior.",
+    category: "book"
+  },
+  {
+    title: "The Cancer Code",
+    author: "Jason Fung",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Cancer%20Code+by+Jason%20Fung",
+    spineColor: "#dc2626",
+    textColor: "#ffffff",
+    slug: "cancer-code",
+    summary: "A revolutionary new understanding of a medical mystery. Fung presents a new paradigm for understanding and treating cancer.",
+    category: "book"
+  },
+  {
+    title: "A Man for All Markets",
+    author: "Edward Thorp",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=A%20Man%20for%20All%20Markets+by+Edward%20Thorp",
+    spineColor: "#7c3aed",
+    textColor: "#ffffff",
+    slug: "man-all-markets",
+    summary: "From Las Vegas to Wall Street, how I beat the dealer and the market. Thorp's autobiography of mathematical finance and gambling.",
+    category: "book"
+  },
+  // Philosophy and Classics
+  {
+    title: "Les sceptiques grecs",
+    author: "Victor Brochard",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Les%20sceptiques%20grecs+by+Victor%20Brochard",
+    spineColor: "#059669",
+    textColor: "#ffffff",
+    slug: "sceptiques-grecs",
+    summary: "The Greek skeptics and their philosophy. Brochard's comprehensive study of ancient skepticism and its influence on Western thought.",
+    category: "book"
+  },
+  {
+    title: "The Management Myth",
+    author: "Matthew Stewart",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Management%20Myth+by+Matthew%20Stewart",
+    spineColor: "#7c2d12",
+    textColor: "#ffffff",
+    slug: "management-myth",
+    summary: "Why the experts keep getting it wrong. Stewart's critique of management consulting and its pseudoscientific foundations.",
+    category: "book"
+  },
+  {
+    title: "In the Shadow of the Sword",
+    author: "Tom Holland",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=In%20the%20Shadow%20of%20the%20Sword+by+Tom%20Holland",
+    spineColor: "#ea580c",
+    textColor: "#ffffff",
+    slug: "shadow-sword",
+    summary: "The battle for global empire and the end of the ancient world. Holland's narrative of the rise of Islam and the fall of the ancient world.",
+    category: "book"
+  },
+  // Mathematics
+  {
+    title: "The First Six Books of the Elements of Euclid",
+    author: "Euclid",
+    date: "2024",
+    rating: 10,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20First%20Six%20Books%20of%20the%20Elements%20of%20Euclid+by+Euclid",
+    spineColor: "#1e40af",
+    textColor: "#ffffff",
+    slug: "euclid-elements",
+    summary: "The foundational text of geometry and mathematical reasoning. Euclid's systematic approach to geometry remains influential today.",
+    category: "book"
+  },
+  // Ayn Rand Collection
+  {
+    title: "Atlas Shrugged",
+    author: "Ayn Rand",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Atlas%20Shrugged+by+Ayn%20Rand",
+    spineColor: "#dc2626",
+    textColor: "#ffffff",
+    slug: "atlas-shrugged",
+    summary: "The fountainhead of objectivism. Rand's magnum opus on individualism, capitalism, and the power of human reason.",
+    category: "book"
+  },
+  {
+    title: "The Fountainhead",
+    author: "Ayn Rand",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Fountainhead+by+Ayn%20Rand",
+    spineColor: "#7c3aed",
+    textColor: "#ffffff",
+    slug: "fountainhead",
+    summary: "The triumph of individualism over collectivism. Rand's novel about an architect who refuses to compromise his vision.",
+    category: "book"
+  },
+  // Architecture and Design
+  {
+    title: "How Buildings Learn",
+    author: "Stewart Brand",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=How%20Buildings%20Learn+by+Stewart%20Brand",
+    spineColor: "#059669",
+    textColor: "#ffffff",
+    slug: "how-buildings-learn",
+    summary: "What happens after they're built. Brand's exploration of how buildings evolve and adapt over time.",
+    category: "book"
+  },
+  // Economics Classics
+  {
+    title: "The Wealth of Nations",
+    author: "Adam Smith",
+    date: "2024",
+    rating: 10,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Wealth%20of%20Nations+by+Adam%20Smith",
+    spineColor: "#7c2d12",
+    textColor: "#ffffff",
+    slug: "wealth-of-nations",
+    summary: "The foundational text of modern economics. Smith's analysis of the division of labor and the invisible hand of the market.",
+    category: "book"
+  },
+  // Walter Benjamin Collection
+  {
+    title: "Illuminations",
+    author: "Walter Benjamin",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Illuminations+by+Walter%20Benjamin",
+    spineColor: "#ea580c",
+    textColor: "#ffffff",
+    slug: "illuminations",
+    summary: "Essays and reflections on art, culture, and modernity. Benjamin's influential collection of critical essays.",
+    category: "book"
+  },
+  {
+    title: "The Arcades Project",
+    author: "Walter Benjamin",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Arcades%20Project+by+Walter%20Benjamin",
+    spineColor: "#1e40af",
+    textColor: "#ffffff",
+    slug: "arcades-project",
+    summary: "A massive, unfinished work on 19th-century Paris. Benjamin's exploration of modernity through the lens of the arcades.",
+    category: "book"
+  },
+  // Literary Criticism
+  {
+    title: "The Unquiet Grave",
+    author: "Cyril Connolly",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Unquiet%20Grave+by+Cyril%20Connolly",
+    spineColor: "#7c3aed",
+    textColor: "#ffffff",
+    slug: "unquiet-grave",
+    summary: "A word cycle by Palinurus. Connolly's meditation on literature, life, and the creative process.",
+    category: "book"
+  },
+  {
+    title: "The Poetics of Space",
+    author: "Gaston Bachelard",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Poetics%20of%20Space+by+Gaston%20Bachelard",
+    spineColor: "#059669",
+    textColor: "#ffffff",
+    slug: "poetics-space",
+    summary: "The classic look at how we experience intimate places. Bachelard's phenomenological study of space and imagination.",
+    category: "book"
+  },
+  {
+    title: "The Psychoanalysis of Fire",
+    author: "Gaston Bachelard",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Psychoanalysis%20of%20Fire+by+Gaston%20Bachelard",
+    spineColor: "#dc2626",
+    textColor: "#ffffff",
+    slug: "psychoanalysis-fire",
+    summary: "A study of the imagination of fire. Bachelard's exploration of fire as a symbol and metaphor in human consciousness.",
+    category: "book"
+  },
+  // Anthropology
+  {
+    title: "Tristes Tropiques",
+    author: "Claude Lévi-Strauss",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Tristes%20Tropiques+by+Claude%20L%C3%A9vi-Strauss",
+    spineColor: "#7c2d12",
+    textColor: "#ffffff",
+    slug: "tristes-tropiques",
+    summary: "A classic of anthropological literature. Lévi-Strauss's memoir and meditation on the nature of civilization.",
+    category: "book"
+  },
+  {
+    title: "The Savage Mind",
+    author: "Claude Lévi-Strauss",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Savage%20Mind+by+Claude%20L%C3%A9vi-Strauss",
+    spineColor: "#ea580c",
+    textColor: "#ffffff",
+    slug: "savage-mind",
+    summary: "The structural analysis of primitive thought. Lévi-Strauss's exploration of how 'primitive' societies think and organize knowledge.",
+    category: "book"
+  },
+  // Roland Barthes Collection
+  {
+    title: "Mythologies",
+    author: "Roland Barthes",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Mythologies+by+Roland%20Barthes",
+    spineColor: "#1e40af",
+    textColor: "#ffffff",
+    slug: "mythologies",
+    summary: "A collection of essays on modern myths. Barthes's semiotic analysis of contemporary culture and ideology.",
+    category: "book"
+  },
+  {
+    title: "Camera Lucida",
+    author: "Roland Barthes",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Camera%20Lucida+by+Roland%20Barthes",
+    spineColor: "#7c3aed",
+    textColor: "#ffffff",
+    slug: "camera-lucida",
+    summary: "Reflections on photography. Barthes's personal and theoretical exploration of the nature of photography.",
+    category: "book"
+  },
+  // Emil Cioran Collection
+  {
+    title: "The Trouble with Being Born",
+    author: "Emil Cioran",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Trouble%20with%20Being%20Born+by+Emil%20Cioran",
+    spineColor: "#059669",
+    textColor: "#ffffff",
+    slug: "trouble-being-born",
+    summary: "A collection of aphorisms on existence and mortality. Cioran's dark and brilliant reflections on the human condition.",
+    category: "book"
+  },
+  {
+    title: "A Short History of Decay",
+    author: "Emil Cioran",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=A%20Short%20History%20of%20Decay+by+Emil%20Cioran",
+    spineColor: "#dc2626",
+    textColor: "#ffffff",
+    slug: "short-history-decay",
+    summary: "A philosophical meditation on the decline of civilization. Cioran's pessimistic but insightful analysis of human nature.",
+    category: "book"
+  },
+  // Paul Celan Collection
+  {
+    title: "Selected Poems",
+    author: "Paul Celan",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Selected%20Poems+by+Paul%20Celan",
+    spineColor: "#7c2d12",
+    textColor: "#ffffff",
+    slug: "selected-poems-celan",
+    summary: "The essential poems of one of the greatest poets of the 20th century. Celan's haunting and powerful verse.",
+    category: "book"
+  },
+  {
+    title: "Death Fugue",
+    author: "Paul Celan",
+    date: "2024",
+    rating: 10,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Death%20Fugue+by+Paul%20Celan",
+    spineColor: "#ea580c",
+    textColor: "#ffffff",
+    slug: "death-fugue",
+    summary: "One of the most powerful poems about the Holocaust. Celan's masterpiece of witness and remembrance.",
+    category: "book"
+  },
+  // Isaiah Berlin Collection
+  {
+    title: "The Hedgehog and the Fox",
+    author: "Isaiah Berlin",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Hedgehog%20and%20the%20Fox+by+Isaiah%20Berlin",
+    spineColor: "#1e40af",
+    textColor: "#ffffff",
+    slug: "hedgehog-fox",
+    summary: "An essay on Tolstoy's view of history. Berlin's famous distinction between hedgehogs and foxes in intellectual life.",
+    category: "book"
+  },
+  {
+    title: "Against the Current",
+    author: "Isaiah Berlin",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Against%20the%20Current+by+Isaiah%20Berlin",
+    spineColor: "#7c3aed",
+    textColor: "#ffffff",
+    slug: "against-current",
+    summary: "Essays in the history of ideas. Berlin's exploration of counter-Enlightenment thinkers and their influence.",
+    category: "book"
+  },
+  // George Santayana Collection
+  {
+    title: "The Life of Reason",
+    author: "George Santayana",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Life%20of%20Reason+by+George%20Santayana",
+    spineColor: "#059669",
+    textColor: "#ffffff",
+    slug: "life-reason",
+    summary: "The phases of human progress. Santayana's comprehensive philosophy of human nature and society.",
+    category: "book"
+  },
+  {
+    title: "Scepticism and Animal Faith",
+    author: "George Santayana",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Scepticism%20and%20Animal%20Faith+by+George%20Santayana",
+    spineColor: "#dc2626",
+    textColor: "#ffffff",
+    slug: "scepticism-animal-faith",
+    summary: "Introduction to a system of philosophy. Santayana's exploration of the relationship between skepticism and belief.",
+    category: "book"
+  },
+  // John Gray Collection
+  {
+    title: "Straw Dogs",
+    author: "John Gray",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Straw%20Dogs+by+John%20Gray",
+    spineColor: "#7c2d12",
+    textColor: "#ffffff",
+    slug: "straw-dogs-gray",
+    summary: "Thoughts on humans and other animals. Gray's provocative critique of humanism and progress.",
+    category: "book"
+  },
+  {
+    title: "Black Mass",
+    author: "John Gray",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Black%20Mass+by+John%20Gray",
+    spineColor: "#ea580c",
+    textColor: "#ffffff",
+    slug: "black-mass",
+    summary: "Apocalyptic religion and the death of utopia. Gray's analysis of how secular ideologies inherit religious patterns.",
+    category: "book"
+  },
+  // Ernest Renan Collection
+  {
+    title: "Life of Jesus",
+    author: "Ernest Renan",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Life%20of%20Jesus+by+Ernest%20Renan",
+    spineColor: "#1e40af",
+    textColor: "#ffffff",
+    slug: "life-jesus",
+    summary: "A historical and critical study of Jesus. Renan's influential biography that treats Jesus as a historical figure.",
+    category: "book"
+  },
+  {
+    title: "What is a Nation?",
+    author: "Ernest Renan",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=What%20is%20a%20Nation%3F+by+Ernest%20Renan",
+    spineColor: "#7c3aed",
+    textColor: "#ffffff",
+    slug: "what-nation",
+    summary: "A classic essay on nationalism and identity. Renan's influential definition of the nation as a daily plebiscite.",
     category: "book"
   },
   {
