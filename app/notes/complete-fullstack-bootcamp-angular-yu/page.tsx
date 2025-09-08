@@ -88,6 +88,11 @@ export default function CompleteFullstackBootcampAngularYuPage() {
                   </p>
                   
                   <p>
+                    This is a test to see if the notes are showing up on Vercel. 
+                    If you can see this text, then the basic structure is working.
+                  </p>
+                  
+                  <p>
                     Continents link through undersea fiber cables carrying light signals at near-light speed. 
                     Gigabytes race under oceans so clicks return in milliseconds.
                   </p>
