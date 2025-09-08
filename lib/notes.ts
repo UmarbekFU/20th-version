@@ -1175,7 +1175,7 @@ export const notes: Note[] = [
     author: "Angela Yu",
     date: "2024",
     rating: 9,
-    coverImage: "https://via.placeholder.com/300x400/%23f59e0b/ffffff?text=The%20Complete%20Full-Stack%20Web%20Development%20Bootcamp+by+Angela%20Yu",
+    coverImage: "https://via.placeholder.com/300x400/f59e0b/ffffff?text=Full-Stack+Bootcamp+by+Angela+Yu",
     spineColor: "#f59e0b",
     textColor: "#ffffff",
     slug: "complete-fullstack-bootcamp-angular-yu",
