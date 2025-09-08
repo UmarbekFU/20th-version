@@ -1184,21 +1184,6 @@ export const notes: Note[] = [
     duration: "65+ hours",
     url: "https://www.udemy.com/course/the-complete-web-development-bootcamp/",
     tags: ["web-development", "javascript", "react", "nodejs", "mongodb", "html", "css"]
-  },
-  {
-    title: "Test Course",
-    author: "Test Author",
-    date: "2024",
-    rating: 8,
-    coverImage: "https://picsum.photos/300/400?random=2",
-    spineColor: "#10b981",
-    textColor: "#ffffff",
-    slug: "test-course",
-    summary: "This is a test course to verify Vercel deployment is working.",
-    category: "course",
-    duration: "1 hour",
-    url: "https://example.com",
-    tags: ["test"]
   }
 ];
 

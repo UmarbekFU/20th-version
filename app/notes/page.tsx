@@ -8,10 +8,6 @@ export default function NotesPage() {
   const podcasts = getNotesByCategory('podcast');
   const courses = getNotesByCategory('course');
   
-  // Debug: Log courses to console
-  console.log('Courses found:', courses.length, courses.map(c => c.title));
-  console.log('DEBUG: Notes page is loading on Vercel!');
-  console.log('DEBUG: This is a test message to verify the page is loading');
 
   return (
     <>
@@ -20,9 +16,6 @@ export default function NotesPage() {
       <main className="min-h-screen pt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="notes-heading text-3xl sm:text-4xl lg:text-5xl notes-text-primary mb-6 text-center">Notes</h1>
-          <div style={{background: 'red', color: 'white', padding: '10px', margin: '10px 0'}}>
-            DEBUG: This should be visible on Vercel! Courses found: {courses.length}
-          </div>
           <p className="notes-content text-lg sm:text-xl notes-text-secondary mb-8 sm:mb-12 text-center max-w-2xl mx-auto">
             Short pieces made me pause.
           </p>
