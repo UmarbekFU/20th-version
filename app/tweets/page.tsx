@@ -4,6 +4,17 @@ import PlumBackground from '@/components/PlumBackground'
 export default function TweetsPage() {
   // My actual tweets
   const tweets = [
+    "Intense suffering triggers the very processes that eradicate it; mild suffering does not.",
+    "I don't want to belong to any club that would accept me as a member.",
+    "I hate words that hide truth. I hate euphemisms. Honest conversations are rare. Most people soften their words, add disclaimers, and avoid the truth. That makes you guess what they really mean. Direct talk is different. No sugar, no fluff. You understand right away. You can trust it. That's why it feels so good.",
+    "To be trusted is a greater compliment than to be loved.",
+    "Goodhart's Law — When a measure becomes a target, it ceases to be a good measure.",
+    "The morality of a group has very little to do with the morality of individuals composing the group. A virtuous society can be composed of vicious people.",
+    "'Adults' can't learn new skills is equal nonsense as the belief that education requires formal schooling.",
+    "If you don't offend people, you're not doing a good job. When you challenge established thinking, you inevitably upset some people. The alternative is mediocrity.",
+    "\"A person who thinks all the time has nothing to think about except thoughts. So, he loses touch with reality and lives in a world of illusions.\" — Alan Watts",
+    "When people say \"billionaire,\" it's misleading. It's usually just paper value. If they tried to sell, the price would drop. With a big supply, the market sinks. After selling, they might not be billionaires anymore. If they did sell, taxes take a big cut. In some cases, they can't sell at all. Private Equity (PE) is different from owning stock in Apple or Tesla. In PE, your wealth is tied up in private companies. There's no open market where you can sell anytime. To get cash, you need a buyer, and that may take years. Until then, the \"valuation\" is just an estimate on paper. So \"billionaire\" often means \"theoretical billionaire.\"",
+    "All knowledge begins with a problem. If we ran out of problems, wouldn't that itself be a problem?",
     "You can reduce the annoyance of someone's stupid belief by increasing your understanding of why they believe it.",
     "If one of your principles is, \"win at all costs,\" then you have no other principles.",
     "When people around you do something that makes no sense or is self-defeating, it might not be because they're stupid. It's more likely that they don't believe what you believe, don't see what you see or don't want what you want. It might be different measures of time, of status or desire. If we hope to understand behavior, and ultimately to change it, we need to see the stories behind it. Because, in many ways, we're all irrational sometimes.",
@@ -134,9 +145,19 @@ export default function TweetsPage() {
           {/* Tweets List */}
           <div className="space-y-6 max-w-2xl mx-auto">
             {tweets.map((tweet, index) => {
-              // Show today's date for the first 52 tweets (newest), then older dates
+              // Show tomorrow's date for first 11 tweets, today's date for next 52, then older dates
               const getTweetDate = (index: number) => {
-                if (index < 52) {
+                if (index < 11) {
+                  // Tomorrow's date
+                  const tomorrow = new Date()
+                  tomorrow.setDate(tomorrow.getDate() + 1)
+                  return tomorrow.toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                  })
+                } else if (index < 63) {
+                  // Today's date
                   return new Date().toLocaleDateString('en-US', { 
                     year: 'numeric', 
                     month: 'long', 

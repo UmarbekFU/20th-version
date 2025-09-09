@@ -11,28 +11,28 @@ export default function PodcastsListPage() {
       comment: "Deep dives into company histories. Makes business history actually interesting."
     },
     {
-      title: "The Knowledge Project",
-      host: "Shane Parrish",
-      rating: 7,
-      comment: "Mental models and decision-making frameworks. Every episode makes me think differently."
-    },
-    {
       title: "Naval",
       host: "Naval Ravikant",
       rating: 8,
       comment: "Short, profound insights about life, work, and happiness. Every episode is quotable."
     },
     {
-      title: "Founders Podcast",
-      host: "David Senra",
-      rating: 6,
-      comment: "Biographies of great entrepreneurs. Good for understanding how successful people think and operate."
+      title: "The Knowledge Project",
+      host: "Shane Parrish",
+      rating: 7,
+      comment: "Mental models and decision-making frameworks. Every episode makes me think differently."
     },
     {
       title: "TBPN",
       host: "Various",
       rating: 7,
       comment: "Tech and business insights from people who actually know what they're talking about."
+    },
+    {
+      title: "Founders Podcast",
+      host: "David Senra",
+      rating: 6,
+      comment: "Biographies of great entrepreneurs. Good for understanding how successful people think and operate."
     }
   ]
 
