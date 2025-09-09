@@ -642,6 +642,18 @@ export const notes: Note[] = [
     summary: "Challenging the conventional wisdom on diet and disease. Taubes's controversial take on nutrition science.",
     category: "book"
   },
+  {
+    title: "Food Rules",
+    author: "Michael Pollan",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Food%20Rules+by+Michael%20Pollan",
+    spineColor: "#f59e0b",
+    textColor: "#ffffff",
+    slug: "food-rules",
+    summary: "An eater's manual with 64 simple rules for healthy eating. Pollan distills nutritional wisdom into practical, memorable guidelines that cut through the confusion of modern food culture.",
+    category: "book"
+  },
   // Literature and Philosophy
   {
     title: "The Complete Essays",
@@ -1340,6 +1352,18 @@ export const notes: Note[] = [
     textColor: "#ffffff",
     slug: "life-of-samuel-johnson",
     summary: "The definitive biography of Dr. Samuel Johnson, one of the most influential figures in English literature. Boswell's masterpiece of biographical writing that captures Johnson's wit, wisdom, and character.",
+    category: "book"
+  },
+  {
+    title: "The Picture of Dorian Gray",
+    author: "Oscar Wilde",
+    date: "2024",
+    rating: 10,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Picture%20of%20Dorian%20Gray+by+Oscar%20Wilde",
+    spineColor: "#dc2626",
+    textColor: "#ffffff",
+    slug: "picture-of-dorian-gray",
+    summary: "Wilde's masterpiece exploring the nature of beauty, morality, and the human soul. A haunting tale of a young man who remains eternally beautiful while his portrait ages and reveals his moral decay.",
     category: "book"
   },
   // Additional Books

@@ -4,6 +4,13 @@ import PlumBackground from '@/components/PlumBackground'
 export default function TweetsPage() {
   // My actual tweets
   const tweets = [
+    "The truth knocks on the door and you say, 'Go away, I'm looking for the truth,' and so it goes away. Puzzling.",
+    "What did you get done this week?",
+    "If you worry about your reputation, you don't deserve to have one.",
+    "People are not driven by past causes, but move toward goals that they themselves set. The Greek word for \"good\" (agathon) does not have a moral meaning. It just means \"beneficial.\" Conversely, the word for \"evil\" (kakon) means \"not beneficial.\" No one desires evil: something \"not beneficial.\"",
+    "Some people are so poor that all they have is money.",
+    "The opposite of peace is desire.",
+    "And when nobody wakes you up in the morning, and when nobody waits for you at night, and when you can do whatever you want. What do you call it, freedom or loneliness?",
     "As in all fields of endeavor, the number of truly skilled individuals is far fewer than the total number of participants.",
     "The set of conditions necessary to become successful is part of the set that's sufficient to become successful. But the sufficient set itself is much larger than the necessary set.",
     "\"Of the six people who started PayPal, four had built bombs in high school.\" ― Peter Thiel",
@@ -74,19 +81,33 @@ export default function TweetsPage() {
 
           {/* Tweets List */}
           <div className="space-y-6 max-w-2xl mx-auto">
-            {tweets.map((tweet, index) => (
-              <div 
-                key={index}
-                className="group"
-              >
-                <p className="text-lg text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-relaxed">
-                  {tweet}
-                </p>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                  March 9, 2025
-                </p>
-              </div>
-            ))}
+            {tweets.map((tweet, index) => {
+              // Show today's date for the first seven tweets (newest), then older dates
+              const getTweetDate = (index: number) => {
+                if (index === 0 || index === 1 || index === 2 || index === 3 || index === 4 || index === 5 || index === 6) {
+                  return new Date().toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                  })
+                }
+                return "March 9, 2025"
+              }
+              
+              return (
+                <div 
+                  key={index}
+                  className="group"
+                >
+                  <p className="text-lg text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-relaxed">
+                    {tweet}
+                  </p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                    {getTweetDate(index)}
+                  </p>
+                </div>
+              )
+            })}
           </div>
 
           {/* Footer Note */}
