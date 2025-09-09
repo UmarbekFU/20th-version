@@ -1561,6 +1561,92 @@ export const notes: Note[] = [
   },
   // Additional Books
   {
+    title: "Thinking in Bets",
+    author: "Annie Duke",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Thinking%20in%20Bets+by+Annie%20Duke",
+    spineColor: "#7c3aed",
+    textColor: "#ffffff",
+    slug: "thinking-in-bets",
+    summary: "A former professional poker player's guide to making better decisions under uncertainty. Duke shows how to think probabilistically and separate skill from luck in decision-making.",
+    category: "book"
+  },
+  {
+    title: "Social Cognition",
+    author: "Ziva Kunda",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Social%20Cognition+by+Ziva%20Kunda",
+    spineColor: "#059669",
+    textColor: "#ffffff",
+    slug: "social-cognition",
+    summary: "A comprehensive exploration of how people think about themselves and others. Kunda examines the cognitive processes underlying social judgment, motivation, and behavior.",
+    category: "book"
+  },
+  {
+    title: "Dominion",
+    author: "Tom Holland",
+    date: "2024",
+    rating: 10,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Dominion+by+Tom%20Holland",
+    spineColor: "#dc2626",
+    textColor: "#ffffff",
+    slug: "dominion-holland",
+    summary: "Holland's sweeping history of how Christianity shaped the Western world. A profound exploration of how Christian ideas continue to influence modern secular society.",
+    category: "book"
+  },
+  {
+    title: "Intellectual Life in the Middle Ages",
+    author: "Lesley M. Smith",
+    date: "2024",
+    rating: 8,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=Intellectual%20Life%20in%20the%20Middle%20Ages+by+Lesley%20M.%20Smith",
+    spineColor: "#7c2d12",
+    textColor: "#ffffff",
+    slug: "intellectual-life-middle-ages",
+    summary: "A comprehensive study of medieval intellectual culture, exploring the universities, scholars, and ideas that shaped the Middle Ages. Smith reveals the sophistication and diversity of medieval thought.",
+    category: "book"
+  },
+  {
+    title: "The Iliad",
+    author: "Homer",
+    date: "2024",
+    rating: 10,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Iliad+by+Homer",
+    spineColor: "#f59e0b",
+    textColor: "#ffffff",
+    slug: "iliad-homer",
+    summary: "Homer's epic poem about the Trojan War, focusing on the wrath of Achilles. A foundational work of Western literature that explores themes of honor, glory, and the human cost of war.",
+    category: "book"
+  },
+  // Philosophy and Political Theory
+  {
+    title: "The Open Society and Its Enemies (Volumes 1-2)",
+    author: "Karl Popper",
+    date: "2024",
+    rating: 10,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Open%20Society%20and%20Its%20Enemies+by+Karl%20Popper",
+    spineColor: "#1e40af",
+    textColor: "#ffffff",
+    slug: "open-society-enemies",
+    summary: "Popper's magnum opus defending liberal democracy against totalitarianism. A profound critique of historicism and a defense of the open society, examining the philosophical roots of authoritarianism from Plato to Marx.",
+    category: "book"
+  },
+  {
+    title: "The Poverty of Historicism",
+    author: "Karl Popper",
+    date: "2024",
+    rating: 9,
+    coverImage: "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Poverty%20of%20Historicism+by+Karl%20Popper",
+    spineColor: "#7c3aed",
+    textColor: "#ffffff",
+    slug: "poverty-historicism",
+    summary: "Popper's systematic critique of historicism—the belief that history follows inevitable laws. A foundational work in the philosophy of science and social theory that defends the open society and piecemeal social engineering.",
+    category: "book"
+  },
+  // Additional Books
+  {
     title: "The Easy Way to Stop Drinking",
     author: "Allen Carr",
     date: "2024",
