@@ -269,29 +269,30 @@ function performNotesDiscovery(): SimpleNote[] {
           tags: tags || undefined
         };
         
-        notes.push(note);
-        console.log(`✓ Discovered: ${title} by ${author}`);
-        
-      } catch (error) {
-        console.warn(`Could not parse note ${noteDir}:`, error);
-        // Still create a basic note entry to prevent complete failure
-        const note: SimpleNote = {
-          title: generateTitleFromSlug(noteDir),
-          author: 'Unknown Author',
-          date: new Date().getFullYear().toString(),
-          rating: 5,
-          coverImage: 'https://via.placeholder.com/300x400/%23666/ffffff?text=Error',
-          spineColor: '#666666',
-          textColor: '#ffffff',
-          slug: noteDir,
-          summary: 'Could not parse note data.',
-          content: '',
-          category: 'book'
-        };
-        notes.push(note);
+          notes.push(note);
+          console.log(`✓ Discovered: ${title} by ${author}`);
+          
+        } catch (error) {
+          console.warn(`Could not parse note ${noteDir}:`, error);
+          // Still create a basic note entry to prevent complete failure
+          const note: SimpleNote = {
+            title: generateTitleFromSlug(noteDir),
+            author: 'Unknown Author',
+            date: new Date().getFullYear().toString(),
+            rating: 5,
+            coverImage: 'https://via.placeholder.com/300x400/%23666/ffffff?text=Error',
+            spineColor: '#666666',
+            textColor: '#ffffff',
+            slug: noteDir,
+            summary: 'Could not parse note data.',
+            content: '',
+            category: 'book'
+          };
+          notes.push(note);
+        }
+      } else {
+        console.warn(`Page file not found for note: ${noteDir}`);
       }
-    } else {
-      console.warn(`Page file not found for note: ${noteDir}`);
     }
   }
 
