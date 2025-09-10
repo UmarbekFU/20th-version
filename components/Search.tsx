@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { Search as SearchIcon } from 'lucide-react'
 
@@ -102,8 +102,8 @@ export default function Search({ isOpen, onClose }: SearchProps) {
     }
   }
 
-  // Debounced search
-  useEffect(() => {
+  // Debounced search with useCallback for better performance
+  const debouncedSearch = useCallback(() => {
     const timeoutId = setTimeout(() => {
       if (query) {
         performSearch(query)
@@ -114,6 +114,11 @@ export default function Search({ isOpen, onClose }: SearchProps) {
 
     return () => clearTimeout(timeoutId)
   }, [query])
+
+  useEffect(() => {
+    const cleanup = debouncedSearch()
+    return cleanup
+  }, [debouncedSearch])
 
   const handleClose = () => {
     if (abortController) {

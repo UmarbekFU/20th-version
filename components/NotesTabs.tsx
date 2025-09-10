@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Bookshelf } from './Bookshelf';
 import { SimpleNote } from '@/lib/types';
 
@@ -14,6 +15,12 @@ interface NotesTabsProps {
 export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
   const [activeTab, setActiveTab] = useState<'books' | 'podcasts' | 'courses'>('books');
   const tabSliderRef = useRef<HTMLDivElement>(null);
+  
+  // Memoize sorted books to prevent unnecessary re-sorting
+  const sortedBooks = useMemo(() => 
+    books.slice().sort((a, b) => b.rating - a.rating),
+    [books]
+  );
 
   const tabs = [
     { id: 'books', label: 'Books' },
@@ -21,8 +28,8 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
     { id: 'courses', label: 'Courses' },
   ] as const;
 
-  // Update tab slider position
-  useEffect(() => {
+  // Update tab slider position with useCallback for performance
+  const updateTabSlider = useCallback(() => {
     if (tabSliderRef.current) {
       const activeIndex = tabs.findIndex(tab => tab.id === activeTab);
       const width = 100 / tabs.length;
@@ -32,6 +39,10 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
       tabSliderRef.current.style.setProperty('--tab-left', `${left}%`);
     }
   }, [activeTab, tabs.length]);
+
+  useEffect(() => {
+    updateTabSlider();
+  }, [updateTabSlider]);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -46,19 +57,21 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
             
             {/* Scrollable Book List */}
             <div className="space-y-8">
-              {books
-                .slice()
-                .sort((a, b) => b.rating - a.rating)
-                .map((book, index) => (
+              {sortedBooks.map((book, index) => (
                   <div key={book.slug} className="scroll-mt-20">
                     {index > 0 && (
                       <div className="border-t border-gray-200 dark:border-gray-700 mb-6 w-full"></div>
                     )}
                     <div className="flex flex-col md:flex-row gap-6 items-start">
-                      <img
+                      <Image
                         src={book.coverImage}
                         alt={book.title}
+                        width={128}
+                        height={160}
                         className="w-24 h-32 md:w-32 md:h-40 object-cover rounded border border-gray-200 dark:border-gray-700 flex-shrink-0"
+                        priority={index < 3} // Prioritize first 3 images
+                        placeholder="blur"
+                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                       />
                       <div className="flex-1">
                         <h3 className="notes-title text-xl mb-3">
@@ -91,10 +104,14 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
             {podcasts.map((podcast) => (
               <div key={podcast.slug} className="border-b border-gray-200 dark:border-gray-700 pb-8 last:border-b-0">
                 <div className="flex flex-col md:flex-row gap-6 items-start">
-                  <img
+                  <Image
                     src={podcast.coverImage}
                     alt={podcast.title}
+                    width={96}
+                    height={96}
                     className="w-24 h-24 object-cover rounded-lg shadow-lg flex-shrink-0"
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                   />
                   <div className="flex-1">
                     <h3 className="notes-title text-xl mb-3">
@@ -139,10 +156,14 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
             {courses.map((course) => (
               <div key={course.slug} className="border-b border-gray-200 dark:border-gray-700 pb-8 last:border-b-0">
                 <div className="flex flex-col md:flex-row gap-6 items-start">
-                  <img
+                  <Image
                     src={course.coverImage}
                     alt={course.title}
+                    width={96}
+                    height={96}
                     className="w-24 h-24 object-cover rounded-lg shadow-lg flex-shrink-0"
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                   />
                   <div className="flex-1">
                     <h3 className="notes-title text-xl mb-3">

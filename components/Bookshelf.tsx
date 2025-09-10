@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
+import Image from 'next/image';
 import { SimpleNote } from '@/lib/types';
 // Simple SVG chevron icons instead of lucide-react
 const ChevronLeft = ({ className }: { className?: string }) => (
@@ -73,11 +74,11 @@ export function Bookshelf({ notes }: BookshelfProps) {
     );
   }, [selectedNote, hoveredNote, notes.length, notesInViewport]);
 
-  const boundedScroll = (scrollX: number) => {
+  const boundedScroll = useCallback((scrollX: number) => {
     setScroll(Math.max(minScroll, Math.min(maxScroll, scrollX)));
-  };
+  }, [maxScroll]);
 
-  const boundedRelativeScroll = React.useCallback(
+  const boundedRelativeScroll = useCallback(
     (incrementX: number) => {
       setScroll((_scroll) =>
         Math.max(minScroll, Math.min(maxScroll, _scroll + incrementX))
@@ -205,9 +206,29 @@ export function Bookshelf({ notes }: BookshelfProps) {
   }, [boundedRelativeScroll]);
 
   // Handle mouse leave on the entire bookshelf to clear hover
-  const handleBookshelfMouseLeave = () => {
+  const handleBookshelfMouseLeave = useCallback(() => {
     setHoveredNote(-1);
-  };
+  }, []);
+
+  // Memoize the note click handler
+  const handleNoteClick = useCallback((index: number, note: SimpleNote) => {
+    if (index === selectedNote) {
+      setSelectedNote(-1);
+      router.push(`/notes`);
+    } else {
+      setSelectedNote(index);
+      router.push(`/notes/${note.slug}`);
+    }
+  }, [selectedNote, router]);
+
+  // Memoize the note hover handlers
+  const handleNoteMouseEnter = useCallback((index: number) => {
+    setHoveredNote(index);
+  }, []);
+
+  const handleNoteMouseLeave = useCallback(() => {
+    setHoveredNote(-1);
+  }, []);
 
   return (
     <>
@@ -272,17 +293,9 @@ export function Bookshelf({ notes }: BookshelfProps) {
             return (
               <button
                 key={note.title}
-                onClick={() => {
-                  if (index === selectedNote) {
-                    setSelectedNote(-1);
-                    router.push(`/notes`);
-                  } else {
-                    setSelectedNote(index);
-                    router.push(`/notes/${note.slug}`);
-                  }
-                }}
-                onMouseEnter={() => setHoveredNote(index)}
-                onMouseLeave={() => setHoveredNote(-1)}
+                onClick={() => handleNoteClick(index, note)}
+                onMouseEnter={() => handleNoteMouseEnter(index)}
+                onMouseLeave={handleNoteMouseLeave}
                 className="flex flex-row items-center justify-start outline-none flex-shrink-0 gap-0"
                 style={{
                   transform: `translateX(-${scroll}px)`,
@@ -365,15 +378,20 @@ export function Bookshelf({ notes }: BookshelfProps) {
                     background: `linear-gradient(to right, rgba(255, 255, 255, 0) 2px, rgba(255, 255, 255, 0.5) 3px, rgba(255, 255, 255, 0.25) 4px, rgba(255, 255, 255, 0.25) 6px, transparent 7px, transparent 9px, rgba(255, 255, 255, 0.25) 9px, transparent 12px)`,
                   }}
                 />
-                <img
+                <Image
                   src={note.coverImage}
                   alt={note.title}
+                  width={166}
+                  height={220}
                   className="transition-all duration-500 ease-in-out"
                   style={{
                     width: coverWidth,
                     height: bookHeight,
                     willChange: "auto",
                   }}
+                  priority={index < 5} // Prioritize first 5 books
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                 />
               </div>
             </button>

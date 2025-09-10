@@ -2,6 +2,7 @@
 import fs from 'fs'
 import path from 'path'
 import { discoverNotes } from './noteDiscovery'
+import { CircuitBreaker } from './robustness'
 
 export interface SearchResult {
   path: string
@@ -11,6 +12,8 @@ export interface SearchResult {
   score: number
   matches: string[]
   keywords?: string[]
+  author?: string
+  category?: string
 }
 
 // Static pages that don't need dynamic discovery
@@ -206,7 +209,9 @@ function discoverPages(): SearchResult[] {
         content: note.summary || `Notes about ${note.title} by ${note.author}`,
         keywords: [note.title.toLowerCase(), note.author.toLowerCase(), 'note', note.category],
         score: 0,
-        matches: []
+        matches: [],
+        author: note.author,
+        category: note.category
       })
     }
   } catch (error) {
@@ -280,37 +285,55 @@ function discoverPages(): SearchResult[] {
   return pages
 }
 
-// Cache for search index - using a more robust caching approach
-let searchIndexCache: SearchResult[] | null = null
-let cacheTimestamp = 0
-const CACHE_DURATION = 2 * 60 * 1000 // 2 minutes (shorter for Vercel)
+// Enhanced cache for search index with better memory management
+interface SearchCacheEntry {
+  data: SearchResult[];
+  timestamp: number;
+  ttl: number;
+}
+
+let searchIndexCache: SearchCacheEntry | null = null
+const SEARCH_CACHE_TTL = 10 * 60 * 1000 // 10 minutes for search index
+const MAX_SEARCH_RESULTS = 50 // Limit results to prevent memory issues
+
+// Circuit breaker for search operations
+const searchCircuitBreaker = new CircuitBreaker(5, 60000, 30000) // 5 failures, 1min timeout, 30s reset
 
 export function getSearchIndex(): SearchResult[] {
   const now = Date.now()
   
-  // Always regenerate cache in development or if cache is stale
-  if (process.env.NODE_ENV === 'development' || !searchIndexCache || (now - cacheTimestamp) > CACHE_DURATION) {
-    console.log('Regenerating search index...')
-    searchIndexCache = discoverPages()
-    cacheTimestamp = now
+  // Check if cache is valid
+  if (searchIndexCache && (now - searchIndexCache.timestamp) < searchIndexCache.ttl) {
+    return searchIndexCache.data
   }
   
-  return searchIndexCache
+  // Regenerate cache
+  console.log('Regenerating search index...')
+  const newIndex = discoverPages()
+  
+  searchIndexCache = {
+    data: newIndex,
+    timestamp: now,
+    ttl: SEARCH_CACHE_TTL
+  }
+  
+  return newIndex
 }
 
 // Function to clear cache and force regeneration
 export function clearSearchCache(): void {
   searchIndexCache = null
-  cacheTimestamp = 0
   console.log('Search cache cleared')
 }
 
 export function searchContent(query: string): SearchResult[] {
-  const searchIndex = getSearchIndex()
-  
-  if (!query || query.length < 2) {
-    return []
-  }
+  try {
+    return searchCircuitBreaker.execute(() => {
+      const searchIndex = getSearchIndex()
+      
+      if (!query || query.length < 2) {
+        return []
+      }
   
   const queryWords = query.split(/\s+/).filter(word => word.length >= 2)
   
@@ -366,12 +389,19 @@ export function searchContent(query: string): SearchResult[] {
       description: page.description,
       content: page.content.substring(0, 200) + (page.content.length > 200 ? '...' : ''),
       score,
-      matches: Array.from(new Set(matches))
+      matches: Array.from(new Set(matches)),
+      author: page.author,
+      category: page.category
     }
   })
   
-  return results
-    .filter(result => result.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 10)
+      return results
+        .filter(result => result.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, MAX_SEARCH_RESULTS)
+    })
+  } catch (error) {
+    console.error('Search circuit breaker triggered:', error)
+    return [] // Return empty results when circuit is open
+  }
 }

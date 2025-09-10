@@ -2,8 +2,28 @@
 
 import { Sun, Moon } from 'lucide-react'
 import { useTheme } from './ThemeProvider'
+import { useEffect, useState } from 'react'
 
 export function ThemeToggle() {
+  const [mounted, setMounted] = useState(false)
+  
+  // Prevent hydration mismatch by not rendering until client-side
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Early return during SSR to prevent useTheme hook errors
+  if (!mounted) {
+    return (
+      <button
+        className="p-1.5 sm:p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:rotate-12 active:rotate-45 hover:scale-110"
+        disabled
+      >
+        <Sun className="w-5 h-5" />
+      </button>
+    )
+  }
+
   const { theme, setTheme, resolvedTheme } = useTheme()
 
   const toggleTheme = () => {

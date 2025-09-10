@@ -5,6 +5,9 @@ import { ThemeProvider } from '@/components/ThemeProvider'
 import StructuredData from '@/components/StructuredData'
 import ProgressBar from '@/components/ProgressBar'
 import SearchProvider from '@/components/SearchProvider'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
+import { PerformanceMonitor } from '@/components/PerformanceMonitor'
+import { MonitoringDashboard } from '@/components/MonitoringDashboard'
 
 const inter = Inter({ subsets: ['latin'] })
 const lora = Lora({ subsets: ['latin'], display: 'swap' })
@@ -44,13 +47,17 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} antialiased`}>
+        <PerformanceMonitor />
         <ProgressBar />
         <ThemeProvider>
           <SearchProvider>
-            {children}
+            <ErrorBoundary>
+              {children}
+            </ErrorBoundary>
           </SearchProvider>
         </ThemeProvider>
         <StructuredData />
+        <MonitoringDashboard />
       </body>
     </html>
   )

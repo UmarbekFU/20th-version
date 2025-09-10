@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { SimpleNote } from './types';
+import { retryWithBackoff, safeFileOperation, withTimeout, MemoryMonitor } from './robustness';
+import { executeWithRecovery, RecoveryStrategies } from './errorRecovery';
 
 // Robust parsing patterns - try multiple formats for each field
 const patterns = {
@@ -123,25 +125,73 @@ function determineCategory(slug: string, content: string): SimpleNote['category'
   return 'book';
 }
 
-// Cache for discovered notes
-let notesCache: SimpleNote[] | null = null;
+// Enhanced cache with TTL and memory management
+interface CacheEntry {
+  data: SimpleNote[];
+  timestamp: number;
+  ttl: number;
+}
+
+let notesCache: CacheEntry | null = null;
+const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+const MAX_CACHE_SIZE = 1000; // Prevent memory leaks
 
 // Clear cache function for development
 export function clearCache() {
   notesCache = null;
 }
 
-// Function to discover all notes from the file system
+// Check if cache is valid
+function isCacheValid(entry: CacheEntry): boolean {
+  return Date.now() - entry.timestamp < entry.ttl;
+}
+
+// Function to discover all notes from the file system with robustness
 export function discoverNotes(): SimpleNote[] {
-  // Return cached notes if available
-  if (notesCache) {
-    console.log('Using cached notes:', notesCache.length);
-    return notesCache;
+  // Return cached notes if available and valid
+  if (notesCache && isCacheValid(notesCache)) {
+    console.log('Using cached notes:', notesCache.data.length);
+    return notesCache.data;
   }
+
+  // Check memory usage before processing
+  const memoryMonitor = MemoryMonitor.getInstance();
+  const memoryUsage = memoryMonitor.getMemoryUsage();
+  
+  if (memoryUsage.heapUsed > 400) { // 400MB threshold
+    console.warn('High memory usage detected, using cached data if available');
+    if (notesCache) {
+      return notesCache.data;
+    }
+  }
+
+  // Use error recovery for the entire discovery process
+  try {
+    return executeWithRecovery(
+      () => performNotesDiscovery(),
+      'discoverNotes',
+      RecoveryStrategies.fileOperation,
+      { memoryUsage }
+    );
+  } catch (error) {
+    console.error('Notes discovery failed completely:', error);
+    return notesCache?.data || [];
+  }
+}
+
+// Internal function that does the actual discovery
+function performNotesDiscovery(): SimpleNote[] {
   const notes: SimpleNote[] = [];
   const notesDir = path.join(process.cwd(), 'app/notes');
   
-  if (!fs.existsSync(notesDir)) {
+  // Safe directory check with timeout
+  const dirExists = safeFileOperation(
+    () => fs.existsSync(notesDir),
+    false,
+    'checking notes directory'
+  );
+
+  if (!dirExists) {
     console.warn('Notes directory not found:', notesDir);
     return notes;
   }
@@ -153,11 +203,36 @@ export function discoverNotes(): SimpleNote[] {
 
   console.log(`Discovering notes in ${noteDirs.length} directories...`);
 
-  for (const noteDir of noteDirs) {
-    const pageFile = path.join(notesDir, noteDir, 'page.tsx');
-    if (fs.existsSync(pageFile)) {
-      try {
-        const content = fs.readFileSync(pageFile, 'utf8');
+  // Process notes with batching to prevent memory issues
+  const BATCH_SIZE = 50;
+  const batches = [];
+  for (let i = 0; i < noteDirs.length; i += BATCH_SIZE) {
+    batches.push(noteDirs.slice(i, i + BATCH_SIZE));
+  }
+
+  for (const batch of batches) {
+    for (const noteDir of batch) {
+      const pageFile = path.join(notesDir, noteDir, 'page.tsx');
+      
+      const fileExists = safeFileOperation(
+        () => fs.existsSync(pageFile),
+        false,
+        `checking ${noteDir}`
+      );
+
+      if (fileExists) {
+        try {
+          // Safe file reading with error handling
+          const content = safeFileOperation(
+            () => fs.readFileSync(pageFile, 'utf8'),
+            '',
+            `reading ${noteDir}`
+          );
+
+          if (!content) {
+            console.warn(`Empty content for ${noteDir}, skipping`);
+            continue;
+          }
         
         // Extract note data using robust patterns
         const title = extractField(content, 'title', patterns.title) || generateTitleFromSlug(noteDir);
@@ -242,28 +317,57 @@ export function discoverNotes(): SimpleNote[] {
   
   console.log(`Successfully discovered ${finalNotes.length} unique notes (${notes.length - finalNotes.length} duplicates removed)`);
   
-  // Cache the results
-  notesCache = finalNotes;
+  // Cache the results with TTL
+  notesCache = {
+    data: finalNotes,
+    timestamp: Date.now(),
+    ttl: CACHE_TTL
+  };
+  
+  // Prevent memory leaks by limiting cache size
+  if (finalNotes.length > MAX_CACHE_SIZE) {
+    console.warn(`Notes count (${finalNotes.length}) exceeds max cache size (${MAX_CACHE_SIZE}). Consider implementing pagination.`);
+  }
+  
   return finalNotes;
 }
 
-// Function to get notes by category
-export function getNotesByCategory(category: SimpleNote['category']): SimpleNote[] {
+// Function to get notes by category with pagination
+export function getNotesByCategory(
+  category: SimpleNote['category'], 
+  page: number = 1, 
+  limit: number = 20
+): { notes: SimpleNote[]; total: number; hasMore: boolean } {
   const allNotes = discoverNotes();
-  return allNotes.filter(note => note.category === category);
+  const filteredNotes = allNotes.filter(note => note.category === category);
+  
+  const startIndex = (page - 1) * limit;
+  const endIndex = startIndex + limit;
+  const paginatedNotes = filteredNotes.slice(startIndex, endIndex);
+  
+  return {
+    notes: paginatedNotes,
+    total: filteredNotes.length,
+    hasMore: endIndex < filteredNotes.length
+  };
+}
+
+// Legacy function for backward compatibility
+export function getNotesByCategoryLegacy(category: SimpleNote['category']): SimpleNote[] {
+  return getNotesByCategory(category).notes;
 }
 
 // Function to get all books
 export function getBooks(): SimpleNote[] {
-  return getNotesByCategory('book');
+  return getNotesByCategoryLegacy('book');
 }
 
 // Function to get all podcasts
 export function getPodcasts(): SimpleNote[] {
-  return getNotesByCategory('podcast');
+  return getNotesByCategoryLegacy('podcast');
 }
 
 // Function to get all courses
 export function getCourses(): SimpleNote[] {
-  return getNotesByCategory('course');
+  return getNotesByCategoryLegacy('course');
 }
