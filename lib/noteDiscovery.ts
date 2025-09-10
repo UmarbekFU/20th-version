@@ -237,6 +237,11 @@ function performNotesDiscovery(): SimpleNote[] {
         // Extract note data using robust patterns
         const title = extractField(content, 'title', patterns.title) || generateTitleFromSlug(noteDir);
         const author = extractField(content, 'author', patterns.author) || 'Unknown Author';
+        
+        // Debug: log author extraction for first few notes
+        if (noteDir === 'antifragile' || noteDir === 'anna-karenina') {
+          console.log(`Debug ${noteDir}:`, { title, author, content: content.substring(0, 200) });
+        }
         const date = extractField(content, 'date', patterns.date) || new Date().getFullYear().toString();
         const ratingStr = extractField(content, 'rating', patterns.rating);
         const rating = ratingStr ? parseInt(ratingStr) : 5; // Default rating
