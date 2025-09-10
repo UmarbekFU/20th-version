@@ -99,9 +99,15 @@ function determineCategory(slug: string, content: string): SimpleNote['category'
   if (slugLower.includes('essay')) return 'essay';
   if (slugLower.includes('doc') || slugLower.includes('documentary')) return 'documentary';
   
+  // Check for specific podcast indicators first (most reliable)
+  if (contentLower.includes('acquired.fm') || contentLower.includes('thefounderspodcast.com') || contentLower.includes('fs.blog')) return 'podcast';
+  
+  // Check for specific course indicators first (most reliable)
+  if (contentLower.includes('udemy.com') || contentLower.includes('kentcdodds.com') || contentLower.includes('course taken')) return 'course';
+  
   // Check content patterns as fallback
-  if (contentLower.includes('course') || contentLower.includes('tutorial')) return 'course';
-  if (contentLower.includes('podcast') || contentLower.includes('episode')) return 'podcast';
+  if (contentLower.includes('course') || contentLower.includes('tutorial') || contentLower.includes('bootcamp')) return 'course';
+  if (contentLower.includes('podcast') || contentLower.includes('episode') || contentLower.includes('acquired') || contentLower.includes('last listened')) return 'podcast';
   if (contentLower.includes('video') || contentLower.includes('youtube')) return 'video';
   if (contentLower.includes('essay') || contentLower.includes('article')) return 'essay';
   if (contentLower.includes('documentary') || contentLower.includes('film')) return 'documentary';
@@ -112,6 +118,11 @@ function determineCategory(slug: string, content: string): SimpleNote['category'
 
 // Cache for discovered notes
 let notesCache: SimpleNote[] | null = null;
+
+// Clear cache function for development
+export function clearCache() {
+  notesCache = null;
+}
 
 // Function to discover all notes from the file system
 export function discoverNotes(): SimpleNote[] {
