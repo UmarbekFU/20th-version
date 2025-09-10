@@ -74,10 +74,11 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
                         blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                       />
                       <div className="flex-1">
-                        <h3 className="notes-title text-xl mb-3">
+                        <h3 className="notes-title text-xl mb-3 break-words">
                           <Link 
                             href={`/notes/${book.slug}`}
                             className="notes-text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                            title={book.title}
                           >
                             {book.title}
                           </Link>
@@ -114,10 +115,11 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
                     blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                   />
                   <div className="flex-1">
-                    <h3 className="notes-title text-xl mb-3">
+                    <h3 className="notes-title text-xl mb-3 break-words">
                       <Link 
                         href={`/notes/${podcast.slug}`}
                         className="notes-text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                        title={podcast.title}
                       >
                         {podcast.title}
                       </Link>
@@ -166,10 +168,11 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
                     blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                   />
                   <div className="flex-1">
-                    <h3 className="notes-title text-xl mb-3">
+                    <h3 className="notes-title text-xl mb-3 break-words">
                       <Link 
                         href={`/notes/${course.slug}`}
                         className="notes-text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                        title={course.title}
                       >
                         {course.title}
                       </Link>

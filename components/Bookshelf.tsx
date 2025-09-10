@@ -60,6 +60,7 @@ export function Bookshelf({ notes }: BookshelfProps) {
   const width = 41.5;
   const height = 220;
   const spineWidth = `${width}px`;
+  const activeSpineWidth = `${width * 1.5}px`; // Wider spine for active books
   const coverWidth = `${width * 4}px`;
   const bookWidth = `${width * 5}px`;
   const bookHeight = `${height}px`;
@@ -296,10 +297,11 @@ export function Bookshelf({ notes }: BookshelfProps) {
                 onClick={() => handleNoteClick(index, note)}
                 onMouseEnter={() => handleNoteMouseEnter(index)}
                 onMouseLeave={handleNoteMouseLeave}
-                className="flex flex-row items-center justify-start outline-none flex-shrink-0 gap-0"
+                className="flex flex-row items-center justify-start outline-none flex-shrink-0 gap-0 group"
+                title={note.title}
                 style={{
                   transform: `translateX(-${scroll}px)`,
-                  width: isActive ? bookWidth : spineWidth,
+                  width: isActive ? bookWidth : (hoveredNote === index ? activeSpineWidth : spineWidth),
                   perspective: "1000px",
                   WebkitPerspective: "1000px",
                   transition: isScrolling
@@ -312,7 +314,7 @@ export function Bookshelf({ notes }: BookshelfProps) {
               <div
                 className="flex items-start justify-center flex-shrink-0"
                 style={{
-                  width: spineWidth,
+                  width: isActive ? activeSpineWidth : (hoveredNote === index ? activeSpineWidth : spineWidth),
                   height: bookHeight,
                   backgroundColor: note.spineColor,
                   color: note.textColor,
@@ -331,18 +333,30 @@ export function Bookshelf({ notes }: BookshelfProps) {
                   className="pointer-events-none fixed top-0 left-0 z-50 opacity-40"
                   style={{
                     height: bookHeight,
-                    width: spineWidth,
+                    width: isActive ? activeSpineWidth : (hoveredNote === index ? activeSpineWidth : spineWidth),
                     filter: "url(#paper)",
                   }}
                 />
                 <h2
-                  className="mt-3 text-xs font-sans select-none text-ellipsis whitespace-nowrap overflow-hidden"
+                  className="mt-3 text-xs font-sans select-none relative"
                   style={{
                     writingMode: "vertical-rl",
                     maxHeight: `${height - 24}px`,
+                    overflow: "visible",
+                    whiteSpace: "normal",
+                    wordBreak: "break-word",
+                    lineHeight: "1.2"
                   }}
+                  title={note.title}
                 >
                   {note.title}
+                  {/* Custom tooltip for better visibility */}
+                  {hoveredNote === index && (
+                    <div className="absolute -left-2 top-0 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-xs px-2 py-1 rounded shadow-lg whitespace-nowrap z-50 transform -translate-x-full -translate-y-1/2">
+                      {note.title}
+                      <div className="absolute right-0 top-1/2 transform translate-x-1 -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-900 dark:border-l-gray-100 border-t-4 border-t-transparent border-b-4 border-b-transparent"></div>
+                    </div>
+                  )}
                 </h2>
               </div>
 
