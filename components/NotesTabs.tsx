@@ -17,10 +17,10 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
   const tabSliderRef = useRef<HTMLDivElement>(null);
   
   // Memoize sorted books to prevent unnecessary re-sorting
-  const sortedBooks = useMemo(() => 
-    books.slice().sort((a, b) => b.rating - a.rating),
-    [books]
-  );
+  const sortedBooks = useMemo(() => {
+    console.log('Books data:', books.slice(0, 2)); // Debug: log first 2 books
+    return books.slice().sort((a, b) => b.rating - a.rating);
+  }, [books]);
 
   const tabs = [
     { id: 'books', label: 'Books' },
@@ -90,7 +90,7 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
                           </Link>
                         </h3>
                         <p className="notes-meta notes-text-secondary mb-2">
-                          {book.author}
+                          {book.author || 'No author found'}
                         </p>
                         <p className="notes-meta notes-text-muted mb-4">
                           Rating: {book.rating}/10
@@ -137,7 +137,7 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
                       </Link>
                     </h3>
                     <p className="notes-meta notes-text-secondary mb-2">
-                      from {podcast.author}
+                      from {podcast.author || 'No author found'}
                     </p>
                     <p className="notes-meta notes-text-muted mb-3">
                       Rating: {podcast.rating}/10
@@ -196,7 +196,7 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
                       </Link>
                     </h3>
                     <p className="notes-meta notes-text-secondary mb-2">
-                      by {course.author}
+                      by {course.author || 'No author found'}
                     </p>
                     <p className="notes-meta notes-text-muted mb-3">
                       Rating: {course.rating}/10
