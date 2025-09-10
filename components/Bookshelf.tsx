@@ -57,7 +57,7 @@ export function Bookshelf({ notes }: BookshelfProps) {
   const scrollLeftRef = useRef<HTMLDivElement>(null);
 
   // Dimensions
-  const width = 60; // Increased base width for better title display
+  const width = 80; // Much wider base width for better title display
   const height = 220;
   const spineWidth = `${width}px`;
   const activeSpineWidth = `${width * 1.5}px`; // Wider spine for active books
@@ -302,12 +302,14 @@ export function Bookshelf({ notes }: BookshelfProps) {
                 style={{
                   transform: `translateX(-${scroll}px)`,
                   width: isActive ? bookWidth : (hoveredNote === index ? activeSpineWidth : spineWidth),
+                  minWidth: spineWidth,
                   perspective: "1000px",
                   WebkitPerspective: "1000px",
                   transition: isScrolling
                     ? `transform 100ms linear`
                     : `all 500ms ease`,
                   willChange: "auto",
+                  overflow: "visible"
                 }}
               >
               {/* Book spine */}
@@ -315,6 +317,7 @@ export function Bookshelf({ notes }: BookshelfProps) {
                 className="flex items-start justify-center flex-shrink-0"
                 style={{
                   width: isActive ? activeSpineWidth : (hoveredNote === index ? activeSpineWidth : spineWidth),
+                  minWidth: spineWidth,
                   height: bookHeight,
                   backgroundColor: note.spineColor,
                   color: note.textColor,
@@ -325,6 +328,7 @@ export function Bookshelf({ notes }: BookshelfProps) {
                   willChange: "auto",
                   filter: "brightness(0.8) contrast(2)",
                   transformStyle: "preserve-3d",
+                  overflow: "visible",
                   transformOrigin: "right",
                 }}
               >
@@ -338,18 +342,21 @@ export function Bookshelf({ notes }: BookshelfProps) {
                   }}
                 />
                 <div
-                  className="mt-3 text-xs font-sans select-none relative flex flex-col items-center justify-center h-full px-1"
+                  className="mt-3 text-sm font-sans select-none relative flex flex-col items-center justify-center px-1 py-2"
                   style={{
-                    height: `${height - 24}px`,
+                    minHeight: `${height - 24}px`,
+                    height: "auto",
                     overflow: "visible",
                     whiteSpace: "normal",
                     wordBreak: "break-word",
                     lineHeight: "1.1",
-                    textAlign: "center"
+                    textAlign: "center",
+                    width: "100%",
+                    fontSize: "11px"
                   }}
                   title={note.title}
                 >
-                  <span className="block text-center leading-tight">
+                  <span className="block text-center leading-tight break-words" style={{ fontSize: "10px", lineHeight: "1.1" }}>
                     {note.title}
                   </span>
                   {/* Custom tooltip for better visibility */}
