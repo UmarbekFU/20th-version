@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { Github, Mail, RotateCcw, Search } from 'lucide-react'
 import { useEffect } from 'react'
 import { useSearch } from './SearchProvider'
+import { ThemeToggle } from './ThemeToggle'
 
 /**
  * Social media links configuration
@@ -118,6 +119,9 @@ export default function Navigation() {
           >
             <Search className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
+
+          {/* Theme Toggle */}
+          <ThemeToggle />
         </div>
       </div>
     </>
