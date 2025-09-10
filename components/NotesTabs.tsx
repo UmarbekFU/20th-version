@@ -74,11 +74,17 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
                         blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                       />
                       <div className="flex-1">
-                        <h3 className="notes-title text-xl mb-3 break-words">
+                        <h3 className="notes-title text-xl mb-3 break-words overflow-visible">
                           <Link 
                             href={`/notes/${book.slug}`}
-                            className="notes-text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                            className="notes-text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors block"
                             title={book.title}
+                            style={{ 
+                              wordBreak: 'break-word',
+                              overflow: 'visible',
+                              whiteSpace: 'normal',
+                              lineHeight: '1.4'
+                            }}
                           >
                             {book.title}
                           </Link>
@@ -115,11 +121,17 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
                     blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                   />
                   <div className="flex-1">
-                    <h3 className="notes-title text-xl mb-3 break-words">
+                    <h3 className="notes-title text-xl mb-3 break-words overflow-visible">
                       <Link 
                         href={`/notes/${podcast.slug}`}
-                        className="notes-text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                        className="notes-text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors block"
                         title={podcast.title}
+                        style={{ 
+                          wordBreak: 'break-word',
+                          overflow: 'visible',
+                          whiteSpace: 'normal',
+                          lineHeight: '1.4'
+                        }}
                       >
                         {podcast.title}
                       </Link>
@@ -168,11 +180,17 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
                     blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                   />
                   <div className="flex-1">
-                    <h3 className="notes-title text-xl mb-3 break-words">
+                    <h3 className="notes-title text-xl mb-3 break-words overflow-visible">
                       <Link 
                         href={`/notes/${course.slug}`}
-                        className="notes-text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                        className="notes-text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors block"
                         title={course.title}
+                        style={{ 
+                          wordBreak: 'break-word',
+                          overflow: 'visible',
+                          whiteSpace: 'normal',
+                          lineHeight: '1.4'
+                        }}
                       >
                         {course.title}
                       </Link>

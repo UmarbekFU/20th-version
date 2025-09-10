@@ -353,9 +353,10 @@ export function getNotesByCategory(
   };
 }
 
-// Legacy function for backward compatibility
+// Legacy function for backward compatibility - gets ALL items
 export function getNotesByCategoryLegacy(category: SimpleNote['category']): SimpleNote[] {
-  return getNotesByCategory(category).notes;
+  const allNotes = discoverNotes();
+  return allNotes.filter(note => note.category === category);
 }
 
 // Function to get all books
