@@ -18,6 +18,7 @@ export default function TheBezosLetters14PrinciplesBehindAmazonsSuccessPage() {
   const duration = "2 hours"
   const url = "https://thefounderspodcast.com/"
   const tags = ["amazon","bezos","leadership","business"]
+  const category = "podcast"
   
   const content = `## My Notes
 

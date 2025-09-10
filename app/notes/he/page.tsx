@@ -18,6 +18,7 @@ export default function TheFutureofWorkRemotevsOfficePage() {
   const duration = "1.5 hours"
   const url = "https://tbpn.com/"
   const tags = ["work","remote","future","productivity"]
+  const category = "podcast"
   
   const content = `## My Notes
 

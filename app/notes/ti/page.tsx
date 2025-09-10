@@ -18,6 +18,7 @@ export default function HowtoGetRichWithoutGettingLuckyPage() {
   const duration = "1 hour"
   const url = "https://nav.al/"
   const tags = ["entrepreneurship","wealth","philosophy","business"]
+  const category = "podcast"
   
   const content = `## My Notes
 

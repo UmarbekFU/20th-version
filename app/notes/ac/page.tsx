@@ -18,6 +18,7 @@ export default function TheCompleteFullStackWebDevelopmentBootcampPage() {
   const duration = "65+ hours"
   const url = "https://www.udemy.com/course/the-complete-web-development-bootcamp/"
   const tags = ["web-development","javascript","react","nodejs","mongodb","html","css"]
+  const category = "course"
   
   const content = `## My Notes
 

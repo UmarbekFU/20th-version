@@ -89,30 +89,37 @@ function generateTitleFromSlug(slug: string): string {
 
 // Determine category with better logic
 function determineCategory(slug: string, content: string): SimpleNote['category'] {
-  const slugLower = slug.toLowerCase();
   const contentLower = content.toLowerCase();
   
-  // Check slug patterns first (more reliable)
+  // FIRST: Check for explicit category declaration (most reliable)
+  const explicitCategoryMatch = content.match(/const\s+category\s*=\s*["'`]([^"'`]+)["'`]/);
+  if (explicitCategoryMatch) {
+    const explicitCategory = explicitCategoryMatch[1].toLowerCase();
+    if (['book', 'course', 'podcast', 'video', 'essay', 'documentary'].includes(explicitCategory)) {
+      return explicitCategory as SimpleNote['category'];
+    }
+  }
+  
+  // SECOND: Check slug patterns (reliable for specific cases)
+  const slugLower = slug.toLowerCase();
   if (slugLower.includes('rpc') || slugLower.includes('course')) return 'course';
   if (slugLower.includes('ans') || slugLower.includes('podcast')) return 'podcast';
   if (slugLower.includes('video') || slugLower.includes('youtube')) return 'video';
   if (slugLower.includes('essay')) return 'essay';
   if (slugLower.includes('doc') || slugLower.includes('documentary')) return 'documentary';
   
-  // Check for specific podcast indicators first (most reliable)
+  // THIRD: Check for specific URL patterns (reliable indicators)
   if (contentLower.includes('acquired.fm') || contentLower.includes('thefounderspodcast.com') || contentLower.includes('fs.blog')) return 'podcast';
+  if (contentLower.includes('udemy.com') || contentLower.includes('kentcdodds.com')) return 'course';
   
-  // Check for specific course indicators first (most reliable)
-  if (contentLower.includes('udemy.com') || contentLower.includes('kentcdodds.com') || contentLower.includes('course taken')) return 'course';
-  
-  // Check content patterns as fallback
-  if (contentLower.includes('course') || contentLower.includes('tutorial') || contentLower.includes('bootcamp')) return 'course';
-  if (contentLower.includes('podcast') || contentLower.includes('episode') || contentLower.includes('acquired') || contentLower.includes('last listened')) return 'podcast';
-  if (contentLower.includes('video') || contentLower.includes('youtube')) return 'video';
+  // FOURTH: Check content patterns (less reliable, use sparingly)
+  if (contentLower.includes('course taken') || contentLower.includes('bootcamp')) return 'course';
+  if (contentLower.includes('last listened') || contentLower.includes('episode')) return 'podcast';
+  if (contentLower.includes('youtube') || contentLower.includes('video')) return 'video';
   if (contentLower.includes('essay') || contentLower.includes('article')) return 'essay';
   if (contentLower.includes('documentary') || contentLower.includes('film')) return 'documentary';
   
-  // Default to book
+  // DEFAULT: Always default to book (safest fallback)
   return 'book';
 }
 

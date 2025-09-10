@@ -18,6 +18,7 @@ export default function AdvancedReactPatternsPage() {
   const duration = "8 hours"
   const url = "https://kentcdodds.com/"
   const tags = ["react","javascript","frontend","programming"]
+  const category = "course"
   
   const content = `## My Notes
 

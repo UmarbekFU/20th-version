@@ -18,6 +18,7 @@ export default function TheNetflixStoryFromDVDRentalstoGlobalStreamingEmpirePage
   const duration = "2.5 hours"
   const url = "https://www.acquired.fm/"
   const tags = ["business","strategy","technology","entertainment"]
+  const category = "podcast"
   
   const content = `## My Notes
 
