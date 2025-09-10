@@ -110,8 +110,16 @@ function determineCategory(slug: string, content: string): SimpleNote['category'
   return 'book';
 }
 
+// Cache for discovered notes
+let notesCache: SimpleNote[] | null = null;
+
 // Function to discover all notes from the file system
 export function discoverNotes(): SimpleNote[] {
+  // Return cached notes if available
+  if (notesCache) {
+    console.log('Using cached notes:', notesCache.length);
+    return notesCache;
+  }
   const notes: SimpleNote[] = [];
   const notesDir = path.join(process.cwd(), 'app/notes');
   
@@ -215,6 +223,9 @@ export function discoverNotes(): SimpleNote[] {
   const finalNotes = Array.from(uniqueNotes.values());
   
   console.log(`Successfully discovered ${finalNotes.length} unique notes (${notes.length - finalNotes.length} duplicates removed)`);
+  
+  // Cache the results
+  notesCache = finalNotes;
   return finalNotes;
 }
 

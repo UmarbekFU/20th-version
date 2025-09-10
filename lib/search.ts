@@ -1,6 +1,7 @@
 // Removed centralized notes dependency - search now works with simple pages
 import fs from 'fs'
 import path from 'path'
+import { discoverNotes } from './noteDiscovery'
 
 export interface SearchResult {
   path: string
@@ -194,32 +195,19 @@ function discoverPages(): SearchResult[] {
     matches: []
   })))
   
-  // Add all notes by discovering them from the file system
+  // Add all notes using the deduplicated discovery function
   try {
-    const notesDir = path.join(appDir, 'notes')
-    if (fs.existsSync(notesDir)) {
-      const noteDirs = fs.readdirSync(notesDir, { withFileTypes: true })
-        .filter(dirent => dirent.isDirectory())
-        .map(dirent => dirent.name)
-        .filter(name => name !== '[slug]') // Exclude dynamic route
-      
-      for (const noteDir of noteDirs) {
-        const pageFile = path.join(notesDir, noteDir, 'page.tsx')
-        if (fs.existsSync(pageFile)) {
-          const extracted = extractPageContent(pageFile)
-          if (extracted) {
-            pages.push({
-              path: `/notes/${noteDir}`,
-              title: extracted.title,
-              description: `Note: ${extracted.title}`,
-              content: extracted.content,
-              keywords: [extracted.title.toLowerCase(), 'note', 'book', 'podcast', 'course'],
-              score: 0,
-              matches: []
-            })
-          }
-        }
-      }
+    const notes = discoverNotes()
+    for (const note of notes) {
+      pages.push({
+        path: `/notes/${note.slug}`,
+        title: note.title,
+        description: `Note: ${note.title}`,
+        content: note.summary || `Notes about ${note.title} by ${note.author}`,
+        keywords: [note.title.toLowerCase(), note.author.toLowerCase(), 'note', note.category],
+        score: 0,
+        matches: []
+      })
     }
   } catch (error) {
     console.warn('Could not discover notes pages:', error)
