@@ -92,6 +92,9 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
                         <p className="notes-meta notes-text-secondary mb-2" style={{ color: 'red', fontWeight: 'bold' }}>
                           Author: {book.author || 'No author found'}
                         </p>
+                        <p style={{ color: 'blue', fontSize: '14px' }}>
+                          Debug: {JSON.stringify({ author: book.author, title: book.title })}
+                        </p>
                         <p className="notes-meta notes-text-muted mb-4">
                           Rating: {book.rating}/10
                         </p>
