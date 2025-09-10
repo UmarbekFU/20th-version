@@ -56,8 +56,8 @@ export function Bookshelf({ notes }: BookshelfProps) {
   const scrollRightRef = useRef<HTMLDivElement>(null);
   const scrollLeftRef = useRef<HTMLDivElement>(null);
 
-  // Dimensions
-  const width = 80; // Much wider base width for better title display
+  // Dimensions - Using Adam's proven dimensions
+  const width = 41.5;
   const height = 220;
   const spineWidth = `${width}px`;
   const activeSpineWidth = `${width * 1.5}px`; // Wider spine for active books
@@ -69,7 +69,7 @@ export function Bookshelf({ notes }: BookshelfProps) {
   const maxScroll = useMemo(() => {
     const activeNote = selectedNote > -1 ? selectedNote : hoveredNote;
     return (
-      (width + 15) * (notes.length - notesInViewport) +
+      (width + 12) * (notes.length - notesInViewport) +
       (activeNote > -1 ? width * 4 : 0) +
       5
     );
@@ -92,7 +92,7 @@ export function Bookshelf({ notes }: BookshelfProps) {
   useEffect(() => {
     if (viewportRef.current) {
       const viewportWidth = viewportRef.current.offsetWidth;
-      const numberOfNotes = viewportWidth / (width + 15); // Updated spacing for wider books
+      const numberOfNotes = viewportWidth / (width + 12);
       setNotesInViewport(numberOfNotes);
     }
   }, [width]);
@@ -103,7 +103,7 @@ export function Bookshelf({ notes }: BookshelfProps) {
     if (activeNote === -1) {
       boundedRelativeScroll(0);
     } else {
-      boundedScroll((activeNote - (notesInViewport - 4.5) / 2) * (width + 15));
+      boundedScroll((activeNote - (notesInViewport - 4.5) / 2) * (width + 12));
     }
   }, [selectedNote, hoveredNote, boundedRelativeScroll, notesInViewport]);
 
@@ -119,14 +119,14 @@ export function Bookshelf({ notes }: BookshelfProps) {
     const setScrollRightInterval = () => {
       setIsScrolling(true);
       scrollInterval = setInterval(() => {
-        boundedRelativeScroll(4);
+        boundedRelativeScroll(3);
       }, 10);
     };
 
     const setScrollLeftInterval = () => {
       setIsScrolling(true);
       scrollInterval = setInterval(() => {
-        boundedRelativeScroll(-4);
+        boundedRelativeScroll(-3);
       }, 10);
     };
 
@@ -302,14 +302,12 @@ export function Bookshelf({ notes }: BookshelfProps) {
                 style={{
                   transform: `translateX(-${scroll}px)`,
                   width: isActive ? bookWidth : (hoveredNote === index ? activeSpineWidth : spineWidth),
-                  minWidth: spineWidth,
                   perspective: "1000px",
                   WebkitPerspective: "1000px",
                   transition: isScrolling
                     ? `transform 100ms linear`
                     : `all 500ms ease`,
                   willChange: "auto",
-                  overflow: "visible"
                 }}
               >
               {/* Book spine */}
@@ -317,7 +315,6 @@ export function Bookshelf({ notes }: BookshelfProps) {
                 className="flex items-start justify-center flex-shrink-0"
                 style={{
                   width: isActive ? activeSpineWidth : (hoveredNote === index ? activeSpineWidth : spineWidth),
-                  minWidth: spineWidth,
                   height: bookHeight,
                   backgroundColor: note.spineColor,
                   color: note.textColor,
@@ -328,7 +325,6 @@ export function Bookshelf({ notes }: BookshelfProps) {
                   willChange: "auto",
                   filter: "brightness(0.8) contrast(2)",
                   transformStyle: "preserve-3d",
-                  overflow: "visible",
                   transformOrigin: "right",
                 }}
               >
@@ -341,32 +337,20 @@ export function Bookshelf({ notes }: BookshelfProps) {
                     filter: "url(#paper)",
                   }}
                 />
-                <div
-                  className="mt-3 text-sm font-sans select-none relative flex flex-col items-center justify-center px-1 py-2"
+                <h2
+                  className="mt-3 text-xs font-sans select-none"
                   style={{
-                    minHeight: `${height - 24}px`,
-                    height: "auto",
-                    overflow: "visible",
-                    whiteSpace: "normal",
-                    wordBreak: "break-word",
-                    lineHeight: "1.1",
-                    textAlign: "center",
-                    width: "100%",
-                    fontSize: "11px"
+                    writingMode: "vertical-rl",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    maxHeight: `${height - 24}px`,
+                    fontFamily: '"DM Sans", sans-serif',
                   }}
                   title={note.title}
                 >
-                  <span className="block text-center leading-tight break-words" style={{ fontSize: "10px", lineHeight: "1.1" }}>
-                    {note.title}
-                  </span>
-                  {/* Custom tooltip for better visibility */}
-                  {hoveredNote === index && (
-                    <div className="absolute -left-2 top-0 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-xs px-2 py-1 rounded shadow-lg whitespace-nowrap z-50 transform -translate-x-full -translate-y-1/2">
-                      {note.title}
-                      <div className="absolute right-0 top-1/2 transform translate-x-1 -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-900 dark:border-l-gray-100 border-t-4 border-t-transparent border-b-4 border-b-transparent"></div>
-                    </div>
-                  )}
-                </div>
+                  {note.title}
+                </h2>
               </div>
 
               {/* Book cover */}
