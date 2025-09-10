@@ -89,8 +89,8 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
                             {book.title}
                           </Link>
                         </h3>
-                        <p className="notes-meta notes-text-secondary mb-2">
-                          {book.author || 'No author found'}
+                        <p className="notes-meta notes-text-secondary mb-2" style={{ color: 'red', fontWeight: 'bold' }}>
+                          Author: {book.author || 'No author found'}
                         </p>
                         <p className="notes-meta notes-text-muted mb-4">
                           Rating: {book.rating}/10
@@ -136,7 +136,7 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
                         {podcast.title}
                       </Link>
                     </h3>
-                    <p className="notes-meta notes-text-secondary mb-2">
+                    <p className="notes-meta notes-text-secondary mb-2" style={{ color: 'red', fontWeight: 'bold' }}>
                       from {podcast.author || 'No author found'}
                     </p>
                     <p className="notes-meta notes-text-muted mb-3">
@@ -195,7 +195,7 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
                         {course.title}
                       </Link>
                     </h3>
-                    <p className="notes-meta notes-text-secondary mb-2">
+                    <p className="notes-meta notes-text-secondary mb-2" style={{ color: 'red', fontWeight: 'bold' }}>
                       by {course.author || 'No author found'}
                     </p>
                     <p className="notes-meta notes-text-muted mb-3">
