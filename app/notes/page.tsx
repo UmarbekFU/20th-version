@@ -1,13 +1,13 @@
 import Navigation from '@/components/Navigation'
 import PlumBackground from '@/components/PlumBackground'
 import { NotesTabs } from '@/components/NotesTabs'
-import { getNotesByCategory } from '@/lib/notes'
+import { discoverNotes, getBooks, getPodcasts, getCourses } from '@/lib/noteDiscovery'
 
 export default function NotesPage() {
-  const books = getNotesByCategory('book');
-  const podcasts = getNotesByCategory('podcast');
-  const courses = getNotesByCategory('course');
-  
+  // Discover notes from the file system - still simple but functional
+  const books = getBooks()
+  const podcasts = getPodcasts()
+  const courses = getCourses()
 
   return (
     <>
@@ -20,11 +20,8 @@ export default function NotesPage() {
             Short pieces made me pause.
           </p>
 
-          {/* Sliding Tabs for All Content Types */}
-          <div className="notes-content">
-            <NotesTabs books={books} podcasts={podcasts} courses={courses} />
-          </div>
-
+          {/* Bookshelf and organized notes */}
+          <NotesTabs books={books} podcasts={podcasts} courses={courses} />
         </div>
       </main>
     </>

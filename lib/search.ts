@@ -1,4 +1,4 @@
-import { getAllNotes } from './notes'
+// Removed centralized notes dependency - search now works with simple pages
 import fs from 'fs'
 import path from 'path'
 
@@ -194,23 +194,36 @@ function discoverPages(): SearchResult[] {
     matches: []
   })))
   
-  // Add all notes
-  const allNotes = getAllNotes()
-  pages.push(...allNotes.map(note => ({
-    path: `/notes/${note.slug}`,
-    title: note.title,
-    description: `by ${note.author} - ${note.summary}`,
-    content: `${note.title} by ${note.author}. ${note.summary}. Category: ${note.category}. Rating: ${note.rating}/10. Read: ${note.date}.${note.tags ? ` Tags: ${note.tags.join(', ')}.` : ''}`,
-    keywords: [
-      note.title.toLowerCase(),
-      note.author.toLowerCase(),
-      note.category,
-      ...(note.tags || []),
-      'book', 'podcast', 'course', 'video', 'essay', 'documentary'
-    ].filter(Boolean),
-    score: 0,
-    matches: []
-  })))
+  // Add all notes by discovering them from the file system
+  try {
+    const notesDir = path.join(appDir, 'notes')
+    if (fs.existsSync(notesDir)) {
+      const noteDirs = fs.readdirSync(notesDir, { withFileTypes: true })
+        .filter(dirent => dirent.isDirectory())
+        .map(dirent => dirent.name)
+        .filter(name => name !== '[slug]') // Exclude dynamic route
+      
+      for (const noteDir of noteDirs) {
+        const pageFile = path.join(notesDir, noteDir, 'page.tsx')
+        if (fs.existsSync(pageFile)) {
+          const extracted = extractPageContent(pageFile)
+          if (extracted) {
+            pages.push({
+              path: `/notes/${noteDir}`,
+              title: extracted.title,
+              description: `Note: ${extracted.title}`,
+              content: extracted.content,
+              keywords: [extracted.title.toLowerCase(), 'note', 'book', 'podcast', 'course'],
+              score: 0,
+              matches: []
+            })
+          }
+        }
+      }
+    }
+  } catch (error) {
+    console.warn('Could not discover notes pages:', error)
+  }
   
   // Discover atomic ideas pages
   try {

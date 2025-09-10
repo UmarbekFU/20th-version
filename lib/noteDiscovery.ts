@@ -1,0 +1,240 @@
+import fs from 'fs';
+import path from 'path';
+import { SimpleNote } from './types';
+
+// Robust parsing patterns - try multiple formats for each field
+const patterns = {
+  title: [
+    /const\s+title\s*=\s*["'`]([^"'`]+)["'`]/,  // const title = "Title"
+    /<h1[^>]*>([^<]+)<\/h1>/,                   // <h1>Title</h1>
+    /title:\s*["'`]([^"'`]+)["'`]/,            // title: "Title"
+    /const\s+title\s*=\s*\{([^}]+)\}/,         // const title = {title}
+  ],
+  author: [
+    /const\s+author\s*=\s*["'`]([^"'`]+)["'`]/, // const author = "Author"
+    /by\s+([^<]+)/,                             // by Author
+    /author:\s*["'`]([^"'`]+)["'`]/,           // author: "Author"
+    /const\s+author\s*=\s*\{([^}]+)\}/,        // const author = {author}
+  ],
+  date: [
+    /const\s+date\s*=\s*["'`]([^"'`]+)["'`]/,   // const date = "2024"
+    /date:\s*["'`]([^"'`]+)["'`]/,             // date: "2024"
+    /const\s+date\s*=\s*\{([^}]+)\}/,          // const date = {date}
+  ],
+  rating: [
+    /const\s+rating\s*=\s*(\d+)/,               // const rating = 8
+    /rating:\s*(\d+)/,                         // rating: 8
+    /const\s+rating\s*=\s*\{([^}]+)\}/,        // const rating = {rating}
+  ],
+  coverImage: [
+    /const\s+coverImage\s*=\s*["'`]([^"'`]+)["'`]/, // const coverImage = "url"
+    /coverImage:\s*["'`]([^"'`]+)["'`]/,           // coverImage: "url"
+    /const\s+coverImage\s*=\s*\{([^}]+)\}/,        // const coverImage = {coverImage}
+  ],
+  spineColor: [
+    /const\s+spineColor\s*=\s*["'`]([^"'`]+)["'`]/, // const spineColor = "#color"
+    /spineColor:\s*["'`]([^"'`]+)["'`]/,           // spineColor: "#color"
+    /const\s+spineColor\s*=\s*\{([^}]+)\}/,        // const spineColor = {spineColor}
+  ],
+  textColor: [
+    /const\s+textColor\s*=\s*["'`]([^"'`]+)["'`]/, // const textColor = "#color"
+    /textColor:\s*["'`]([^"'`]+)["'`]/,           // textColor: "#color"
+    /const\s+textColor\s*=\s*\{([^}]+)\}/,        // const textColor = {textColor}
+  ],
+  summary: [
+    /const\s+summary\s*=\s*["'`]([^"'`]+)["'`]/,   // const summary = "Summary"
+    /summary:\s*["'`]([^"'`]+)["'`]/,             // summary: "Summary"
+    /const\s+summary\s*=\s*\{([^}]+)\}/,          // const summary = {summary}
+  ],
+  duration: [
+    /const\s+duration\s*=\s*["'`]([^"'`]+)["'`]/,  // const duration = "2h"
+    /duration:\s*["'`]([^"'`]+)["'`]/,            // duration: "2h"
+    /const\s+duration\s*=\s*\{([^}]+)\}/,         // const duration = {duration}
+  ],
+  url: [
+    /const\s+url\s*=\s*["'`]([^"'`]+)["'`]/,       // const url = "https://..."
+    /url:\s*["'`]([^"'`]+)["'`]/,                 // url: "https://..."
+    /const\s+url\s*=\s*\{([^}]+)\}/,              // const url = {url}
+  ],
+  tags: [
+    /const\s+tags\s*=\s*(\[[^\]]+\])/,            // const tags = [...]
+    /tags:\s*(\[[^\]]+\])/,                      // tags: [...]
+    /const\s+tags\s*=\s*\{([^}]+)\}/,            // const tags = {tags}
+  ]
+};
+
+// Try multiple patterns for each field
+function extractField(content: string, fieldName: string, patterns: RegExp[]): string | null {
+  for (const pattern of patterns) {
+    try {
+      const match = content.match(pattern);
+      if (match && match[1]) {
+        return match[1].trim();
+      }
+    } catch (error) {
+      // Continue to next pattern if this one fails
+      continue;
+    }
+  }
+  return null;
+}
+
+// Generate a readable title from slug
+function generateTitleFromSlug(slug: string): string {
+  return slug
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
+// Determine category with better logic
+function determineCategory(slug: string, content: string): SimpleNote['category'] {
+  const slugLower = slug.toLowerCase();
+  const contentLower = content.toLowerCase();
+  
+  // Check slug patterns first (more reliable)
+  if (slugLower.includes('rpc') || slugLower.includes('course')) return 'course';
+  if (slugLower.includes('ans') || slugLower.includes('podcast')) return 'podcast';
+  if (slugLower.includes('video') || slugLower.includes('youtube')) return 'video';
+  if (slugLower.includes('essay')) return 'essay';
+  if (slugLower.includes('doc') || slugLower.includes('documentary')) return 'documentary';
+  
+  // Check content patterns as fallback
+  if (contentLower.includes('course') || contentLower.includes('tutorial')) return 'course';
+  if (contentLower.includes('podcast') || contentLower.includes('episode')) return 'podcast';
+  if (contentLower.includes('video') || contentLower.includes('youtube')) return 'video';
+  if (contentLower.includes('essay') || contentLower.includes('article')) return 'essay';
+  if (contentLower.includes('documentary') || contentLower.includes('film')) return 'documentary';
+  
+  // Default to book
+  return 'book';
+}
+
+// Function to discover all notes from the file system
+export function discoverNotes(): SimpleNote[] {
+  const notes: SimpleNote[] = [];
+  const notesDir = path.join(process.cwd(), 'app/notes');
+  
+  if (!fs.existsSync(notesDir)) {
+    console.warn('Notes directory not found:', notesDir);
+    return notes;
+  }
+
+  const noteDirs = fs.readdirSync(notesDir, { withFileTypes: true })
+    .filter(dirent => dirent.isDirectory())
+    .map(dirent => dirent.name)
+    .filter(name => name !== '[slug]'); // Exclude dynamic route
+
+  console.log(`Discovering notes in ${noteDirs.length} directories...`);
+
+  for (const noteDir of noteDirs) {
+    const pageFile = path.join(notesDir, noteDir, 'page.tsx');
+    if (fs.existsSync(pageFile)) {
+      try {
+        const content = fs.readFileSync(pageFile, 'utf8');
+        
+        // Extract note data using robust patterns
+        const title = extractField(content, 'title', patterns.title) || generateTitleFromSlug(noteDir);
+        const author = extractField(content, 'author', patterns.author) || 'Unknown Author';
+        const date = extractField(content, 'date', patterns.date) || new Date().getFullYear().toString();
+        const ratingStr = extractField(content, 'rating', patterns.rating);
+        const rating = ratingStr ? parseInt(ratingStr) : 5; // Default rating
+        const coverImage = extractField(content, 'coverImage', patterns.coverImage) || 'https://via.placeholder.com/300x400/%23666/ffffff?text=No+Cover';
+        const spineColor = extractField(content, 'spineColor', patterns.spineColor) || '#666666';
+        const textColor = extractField(content, 'textColor', patterns.textColor) || '#ffffff';
+        const summary = extractField(content, 'summary', patterns.summary) || 'Summary not available.';
+        const duration = extractField(content, 'duration', patterns.duration);
+        const url = extractField(content, 'url', patterns.url);
+        const tagsStr = extractField(content, 'tags', patterns.tags);
+        const tags = tagsStr ? JSON.parse(tagsStr) : undefined;
+
+        // Determine category
+        const category = determineCategory(noteDir, content);
+
+        const note: SimpleNote = {
+          title,
+          author,
+          date,
+          rating,
+          coverImage,
+          spineColor,
+          textColor,
+          slug: noteDir,
+          summary,
+          content: '', // Empty content for now - could be extracted if needed
+          category,
+          duration: duration || undefined,
+          url: url || undefined,
+          tags: tags || undefined
+        };
+        
+        notes.push(note);
+        console.log(`✓ Discovered: ${title} by ${author}`);
+        
+      } catch (error) {
+        console.warn(`Could not parse note ${noteDir}:`, error);
+        // Still create a basic note entry to prevent complete failure
+        const note: SimpleNote = {
+          title: generateTitleFromSlug(noteDir),
+          author: 'Unknown Author',
+          date: new Date().getFullYear().toString(),
+          rating: 5,
+          coverImage: 'https://via.placeholder.com/300x400/%23666/ffffff?text=Error',
+          spineColor: '#666666',
+          textColor: '#ffffff',
+          slug: noteDir,
+          summary: 'Could not parse note data.',
+          content: '',
+          category: 'book'
+        };
+        notes.push(note);
+      }
+    } else {
+      console.warn(`Page file not found for note: ${noteDir}`);
+    }
+  }
+
+  // Deduplicate notes based on title and author
+  const uniqueNotes = notes.reduce((acc, note) => {
+    const key = `${note.title.toLowerCase()}-${note.author.toLowerCase()}`;
+    if (!acc.has(key)) {
+      acc.set(key, note);
+    } else {
+      // If duplicate found, keep the one with more complete data (higher rating, longer summary, etc.)
+      const existing = acc.get(key)!;
+      if (note.rating > existing.rating || 
+          note.summary.length > existing.summary.length ||
+          (note.url && !existing.url) ||
+          (note.tags && !existing.tags)) {
+        acc.set(key, note);
+      }
+    }
+    return acc;
+  }, new Map<string, SimpleNote>());
+
+  const finalNotes = Array.from(uniqueNotes.values());
+  
+  console.log(`Successfully discovered ${finalNotes.length} unique notes (${notes.length - finalNotes.length} duplicates removed)`);
+  return finalNotes;
+}
+
+// Function to get notes by category
+export function getNotesByCategory(category: SimpleNote['category']): SimpleNote[] {
+  const allNotes = discoverNotes();
+  return allNotes.filter(note => note.category === category);
+}
+
+// Function to get all books
+export function getBooks(): SimpleNote[] {
+  return getNotesByCategory('book');
+}
+
+// Function to get all podcasts
+export function getPodcasts(): SimpleNote[] {
+  return getNotesByCategory('podcast');
+}
+
+// Function to get all courses
+export function getCourses(): SimpleNote[] {
+  return getNotesByCategory('course');
+}

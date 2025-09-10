@@ -1,17 +1,37 @@
 import Navigation from '@/components/Navigation'
+import MarkdownRenderer from '@/components/MarkdownRenderer'
 import PlumBackground from '@/components/PlumBackground'
-import { getNoteBySlug } from '@/lib/notes'
-import { notFound } from 'next/navigation'
 import { Lora } from 'next/font/google'
 
 const lora = Lora({ subsets: ['latin'], display: 'swap' })
 
-export default function FountainheadPage() {
-  const note = getNoteBySlug('fountainhead')
+export default function TheFountainheadPage() {
+  // All data is self-contained - no external dependencies
+  const title = "The Fountainhead"
+  const author = "Ayn Rand"
+  const date = "2024"
+  const rating = 8
+  const coverImage = "https://via.placeholder.com/300x400/%2310b981/ffffff?text=The%20Fountainhead+by+Ayn%20Rand"
+  const spineColor = "#7c3aed"
+  const textColor = "#ffffff"
+  const summary = "The triumph of individualism over collectivism. Rand's novel about an architect who refuses to compromise his vision."
+  const category = "book"
   
-  if (!note) {
-    notFound()
-  }
+  
+  
+  
+  const content = `## My Notes
+
+*Notes will be added here soon.*
+
+---
+
+## Date Tracking
+
+*Track when you last engaged with this content:*
+
+- **Last Read:** *[Add date here]*
+- **Notes:** *[Add any additional notes about your experience]*`
 
   return (
     <>
@@ -21,19 +41,19 @@ export default function FountainheadPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row gap-6 items-start">
             <img
-              src={note.coverImage}
-              alt={note.title}
+              src={coverImage}
+              alt={title}
               className="w-32 h-40 md:w-40 md:h-52 object-cover rounded border border-gray-200 dark:border-gray-700 flex-shrink-0"
             />
             <div className="flex-1">
               <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-                {note.title}
+                {title}
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-400 mb-4">
-                by {note.author}
+                by {author}
               </p>
               <p className="text-gray-500 dark:text-gray-500 mb-6">
-                Completed: {note.date} • Rating: {note.rating}/10
+                Rating: {rating}/10
               </p>
             </div>
           </div>
@@ -41,36 +61,20 @@ export default function FountainheadPage() {
           <div className="mt-8 prose prose-lg max-w-none">
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Summary</h2>
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-              {note.summary}
+              {summary}
             </p>
             
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">My Notes</h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">Last updated: {new Date().toLocaleDateString()}</p>
-            <div className="space-y-6 text-gray-700 dark:text-gray-300">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">The Triumph of Individualism</h3>
-                <div className="space-y-4">
-                  <p>
-                    The Fountainhead tells the story of Howard Roark, 
-                    an architect who refuses to compromise his vision.
-                  </p>
-                  
-                  <p>
-                    Rand explores the tension between individual creativity 
-                    and societal conformity.
-                  </p>
-                  
-                  <p>
-                    The novel raises questions about the nature of art, 
-                    integrity, and the role of the individual in society.
-                  </p>
-                  
-                  <p className="font-semibold text-gray-900 dark:text-gray-100">
-                    <strong>Integrity is the foundation of all human achievement.</strong>
-                  </p>
-                </div>
-              </div>
+            {/* Date tracking - self-contained */}
+            <div className="mt-6 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-sm">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2 flex items-center">
+                📚 Date Tracking
+              </h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                <strong>Last Read:</strong> *[Add date here]*
+              </p>
             </div>
+            
+            <MarkdownRenderer content={content} />
           </div>
         </div>
       </main>

@@ -3,12 +3,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { Bookshelf } from './Bookshelf';
-import { getNotesByCategory } from '@/lib/notes';
+import { SimpleNote } from '@/lib/types';
 
 interface NotesTabsProps {
-  books: any[];
-  podcasts: any[];
-  courses: any[];
+  books: SimpleNote[];
+  podcasts: SimpleNote[];
+  courses: SimpleNote[];
 }
 
 export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
@@ -73,7 +73,7 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
                           {book.author}
                         </p>
                         <p className="notes-meta notes-text-muted mb-4">
-                          Read: {book.date} • Rating: {book.rating}/10
+                          Rating: {book.rating}/10
                         </p>
                         <p className="notes-summary">
                           {book.summary}
@@ -109,7 +109,7 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
                       from {podcast.author}
                     </p>
                     <p className="notes-meta notes-text-muted mb-3">
-                      {podcast.date} • Rating: {podcast.rating}/10
+                      Rating: {podcast.rating}/10
                       {podcast.duration && ` • ${podcast.duration}`}
                     </p>
                     <p className="notes-summary mb-3">
@@ -157,7 +157,7 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
                       by {course.author}
                     </p>
                     <p className="notes-meta notes-text-muted mb-3">
-                      {course.date} • Rating: {course.rating}/10
+                      Rating: {course.rating}/10
                       {course.duration && ` • ${course.duration}`}
                     </p>
                     <p className="notes-summary mb-3">

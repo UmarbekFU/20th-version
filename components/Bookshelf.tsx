@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect, useMemo } from 'react';
-import { Note } from '@/lib/notes';
+import { SimpleNote } from '@/lib/types';
 // Simple SVG chevron icons instead of lucide-react
 const ChevronLeft = ({ className }: { className?: string }) => (
   <svg
@@ -39,7 +39,7 @@ const ChevronRight = ({ className }: { className?: string }) => (
 import { useRouter } from 'next/navigation';
 
 interface BookshelfProps {
-  notes: Note[];
+  notes: SimpleNote[];
 }
 
 export function Bookshelf({ notes }: BookshelfProps) {
