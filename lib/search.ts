@@ -200,12 +200,11 @@ function discoverPages(): SearchResult[] {
     path: `/notes/${note.slug}`,
     title: note.title,
     description: `by ${note.author} - ${note.summary}`,
-    content: `${note.title} by ${note.author}. ${note.summary}. Category: ${note.category}. Rating: ${note.rating}/10. Read: ${note.date}.${note.tags ? ` Tags: ${note.tags.join(', ')}.` : ''}`,
+    content: `${note.title} by ${note.author}. ${note.summary}. Category: ${note.category}. Rating: ${note.rating}/10. Read: ${note.date}.`,
     keywords: [
       note.title.toLowerCase(),
       note.author.toLowerCase(),
       note.category,
-      ...(note.tags || []),
       'book', 'podcast', 'course', 'video', 'essay', 'documentary'
     ].filter(Boolean),
     score: 0,

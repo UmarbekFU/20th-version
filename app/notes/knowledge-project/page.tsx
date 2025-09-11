@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 const lora = Lora({ subsets: ['latin'], display: 'swap' })
 
-export default function ThinkingFastSlowPage() {
+export default function KnowledgeProjectPage() {
   return (
     <>
       <PlumBackground />
@@ -14,26 +14,26 @@ export default function ThinkingFastSlowPage() {
         <div className="max-w-4xl mx-auto px-8">
           <div className="mb-12">
             <div className="flex flex-col md:flex-row gap-8 items-start">
-              <div className="w-48 h-64 bg-gradient-to-br from-red-400 to-red-600 rounded-lg shadow-lg flex items-center justify-center">
-                <span className="text-white text-2xl font-bold">T</span>
+              <div className="w-48 h-64 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg shadow-lg flex items-center justify-center">
+                <span className="text-white text-2xl font-bold">K</span>
               </div>
               <div className="flex-1">
                 <h1 className={`text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4 ${lora.className}`}>
-                  Thinking, Fast and Slow
+                  The Knowledge Project
                 </h1>
                 <p className={`text-xl text-gray-600 dark:text-gray-400 mb-2 ${lora.className}`}>
-                  by Daniel Kahneman
+                  by Shane Parrish
                 </p>
                 <p className={`text-lg text-gray-500 dark:text-gray-500 mb-4 ${lora.className}`}>
-                  Read: 2024 • Rating: 10/10
+                  Listened: 2024 • Rating: 9/10
                 </p>
                 <div className="flex gap-2 mb-6">
-                  <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm">
-                    book
+                  <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm">
+                    podcast
                   </span>
                 </div>
                 <p className={`text-lg text-gray-700 dark:text-gray-300 leading-relaxed ${lora.className}`}>
-                  The definitive work on human decision-making. Kahneman's Nobel Prize-winning insights on cognitive biases.
+                  Conversations with the world's most interesting people about the ideas that shape their lives.
                 </p>
               </div>
             </div>

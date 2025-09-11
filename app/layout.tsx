@@ -5,6 +5,8 @@ import { ThemeProvider } from '@/components/ThemeProvider'
 import StructuredData from '@/components/StructuredData'
 import ProgressBar from '@/components/ProgressBar'
 import SearchProvider from '@/components/SearchProvider'
+import ErrorBoundary from '@/components/ErrorBoundary'
+import ServiceWorkerRegistration from '@/components/ServiceWorkerRegistration'
 
 const inter = Inter({ subsets: ['latin'] })
 const lora = Lora({ subsets: ['latin'], display: 'swap' })
@@ -19,6 +21,13 @@ export const metadata: Metadata = {
     title: 'Umarbek',
     description: 'Hey! I\'m Umarbek. Samarkand native, I now live in Tashkent, Uzbekistan.',
     type: 'website',
+  },
+  manifest: '/manifest.json',
+  themeColor: '#00e0a1',
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
+  robots: 'index, follow',
+  alternates: {
+    canonical: 'https://umarbek.dev',
   },
 }
 
@@ -44,13 +53,16 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} antialiased`}>
-        <ProgressBar />
-        <ThemeProvider>
-          <SearchProvider>
-            {children}
-          </SearchProvider>
-        </ThemeProvider>
-        <StructuredData />
+        <ErrorBoundary>
+          <ProgressBar />
+          <ThemeProvider>
+            <SearchProvider>
+              {children}
+            </SearchProvider>
+          </ThemeProvider>
+          <StructuredData />
+          <ServiceWorkerRegistration />
+        </ErrorBoundary>
       </body>
     </html>
   )

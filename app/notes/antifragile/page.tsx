@@ -1,70 +1,63 @@
 import Navigation from '@/components/Navigation'
 import PlumBackground from '@/components/PlumBackground'
-import { getNoteBySlug } from '@/lib/notes'
-import { notFound } from 'next/navigation'
 import { Lora } from 'next/font/google'
+import Link from 'next/link'
 
 const lora = Lora({ subsets: ['latin'], display: 'swap' })
 
 export default function AntifragilePage() {
-  const note = getNoteBySlug('antifragile')
-  
-  if (!note) {
-    notFound()
-  }
-
   return (
     <>
       <PlumBackground />
       <Navigation />
       <main className="min-h-screen pt-32">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row gap-6 items-start">
-            <img
-              src={note.coverImage}
-              alt={note.title}
-              className="w-32 h-40 md:w-40 md:h-52 object-cover rounded border border-gray-200 dark:border-gray-700 flex-shrink-0"
-            />
-            <div className="flex-1">
-              <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-                {note.title}
-              </h1>
-              <p className="text-xl text-gray-600 dark:text-gray-400 mb-4">
-                by {note.author}
-              </p>
-              <p className="text-gray-500 dark:text-gray-500 mb-6">
-                Read: {note.date} • Rating: {note.rating}/10
+        <div className="max-w-4xl mx-auto px-8">
+          <div className="mb-12">
+            <div className="flex flex-col md:flex-row gap-8 items-start">
+              <div className="w-48 h-64 bg-gradient-to-br from-orange-400 to-red-600 rounded-lg shadow-lg flex items-center justify-center">
+                <span className="text-white text-2xl font-bold">A</span>
+              </div>
+              <div className="flex-1">
+                <h1 className={`text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4 ${lora.className}`}>
+                  Antifragile
+                </h1>
+                <p className={`text-xl text-gray-600 dark:text-gray-400 mb-2 ${lora.className}`}>
+                  by Nassim Nicholas Taleb
+                </p>
+                <p className={`text-lg text-gray-500 dark:text-gray-500 mb-4 ${lora.className}`}>
+                  Read: 2024 • Rating: 9/10
+                </p>
+                <div className="flex gap-2 mb-6">
+                  <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm">
+                    book
+                  </span>
+                </div>
+                <p className={`text-lg text-gray-700 dark:text-gray-300 leading-relaxed ${lora.className}`}>
+                  Things that gain from disorder. Taleb's framework for systems that benefit from volatility and uncertainty.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className={`prose prose-lg max-w-none dark:prose-invert ${lora.className}`}>
+            <h2 className={`text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 ${lora.className}`}>My Notes</h2>
+            <div className={`space-y-6 text-gray-700 dark:text-gray-300 ${lora.className}`}>
+              <p className="text-center text-lg italic text-gray-500 dark:text-gray-400">
+                soon coming
               </p>
             </div>
           </div>
-          
-          <div className="mt-8 prose prose-lg max-w-none">
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Summary</h2>
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-              {note.summary}
-            </p>
-            
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">My Notes</h2>
-            <div className="space-y-4 text-gray-700 dark:text-gray-300">
-              <p>
-                This is where my detailed notes and thoughts about "Antifragile" would go. 
-                I'm still working on organizing and sharing my thoughts on this book.
-              </p>
-              <p>
-                My notes typically include:
-              </p>
-              <ul className="list-disc list-inside space-y-2 ml-4">
-                <li>Key concepts that made me stop and think</li>
-                <li>Questions I had while reading</li>
-                <li>Connections to other ideas I've encountered</li>
-                <li>Practical applications I want to try</li>
-                <li>Disagreements or alternative perspectives</li>
-              </ul>
-              <p>
-                I prefer to take time with my notes rather than rushing through them, 
-                so this content will be added as I complete my analysis.
-              </p>
-            </div>
+
+          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+            <Link
+              href="/notes"
+              className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium"
+            >
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Back to Notes
+            </Link>
           </div>
         </div>
       </main>
