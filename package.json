@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run generate-search-index && next build",
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "generate-search-index": "node scripts/generate-search-index.mjs",
+    "test:performance": "node scripts/performance-test.mjs"
   },
   "dependencies": {
     "@types/nprogress": "^0.2.3",

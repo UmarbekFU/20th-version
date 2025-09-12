@@ -2,8 +2,22 @@
 
 /* eslint-disable react/forbid-dom-props */
 import React, { useState, useRef, useEffect, useMemo } from 'react';
-import { NoteMetadata } from '@/lib/notes-discovery';
 import { useRouter } from 'next/navigation';
+
+interface NoteMetadata {
+  title: string
+  author: string
+  date: string
+  rating: number
+  category: 'book' | 'podcast' | 'course' | 'video' | 'essay' | 'documentary'
+  summary: string
+  spineColor: string
+  textColor: string
+  coverImage: string
+  duration?: string
+  url?: string
+  slug: string
+}
 
 // Simple SVG chevron icons instead of lucide-react
 const ChevronLeft = ({ className }: { className?: string }) => (

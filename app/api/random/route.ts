@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 
 const pages = [
   '/essays', '/projects', '/notes', '/ai', '/list', '/uses', '/scrapbook',
@@ -6,7 +6,7 @@ const pages = [
   '/yr', '/secret', '/disclaimer', '/contact', '/about', '/now', '/more'
 ]
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     // Validate that we have pages to choose from
     if (!pages || pages.length === 0) {
@@ -28,23 +28,19 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    // Create redirect URL
-    const redirectUrl = new URL(randomPage, request.url)
-    
-    return NextResponse.redirect(redirectUrl)
+    // Return the page path instead of redirecting
+    // This allows the client to handle the navigation
+    return NextResponse.json({
+      page: randomPage,
+      success: true
+    })
     
   } catch (error) {
     console.error('Random API error:', error)
     
-    // Fallback to home page if something goes wrong
-    try {
-      return NextResponse.redirect(new URL('/', request.url))
-    } catch (fallbackError) {
-      console.error('Fallback redirect failed:', fallbackError)
-      return NextResponse.json(
-        { error: 'Unable to redirect to random page' },
-        { status: 500 }
-      )
-    }
+    return NextResponse.json(
+      { error: 'Unable to select random page' },
+      { status: 500 }
+    )
   }
 }

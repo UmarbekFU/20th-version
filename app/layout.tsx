@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter, Lora } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
@@ -23,12 +23,17 @@ export const metadata: Metadata = {
     type: 'website',
   },
   manifest: '/manifest.json',
-  themeColor: '#00e0a1',
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
   robots: 'index, follow',
   alternates: {
     canonical: 'https://umarbek.dev',
   },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  themeColor: '#00e0a1',
 }
 
 export default function RootLayout({

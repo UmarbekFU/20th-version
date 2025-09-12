@@ -2,9 +2,101 @@ import Navigation from '@/components/Navigation'
 import PlumBackground from '@/components/PlumBackground'
 import { notFound } from 'next/navigation'
 import { Lora } from 'next/font/google'
-import { getNoteBySlug, getCategoryIcon } from '@/lib/notes-discovery'
+import fs from 'fs'
+import path from 'path'
 
 const lora = Lora({ subsets: ['latin'], display: 'swap' })
+
+interface NoteMetadata {
+  title: string
+  author: string
+  date: string
+  rating: number
+  category: 'book' | 'podcast' | 'course' | 'video' | 'essay' | 'documentary'
+  summary: string
+  spineColor: string
+  textColor: string
+  coverImage: string
+  duration?: string
+  url?: string
+  content?: string
+  keyInsights?: string[]
+  quotes?: string[]
+  tags?: string[]
+}
+
+// Function to get category icon
+function getCategoryIcon(category: NoteMetadata['category']): string {
+  const icons: Record<NoteMetadata['category'], string> = {
+    book: '📚',
+    podcast: '🎧',
+    course: '🎓',
+    video: '🎥',
+    essay: '📝',
+    documentary: '🎬'
+  }
+  
+  return icons[category] || '📄'
+}
+
+// Function to dynamically get note by slug
+function getNoteBySlug(slug: string): NoteMetadata | null {
+  try {
+    const metadataFile = path.join(process.cwd(), 'app', 'notes', slug, 'metadata.ts')
+    
+    if (!fs.existsSync(metadataFile)) {
+      return null
+    }
+    
+    const fileContent = fs.readFileSync(metadataFile, 'utf-8')
+    
+    // Extract noteMetadata from the file
+    const metadataMatch = fileContent.match(/export const noteMetadata = \{([\s\S]*?)\}/)
+    if (!metadataMatch) {
+      return null
+    }
+    
+    const metadataContent = metadataMatch[1]
+    
+    // Extract all fields using regex
+    const titleMatch = metadataContent.match(/title:\s*["']([^"']+)["']/)
+    const authorMatch = metadataContent.match(/author:\s*["']([^"']+)["']/)
+    const dateMatch = metadataContent.match(/date:\s*["']([^"']+)["']/)
+    const ratingMatch = metadataContent.match(/rating:\s*(\d+)/)
+    const categoryMatch = metadataContent.match(/category:\s*["']([^"']+)["']/)
+    const summaryMatch = metadataContent.match(/summary:\s*["']([^"']+)["']/)
+    const spineColorMatch = metadataContent.match(/spineColor:\s*["']([^"']+)["']/)
+    const textColorMatch = metadataContent.match(/textColor:\s*["']([^"']+)["']/)
+    const coverImageMatch = metadataContent.match(/coverImage:\s*["']([^"']+)["']/)
+    const durationMatch = metadataContent.match(/duration:\s*["']([^"']+)["']/)
+    const urlMatch = metadataContent.match(/url:\s*["']([^"']+)["']/)
+    
+    if (!titleMatch || !authorMatch || !dateMatch || !ratingMatch || !categoryMatch || !summaryMatch || !spineColorMatch || !textColorMatch || !coverImageMatch) {
+      return null
+    }
+    
+    return {
+      title: titleMatch[1],
+      author: authorMatch[1],
+      date: dateMatch[1],
+      rating: parseInt(ratingMatch[1]),
+      category: categoryMatch[1] as NoteMetadata['category'],
+      summary: summaryMatch[1],
+      spineColor: spineColorMatch[1],
+      textColor: textColorMatch[1],
+      coverImage: coverImageMatch[1],
+      duration: durationMatch ? durationMatch[1] : undefined,
+      url: urlMatch ? urlMatch[1] : undefined,
+      content: undefined,
+      keyInsights: undefined,
+      quotes: undefined,
+      tags: undefined
+    }
+  } catch (error) {
+    console.warn(`Could not load note ${slug}:`, error)
+    return null
+  }
+}
 
 interface NotePageProps {
   params: {

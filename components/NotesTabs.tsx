@@ -2,8 +2,23 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import Bookshelf from './Bookshelf';
-import { NoteMetadata } from '@/lib/notes-discovery';
+import VirtualizedBookshelf from './VirtualizedBookshelf';
+import PaginatedList from './PaginatedList';
+
+interface NoteMetadata {
+  title: string
+  author: string
+  date: string
+  rating: number
+  category: 'book' | 'podcast' | 'course' | 'video' | 'essay' | 'documentary'
+  summary: string
+  spineColor: string
+  textColor: string
+  coverImage: string
+  duration?: string
+  url?: string
+  slug: string
+}
 
 interface NotesTabsProps {
   books: NoteMetadata[];
@@ -11,15 +26,187 @@ interface NotesTabsProps {
   courses: NoteMetadata[];
 }
 
-const tabs = [
-  { id: 'books', label: 'Books' },
-  { id: 'podcasts', label: 'Podcasts' },
-  { id: 'courses', label: 'Courses' },
+// Data-driven tab configuration
+const getTabConfig = (books: NoteMetadata[], podcasts: NoteMetadata[], courses: NoteMetadata[]) => [
+  { 
+    id: 'books', 
+    label: 'Books', 
+    count: books.length,
+    data: books,
+    renderContent: (data: NoteMetadata[]) => (
+      <div className="space-y-8">
+        {/* Virtualized Bookshelf */}
+        <VirtualizedBookshelf 
+          notes={data} 
+          visibleCount={20}
+          itemWidth={41.5}
+          height={220}
+        />
+        
+        {/* Divider */}
+        <div className="border-t border-gray-200 dark:border-gray-700"></div>
+        
+        {/* Paginated Book List */}
+        <PaginatedList
+          items={data.slice().sort((a, b) => b.rating - a.rating)}
+          itemsPerPage={10}
+          renderItem={(book, index) => (
+            <div key={book.slug} className="scroll-mt-20">
+              {index > 0 && (
+                <div className="border-t border-gray-200 dark:border-gray-700 mb-6 w-full"></div>
+              )}
+              <div className="flex flex-col md:flex-row gap-6 items-start">
+                <img
+                  src={book.coverImage}
+                  alt={book.title}
+                  className="w-24 h-32 md:w-32 md:h-40 object-cover rounded border border-gray-200 dark:border-gray-700 flex-shrink-0"
+                />
+                <div className="flex-1">
+                  <h3 className="notes-title text-xl mb-3">
+                    <Link 
+                      href={`/notes/${book.slug}`}
+                      className="notes-text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    >
+                      {book.title}
+                    </Link>
+                  </h3>
+                  <p className="notes-meta notes-text-secondary mb-2">
+                    {book.author}
+                  </p>
+                  <p className="notes-meta notes-text-muted mb-4">
+                    Read: {book.date} • Rating: {book.rating}/10
+                  </p>
+                  <p className="notes-summary">
+                    {book.summary}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+        />
+      </div>
+    )
+  },
+  { 
+    id: 'podcasts', 
+    label: 'Podcasts', 
+    count: podcasts.length,
+    data: podcasts,
+    renderContent: (data: NoteMetadata[]) => (
+      <PaginatedList
+        items={data}
+        itemsPerPage={15}
+        renderItem={(podcast) => (
+          <div key={podcast.slug} className="border-b border-gray-200 dark:border-gray-700 pb-8 last:border-b-0">
+            <div className="flex flex-col md:flex-row gap-6 items-start">
+              <img
+                src={podcast.coverImage}
+                alt={podcast.title}
+                className="w-24 h-24 object-cover rounded-lg shadow-lg flex-shrink-0"
+              />
+              <div className="flex-1">
+                <h3 className="notes-title text-xl mb-3">
+                  <Link 
+                    href={`/notes/${podcast.slug}`}
+                    className="notes-text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  >
+                    {podcast.title}
+                  </Link>
+                </h3>
+                <p className="notes-meta notes-text-secondary mb-2">
+                  from {podcast.author}
+                </p>
+                <p className="notes-meta notes-text-muted mb-3">
+                  {podcast.date} • Rating: {podcast.rating}/10
+                  {podcast.duration && ` • ${podcast.duration}`}
+                </p>
+                <p className="notes-summary mb-3">
+                  {podcast.summary}
+                  {podcast.url && (
+                    <span className="ml-2">
+                      <a
+                        href={podcast.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-medium"
+                      >
+                        Listen
+                      </a>
+                    </span>
+                  )}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+      />
+    )
+  },
+  { 
+    id: 'courses', 
+    label: 'Courses', 
+    count: courses.length,
+    data: courses,
+    renderContent: (data: NoteMetadata[]) => (
+      <PaginatedList
+        items={data}
+        itemsPerPage={15}
+        renderItem={(course) => (
+          <div key={course.slug} className="border-b border-gray-200 dark:border-gray-700 pb-8 last:border-b-0">
+            <div className="flex flex-col md:flex-row gap-6 items-start">
+              <img
+                src={course.coverImage}
+                alt={course.title}
+                className="w-24 h-24 object-cover rounded-lg shadow-lg flex-shrink-0"
+              />
+              <div className="flex-1">
+                <h3 className="notes-title text-xl mb-3">
+                  <Link 
+                    href={`/notes/${course.slug}`}
+                    className="notes-text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  >
+                    {course.title}
+                  </Link>
+                </h3>
+                <p className="notes-meta notes-text-secondary mb-2">
+                  by {course.author}
+                </p>
+                <p className="notes-meta notes-text-muted mb-3">
+                  {course.date} • Rating: {course.rating}/10
+                  {course.duration && ` • ${course.duration}`}
+                </p>
+                <p className="notes-summary mb-3">
+                  {course.summary}
+                  {course.url && (
+                    <span className="ml-2">
+                      <a
+                        href={course.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-medium"
+                      >
+                        Take Course
+                      </a>
+                    </span>
+                  )}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+      />
+    )
+  },
 ] as const;
 
 export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
   const [activeTab, setActiveTab] = useState<'books' | 'podcasts' | 'courses'>('books');
   const tabSliderRef = useRef<HTMLDivElement>(null);
+
+
+  // Get data-driven tab configuration
+  const tabs = getTabConfig(books, podcasts, courses);
+  const activeTabConfig = tabs.find(tab => tab.id === activeTab);
 
   // Update tab slider position
   useEffect(() => {
@@ -31,159 +218,11 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
       tabSliderRef.current.style.setProperty('--tab-width', `${width}%`);
       tabSliderRef.current.style.setProperty('--tab-left', `${left}%`);
     }
-  }, [activeTab]);
+  }, [activeTab, tabs.length]);
 
   const renderContent = () => {
-    switch (activeTab) {
-      case 'books':
-        return (
-          <div className="space-y-8">
-            {/* Bookshelf */}
-            <Bookshelf notes={books} />
-            
-            {/* Divider */}
-            <div className="border-t border-gray-200 dark:border-gray-700"></div>
-            
-            {/* Scrollable Book List */}
-            <div className="space-y-8">
-              {books
-                .slice()
-                .sort((a, b) => b.rating - a.rating)
-                .map((book, index) => (
-                  <div key={book.slug} className="scroll-mt-20">
-                    {index > 0 && (
-                      <div className="border-t border-gray-200 dark:border-gray-700 mb-6 w-full"></div>
-                    )}
-                    <div className="flex flex-col md:flex-row gap-6 items-start">
-                      <img
-                        src={book.coverImage}
-                        alt={book.title}
-                        className="w-24 h-32 md:w-32 md:h-40 object-cover rounded border border-gray-200 dark:border-gray-700 flex-shrink-0"
-                      />
-                      <div className="flex-1">
-                        <h3 className="notes-title text-xl mb-3">
-                          <Link 
-                            href={`/notes/${book.slug}`}
-                            className="notes-text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                          >
-                            {book.title}
-                          </Link>
-                        </h3>
-                        <p className="notes-meta notes-text-secondary mb-2">
-                          {book.author}
-                        </p>
-                        <p className="notes-meta notes-text-muted mb-4">
-                          Read: {book.date} • Rating: {book.rating}/10
-                        </p>
-                        <p className="notes-summary">
-                          {book.summary}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </div>
-        );
-      case 'podcasts':
-        return (
-          <div className="space-y-8">
-            {podcasts.map((podcast) => (
-              <div key={podcast.slug} className="border-b border-gray-200 dark:border-gray-700 pb-8 last:border-b-0">
-                <div className="flex flex-col md:flex-row gap-6 items-start">
-                  <img
-                    src={podcast.coverImage}
-                    alt={podcast.title}
-                    className="w-24 h-24 object-cover rounded-lg shadow-lg flex-shrink-0"
-                  />
-                  <div className="flex-1">
-                    <h3 className="notes-title text-xl mb-3">
-                      <Link 
-                        href={`/notes/${podcast.slug}`}
-                        className="notes-text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                      >
-                        {podcast.title}
-                      </Link>
-                    </h3>
-                    <p className="notes-meta notes-text-secondary mb-2">
-                      from {podcast.author}
-                    </p>
-                    <p className="notes-meta notes-text-muted mb-3">
-                      {podcast.date} • Rating: {podcast.rating}/10
-                      {podcast.duration && ` • ${podcast.duration}`}
-                    </p>
-                    <p className="notes-summary mb-3">
-                      {podcast.summary}
-                      {podcast.url && (
-                        <span className="ml-2">
-                          <a
-                            href={podcast.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-medium"
-                          >
-                            Listen
-                          </a>
-                        </span>
-                      )}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        );
-      case 'courses':
-        return (
-          <div className="space-y-8">
-            {courses.map((course) => (
-              <div key={course.slug} className="border-b border-gray-200 dark:border-gray-700 pb-8 last:border-b-0">
-                <div className="flex flex-col md:flex-row gap-6 items-start">
-                  <img
-                    src={course.coverImage}
-                    alt={course.title}
-                    className="w-24 h-24 object-cover rounded-lg shadow-lg flex-shrink-0"
-                  />
-                  <div className="flex-1">
-                    <h3 className="notes-title text-xl mb-3">
-                      <Link 
-                        href={`/notes/${course.slug}`}
-                        className="notes-text-primary hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                      >
-                        {course.title}
-                      </Link>
-                    </h3>
-                    <p className="notes-meta notes-text-secondary mb-2">
-                      by {course.author}
-                    </p>
-                    <p className="notes-meta notes-text-muted mb-3">
-                      {course.date} • Rating: {course.rating}/10
-                      {course.duration && ` • ${course.duration}`}
-                    </p>
-                    <p className="notes-summary mb-3">
-                      {course.summary}
-                      {course.url && (
-                        <span className="ml-2">
-                          <a
-                            href={course.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-medium"
-                          >
-                            Take Course
-                          </a>
-                        </span>
-                      )}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        );
-      default:
-        return null;
-    }
+    if (!activeTabConfig) return null;
+    return activeTabConfig.renderContent(activeTabConfig.data);
   };
 
   return (
@@ -207,7 +246,7 @@ export function NotesTabs({ books, podcasts, courses }: NotesTabsProps) {
                   : 'notes-text-muted hover:notes-text-secondary'
               }`}
             >
-                  <span>{tab.label}</span>
+              <span>{tab.label}</span>
             </button>
           ))}
         </div>

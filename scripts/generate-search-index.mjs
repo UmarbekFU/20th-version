@@ -1,15 +1,11 @@
+#!/usr/bin/env node
+
 import fs from 'fs'
 import path from 'path'
+import { fileURLToPath } from 'url'
 
-export interface SearchResult {
-  path: string
-  title: string
-  description: string
-  content: string
-  score: number
-  matches: string[]
-  keywords?: string[]
-}
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 // Static pages that don't need dynamic discovery
 const staticPages = [
@@ -78,9 +74,9 @@ const staticPages = [
   }
 ]
 
-// Function to dynamically discover notes
-function discoverNotes(): Array<{ slug: string; title: string; author: string; summary: string; category: string; rating: number; date: string }> {
-  const notes: Array<{ slug: string; title: string; author: string; summary: string; category: string; rating: number; date: string }> = []
+// Function to discover notes from metadata files
+function discoverNotes() {
+  const notes = []
   const notesDir = path.join(process.cwd(), 'app', 'notes')
   
   try {
@@ -135,7 +131,7 @@ function discoverNotes(): Array<{ slug: string; title: string; author: string; s
 }
 
 // Function to extract content from a page component
-function extractPageContent(filePath: string): { title: string; content: string } | null {
+function extractPageContent(filePath) {
   try {
     const fileContent = fs.readFileSync(filePath, 'utf-8')
     
@@ -238,8 +234,8 @@ function extractPageContent(filePath: string): { title: string; content: string 
 }
 
 // Function to discover all pages dynamically
-function discoverPages(): SearchResult[] {
-  const pages: SearchResult[] = []
+function discoverPages() {
+  const pages = []
   const appDir = path.join(process.cwd(), 'app')
   
   // Add static pages
@@ -333,98 +329,32 @@ function discoverPages(): SearchResult[] {
   return pages
 }
 
-// Cache for search index - using a more robust caching approach
-let searchIndexCache: SearchResult[] | null = null
-let cacheTimestamp = 0
-const CACHE_DURATION = 2 * 60 * 1000 // 2 minutes (shorter for Vercel)
-
-export function getSearchIndex(): SearchResult[] {
-  const now = Date.now()
+// Generate search index
+async function generateSearchIndex() {
+  console.log('🔍 Generating search index...')
   
-  // Always regenerate cache in development or if cache is stale
-  if (process.env.NODE_ENV === 'development' || !searchIndexCache || (now - cacheTimestamp) > CACHE_DURATION) {
-    console.log('Regenerating search index...')
-    searchIndexCache = discoverPages()
-    cacheTimestamp = now
+  const pages = discoverPages()
+  
+  const searchIndex = {
+    pages,
+    generatedAt: new Date().toISOString(),
+    totalPages: pages.length,
+    version: '1.0.0'
   }
   
-  return searchIndexCache
+  // Write to public directory for easy access
+  const outputPath = path.join(process.cwd(), 'public', 'search-index.json')
+  fs.writeFileSync(outputPath, JSON.stringify(searchIndex, null, 2))
+  
+  console.log(`✅ Search index generated: ${pages.length} pages`)
+  console.log(`📁 Output: ${outputPath}`)
+  
+  return searchIndex
 }
 
-// Function to clear cache and force regeneration
-export function clearSearchCache(): void {
-  searchIndexCache = null
-  cacheTimestamp = 0
-  console.log('Search cache cleared')
+// Run if called directly
+if (import.meta.url === `file://${process.argv[1]}`) {
+  generateSearchIndex().catch(console.error)
 }
 
-export function searchContent(query: string): SearchResult[] {
-  const searchIndex = getSearchIndex()
-  
-  if (!query || query.length < 2) {
-    return []
-  }
-  
-  const queryWords = query.split(/\s+/).filter(word => word.length >= 2)
-  
-  if (queryWords.length === 0) {
-    return []
-  }
-  
-  const results: SearchResult[] = searchIndex.map(page => {
-    const pageContent = `${page.title} ${page.description} ${page.content}`.toLowerCase()
-    const pageKeywords = (page.keywords || []).map(k => k.toLowerCase())
-    
-    let score = 0
-    const matches: string[] = []
-    
-    queryWords.forEach(word => {
-      try {
-        // Escape special regex characters to prevent injection attacks
-        const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-        const wordRegex = new RegExp(`\\b${escapedWord}\\b`, 'gi')
-        const contentMatches = (pageContent.match(wordRegex) || []).length
-        const titleMatches = (page.title.toLowerCase().match(wordRegex) || []).length
-        const descMatches = (page.description.toLowerCase().match(wordRegex) || []).length
-        const keywordMatches = pageKeywords.filter(k => k.includes(word) || word.includes(k)).length
-        
-        const wordScore = (contentMatches * 1) + (titleMatches * 3) + (descMatches * 2) + (keywordMatches * 4)
-        score += wordScore
-        
-        if (wordScore > 0) {
-          matches.push(word)
-        }
-      } catch (error) {
-        console.warn(`Error processing search word "${word}":`, error)
-      }
-    })
-    
-    // Bonus for exact phrase matches
-    try {
-      if (pageContent.includes(query.toLowerCase())) {
-        score += 5
-      }
-      
-      if (page.title.toLowerCase().includes(query.toLowerCase()) ||
-          page.description.toLowerCase().includes(query.toLowerCase())) {
-        score += 3
-      }
-    } catch (error) {
-      console.warn(`Error processing exact phrase match:`, error)
-    }
-    
-    return {
-      path: page.path,
-      title: page.title,
-      description: page.description,
-      content: page.content.substring(0, 200) + (page.content.length > 200 ? '...' : ''),
-      score,
-      matches: Array.from(new Set(matches))
-    }
-  })
-  
-  return results
-    .filter(result => result.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 10)
-}
+export { generateSearchIndex }

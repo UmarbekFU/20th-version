@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { searchContent } from '@/lib/search'
+import { searchContent } from '@/lib/search-optimized'
 
 export async function GET(request: NextRequest) {
   try {
@@ -16,8 +16,8 @@ export async function GET(request: NextRequest) {
       })
     }
 
-    // Use dynamic search
-    const results = searchContent(query)
+    // Use optimized search (async)
+    const results = await searchContent(query)
     
     // Debug logging for Vercel
     console.log(`Search query: "${query}", Results count: ${results.length}`)
@@ -43,3 +43,6 @@ export async function GET(request: NextRequest) {
     }, { status: 500 })
   }
 }
+
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic'

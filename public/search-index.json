@@ -1,0 +1,308 @@
+{
+  "pages": [
+    {
+      "path": "/",
+      "title": "Homepage",
+      "description": "Hey! I'm Umarbek. Samarkand native, I now live in Tashkent, Uzbekistan. I write essays, build stuff, and take notes.",
+      "content": "Hey! I'm Umarbek. Samarkand native, I now live in Tashkent, Uzbekistan. I write essays, build stuff, and take notes. I write essays when I try to explain something to myself. My atomic ideas are half-formed thoughts I'm working through. I build stuff. I'm solving my own problem. If it helps you too, even better. I take notes when I read. Not polished summaries, just the parts that made me stop and think. I list everything I consume—books, films, podcasts etc. If you care about tools I use, I keep that updated. You can find screenshots that made me think, code snippets I might need later, memes that contain truth on scrapbook. Read more about me.",
+      "keywords": [
+        "umarbek",
+        "samarkand",
+        "tashkent",
+        "essays",
+        "projects",
+        "notes",
+        "list",
+        "uses",
+        "scrapbook"
+      ],
+      "score": 0,
+      "matches": []
+    },
+    {
+      "path": "/essays",
+      "title": "Essays",
+      "description": "I write essays when I try to explain something to myself. These are my attempts to understand ideas, concepts, and the world around me through writing.",
+      "content": "I write essays when I try to explain something to myself. These are my attempts to understand ideas, concepts, and the world around me through writing. Essays coming soon. I'm working on ideas about systems thinking, creativity, and the intersection of technology and human experience.",
+      "keywords": [
+        "essays",
+        "writing",
+        "thinking",
+        "ideas",
+        "learning"
+      ],
+      "score": 0,
+      "matches": []
+    },
+    {
+      "path": "/projects",
+      "title": "Projects",
+      "description": "Things I've built and broken. I build things to solve my own problems first. If they help others too, that's a bonus.",
+      "content": "Things I've built and broken. Current Projects: This Website - My personal website built with Next.js and Tailwind CSS. A place to share thoughts, projects, and ideas without the constraints of social media. Coming Soon: More projects are in development. I'm working on tools and applications that solve real problems I encounter in my daily work and life. My Approach: I build things to solve my own problems first. If they help others too, that's a bonus. I prefer simple, focused solutions over complex, feature-rich applications. Most of my projects start as experiments or prototypes. I iterate quickly, learn from failures, and only polish what actually works. This approach has taught me more than any amount of planning ever could.",
+      "keywords": [
+        "projects",
+        "building",
+        "solving",
+        "experiments",
+        "learning"
+      ],
+      "score": 0,
+      "matches": []
+    },
+    {
+      "path": "/notes",
+      "title": "Notes",
+      "description": "These aren't summaries—they're my thoughts, questions, and reactions to what I'm reading and learning. I don't summarize books—I argue with them.",
+      "content": "My notes from books, articles, and conversations. These aren't summaries—they're my thoughts, questions, and reactions to what I'm reading and learning. I don't summarize books—I argue with them. I write down questions, challenge assumptions, and connect ideas to my own experiences. The goal is to understand, not just remember. I use a simple system: one note per book, organized by themes rather than chapters. This helps me see patterns and connections across different authors and ideas.",
+      "keywords": [
+        "notes",
+        "books",
+        "reading",
+        "thinking",
+        "learning"
+      ],
+      "score": 0,
+      "matches": []
+    },
+    {
+      "path": "/uses",
+      "title": "Uses",
+      "description": "My computer setup, phone, and other physical tools. I prefer simple, reliable hardware that gets out of the way and lets me focus on what matters.",
+      "content": "A complete list of my setup: hardware, software, apps, daily routines, and tools I use and recommend. My computer setup, phone, and other physical tools. I prefer simple, reliable hardware that gets out of the way and lets me focus on what matters. Applications, tools, and services that make my work and life easier. I'm always experimenting with new tools, but I stick with what actually works. Habits, workflows, and processes that help me stay productive and creative. These are the routines that have stood the test of time.",
+      "keywords": [
+        "uses",
+        "setup",
+        "hardware",
+        "software",
+        "tools"
+      ],
+      "score": 0,
+      "matches": []
+    },
+    {
+      "path": "/about",
+      "title": "About Me",
+      "description": "I'm Samarkandi. I was born in 2006 in a village in the Past Darg'om district of Samarkand. The last few years, I've been living in Tashkent.",
+      "content": "I'm Samarkandi. I was born in 2006 in a village in the Past Darg'om district of Samarkand. The last few years, I've been living in Tashkent. I want to create things — tools, websites, essays, startups, apps, systems, and especially new ideas. I also want to learn — new ways of thinking, new ways of living. That's why I read books. I want to connect with people who feel the same: who stretch, strive, and grow. My favorite days are the ones where I work from morning to night, pausing only to move a little. I call it \"work,\" but really it's play — writing, learning, improving, and creating. I don't like labels. In my mind, someone self-identified with something typically means that person is a fraud. I like to identify with the problem I'm currently working on. I believe in skin in the game. This means: don't tell me what to do if you don't pay the price when you're wrong. Don't give advice you won't take yourself. Don't pretend to be a hero on other people's risks. I do not believe in perfect plans. Plans collapse on contact with reality. The world is too uncertain to be predicted with confidence. Instead of trying to know the future, I try to position myself so I don't need to know it. I do not chase rigid goals. Goals can blind me to opportunities. I prefer experiments. Experiments cost little, fail safely, and teach me something every time. Most of life's best outcomes come from tinkering, not planning. The world rewards those who try things, fail cheaply, and double down when something clicks. I have no respect whatsoever for authority. Someone's title, position, or reputation means absolutely nothing. Their words either make sense or they don't. Forget who said it and instead look what he starts with, where he ends up, and ask yourself, 'Is it reasonable?'",
+      "keywords": [
+        "about",
+        "personal",
+        "background",
+        "philosophy",
+        "values"
+      ],
+      "score": 0,
+      "matches": []
+    },
+    {
+      "path": "/now",
+      "title": "Now",
+      "description": "What I'm reading: The Count of Monte Cristo. What I'm writing: This website and essays about ideas outside of code. What I'm building: This website.",
+      "content": "What I am doing now and what I am not doing. Current activities, focus, and trends. What I'm reading: The Count of Monte Cristo. What I'm writing: This website and essays about ideas outside of code. Trying to explain things to myself. What I'm building: This website. Trying to make it feel like a real place, not another portfolio. A new thing: Exploring how to write about ideas outside of programming. Wondering why more programmers don't do this. What I'm not doing: Building for others first. Focusing on solving my own problems first. If it helps others, that's a bonus. Always looking for: People working on interesting problems. The kind where you can't Google the answer. If you're around Tashkent, let's have coffee or work together.",
+      "keywords": [
+        "now",
+        "current",
+        "activities",
+        "focus",
+        "trends"
+      ],
+      "score": 0,
+      "matches": []
+    },
+    {
+      "path": "/contact",
+      "title": "Contact",
+      "description": "I love meeting new people, and I reply to every email. Say hello! I'm always open to conversations, collaborations, and coffee meetings in Tashkent.",
+      "content": "I love meeting new people, and I reply to every email. Say hello! I'm always open to conversations, collaborations, and coffee meetings in Tashkent. Get in touch with me. I'm always open to conversations, collaborations, and coffee meetings in Tashkent. Coming soon.",
+      "keywords": [
+        "contact",
+        "email",
+        "coffee",
+        "work",
+        "tashkent"
+      ],
+      "score": 0,
+      "matches": []
+    },
+    {
+      "path": "/more",
+      "title": "More",
+      "description": "Atomic Ideas - Half-formed thoughts I'm working through. Questions - Questions I'm asking myself. Collections: List, Scrapbook, Photos, Tweets.",
+      "content": "Additional pages and sections that might interest you. Current: Now - What I'm doing and not doing right now. Ideas & Thoughts: Atomic Ideas - Half-formed thoughts I'm working through. Questions - Questions I'm asking myself. NAQ - Never Asked Questions. Collections: List - Things I consume, own, and do. Scrapbook - Screenshots, snippets, and unfinished thoughts. Photos - Visual moments that caught my attention. Tweets - My thoughts in 280 characters or less. Tools & Setup: Uses - My complete setup and tools. Life & Time: Life Calendar - My life visualized week by week. Year in Review - Annual reflection on what I've learned. Fun & Misc: Impossible Page - Things that seem impossible but might not be. Secret - Hidden things for those who discover them. Click Me - Go to a random page on this website. Disclaimer - Important information about this website.",
+      "keywords": [
+        "more",
+        "additional",
+        "pages",
+        "sections",
+        "collections",
+        "tools"
+      ],
+      "score": 0,
+      "matches": []
+    },
+    {
+      "path": "/notes/knowledge-project",
+      "title": "The Knowledge Project",
+      "description": "by Shane Parrish - Conversations with the world",
+      "content": "The Knowledge Project by Shane Parrish. Conversations with the world. Category: podcast. Rating: 9/10. Read: 2024.",
+      "keywords": [
+        "the knowledge project",
+        "shane parrish",
+        "podcast",
+        "book",
+        "podcast",
+        "course",
+        "video",
+        "essay",
+        "documentary"
+      ],
+      "score": 0,
+      "matches": []
+    },
+    {
+      "path": "/notes/react-patterns",
+      "title": "Advanced React Patterns",
+      "description": "by Kent C. Dodds - An in-depth course covering advanced React patterns, performance optimization, and modern development practices.",
+      "content": "Advanced React Patterns by Kent C. Dodds. An in-depth course covering advanced React patterns, performance optimization, and modern development practices.. Category: course. Rating: 9/10. Read: 2024.",
+      "keywords": [
+        "advanced react patterns",
+        "kent c. dodds",
+        "course",
+        "book",
+        "podcast",
+        "course",
+        "video",
+        "essay",
+        "documentary"
+      ],
+      "score": 0,
+      "matches": []
+    },
+    {
+      "path": "/notes/thinking-fast-slow",
+      "title": "Thinking, Fast and Slow",
+      "description": "by Daniel Kahneman - The definitive work on human decision-making. Kahneman",
+      "content": "Thinking, Fast and Slow by Daniel Kahneman. The definitive work on human decision-making. Kahneman. Category: book. Rating: 10/10. Read: 2024.",
+      "keywords": [
+        "thinking, fast and slow",
+        "daniel kahneman",
+        "book",
+        "book",
+        "podcast",
+        "course",
+        "video",
+        "essay",
+        "documentary"
+      ],
+      "score": 0,
+      "matches": []
+    },
+    {
+      "path": "/ai/emf",
+      "title": "Everything is my fault",
+      "description": "Atomic idea: Everything is my fault",
+      "content": "For years, I raged against the world. They lied. They took advantage. They didn't keep their word Do you hear the rhythm? They. They. They. Every sentence began with someone else's name, and I was always the victim. When someone upsets you, the instinct is to blame them. But I came to a conclusion If someone lied to me, perhaps I made truth too costly to speak. If someone took advantage, perhaps I left the door open and called it trust. If someone didn't keep their word, perhaps I built on promises instead of proof. Saying \"it's my fault\" means: I'm in control. Suddenly I wasn't wronged. They were just playing their part in the situation I helped create. I made it happen. I can learn from it. Nothing to complain about. It was strangely joyful to decide it was all my fault. Better than forg",
+      "keywords": [
+        "everything is my fault",
+        "atomic",
+        "idea",
+        "thought"
+      ],
+      "score": 0,
+      "matches": []
+    },
+    {
+      "path": "/ai/fwf",
+      "title": "Free will fallacy",
+      "description": "Atomic idea: Free will fallacy",
+      "content": "Stephen Hawking says free will is illusion. We're atoms. Atoms follow rigid laws. Therefore we have no choice. This is reductionism. A mistake. It is also a mistake of scale. Laws of physics aren't a person making you do things. They're not some supernatural force pushing atoms around. Laws of physics are just descriptions. They describe what happens. They don't make it happen. It's like saying the rulebook controls the chess game. No. The rulebook just describes how chess works. Reality has levels: atomic, molecular, biological, human thought. Just because low-level descriptions exist doesn't eliminate high-level explanations. When you lose at chess to a computer, the silicon didn't beat you, the program did. The program is an abstraction over atoms, like human thought. When I decide, I d",
+      "keywords": [
+        "free will fallacy",
+        "atomic",
+        "idea",
+        "thought"
+      ],
+      "score": 0,
+      "matches": []
+    },
+    {
+      "path": "/ai/jdm",
+      "title": "Just do more",
+      "description": "Atomic idea: Just do more",
+      "content": "People think science leads to technology, and technology leads to business. It's exactly the opposite: business leads to technology, and technology leads to science. All through trial and error. Let me give you a thought experiment. We want to make the best manti traditional meal . Two approaches: #1 group randomly adds small ingredients, tests if it's better, keeps trying. #2 group goes to university and studies chemical equations of what's in manti. Who improves faster? The first group, through trial and error. This represents how technology actually develops. Everything's done by engineers and risk-takers with more upside than downside. Trial and error isn't really trial and error—it's trial with small error and big potential upside. What academics hate to admit is business leads to tec",
+      "keywords": [
+        "just do more",
+        "atomic",
+        "idea",
+        "thought"
+      ],
+      "score": 0,
+      "matches": []
+    },
+    {
+      "path": "/ai/tc",
+      "title": "Telegram Culture: 10 Commandments",
+      "description": "Atomic idea: Telegram Culture: 10 Commandments",
+      "content": "In a world drowning in messages, it's surprisingly rare to meet someone who knows how to communicate simply, clearly, and respectfully on Telegram. To save humanity from further chaos, here are the Telegram Commandments: If you send a voice message, then, first of all, never do that. But let's say you had to for good reasons while driving, a lot of details, you need to convey emotion, etc. , then at the beginning of the message, apologize and briefly explain the reason for such an unreasonable and traumatic event. Sending every word as a new message is psychological warfare. Write your full thought, then send it once. Don't drop cryptic links with vague phrases like \"Check this out!\" Explain yourself clearly. Names like \"🌙Dark Angel🌙\" or \".\" guarantee you'll be forgotten. Use a clear nam",
+      "keywords": [
+        "telegram culture: 10 commandments",
+        "atomic",
+        "idea",
+        "thought"
+      ],
+      "score": 0,
+      "matches": []
+    },
+    {
+      "path": "/list/movies",
+      "title": "Movies I Loved",
+      "description": "list page: Movies I Loved",
+      "content": "Movies I Loved Films that made me think, feel, or just entertained me. Each with a brief comment and rating out of 10. /* Movies List */ movies.map movie, index => movie.title movie.year movie.rating /10 movie.comment /* Footer Note */ This list is always growing. I watch a lot of films, but only the ones that really stick with me make it here.",
+      "keywords": [
+        "movies i loved",
+        "list"
+      ],
+      "score": 0,
+      "matches": []
+    },
+    {
+      "path": "/list/podcasts",
+      "title": "Podcasts I Listen To",
+      "description": "list page: Podcasts I Listen To",
+      "content": "Podcasts I Listen To Shows that keep me company during walks, commutes, and quiet moments. Each with thoughts and recommendations. /* Podcasts List */ podcasts.map podcast, index => podcast.title podcast.host podcast.rating /10 podcast.comment /* Footer Note */ I listen to podcasts while walking, cooking, and doing chores. They're my favorite way to learn while doing other things.",
+      "keywords": [
+        "podcasts i listen to",
+        "list"
+      ],
+      "score": 0,
+      "matches": []
+    },
+    {
+      "path": "/list/tio",
+      "title": "Things I Own",
+      "description": "list page: Things I Own",
+      "content": "Things I Own A curated list of possessions that actually matter to me. I try to own fewer things, but the things I own, I use and appreciate. /* Items by Category */ items.map category, categoryIndex => category.category category.items.map item, itemIndex => item.name item.comment /* Footer Note */ I believe in owning fewer, better things. Everything here serves a purpose and brings me joy.",
+      "keywords": [
+        "things i own",
+        "list"
+      ],
+      "score": 0,
+      "matches": []
+    },
+    {
+      "path": "/projects/tw",
+      "title": "This Website",
+      "description": "projects page: This Website",
+      "content": "/* Project Header */ Active Project This Website My personal website built with Next.js and Tailwind CSS. A real place for my thoughts and projects. /* Project Overview */ The Story This is my personal website, designed to be a real place on the internet rather than just another portfolio. It's built with modern web technologies and focuses on content over flashy design. I needed a place to share my thoughts, projects, and ideas. Most portfolio websites feel sterile and corporate - I wanted something that felt like a real person's space on the internet. This website scratches my own itch: a place to write, share, and connect with people who think similarly. /* Tech Stack */ Tech Stack Frontend Next.js 14 App Router TypeScript Tailwind CSS Features Canvas Animation Dark/Light Mode Responsiv",
+      "keywords": [
+        "this website",
+        "projects"
+      ],
+      "score": 0,
+      "matches": []
+    }
+  ],
+  "generatedAt": "2025-09-12T18:55:13.597Z",
+  "totalPages": 20,
+  "version": "1.0.0"
+}
