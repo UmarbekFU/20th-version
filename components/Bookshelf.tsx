@@ -1,89 +1,232 @@
-'use client'
+'use client';
 
-import { useState, useRef, useEffect } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
+/* eslint-disable react/forbid-dom-props */
+import React, { useState, useRef, useEffect, useMemo } from 'react';
+import { NoteMetadata } from '@/lib/notes-discovery';
+import { useRouter } from 'next/navigation';
 
-interface Book {
-  title: string
-  author: string
-  date: string
-  rating: number
-  coverImage: string
-  spineColor: string
-  textColor: string
-  slug: string
-  summary: string
-  category: 'book' | 'podcast' | 'course' | 'video' | 'essay' | 'documentary'
-}
+// Simple SVG chevron icons instead of lucide-react
+const ChevronLeft = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M15 19l-7-7 7-7"
+    />
+  </svg>
+);
+
+const ChevronRight = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M9 5l7 7-7 7"
+    />
+  </svg>
+);
 
 interface BookshelfProps {
-  books: Book[]
+  notes: NoteMetadata[];
 }
 
-export default function Bookshelf({ books }: BookshelfProps) {
-  const [selectedBook, setSelectedBook] = useState<number | null>(null)
-  const [scrollPosition, setScrollPosition] = useState(0)
-  const [isScrolling, setIsScrolling] = useState(false)
-  const bookshelfRef = useRef<HTMLDivElement>(null)
-  const scrollIntervalRef = useRef<NodeJS.Timeout | null>(null)
+export default function Bookshelf({ notes }: BookshelfProps) {
+  const router = useRouter();
+  const [selectedNote, setSelectedNote] = useState(-1);
+  const [hoveredNote, setHoveredNote] = useState(-1);
+  const [scroll, setScroll] = useState(-200);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const [notesInViewport, setNotesInViewport] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
 
-  const bookWidth = 60
-  const bookHeight = 280
-  const spineWidth = bookWidth
-  const coverWidth = bookWidth * 4
+  const bookshelfRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const scrollRightRef = useRef<HTMLDivElement>(null);
+  const scrollLeftRef = useRef<HTMLDivElement>(null);
 
-  const maxScroll = Math.max(0, (bookWidth + 12) * (books.length - 6) + (selectedBook !== null ? bookWidth * 4 : 0))
+  // Dimensions
+  const width = 41.5;
+  const height = 220;
+  const spineWidth = `${width}px`;
+  const coverWidth = `${width * 4}px`;
+  const bookWidth = `${width * 5}px`;
+  const bookHeight = `${height}px`;
 
-  const handleScroll = (direction: 'left' | 'right') => {
-    if (scrollIntervalRef.current) return
+  const minScroll = 0;
+  const maxScroll = useMemo(() => {
+    const activeNote = selectedNote > -1 ? selectedNote : hoveredNote;
+    return (
+      (width + 12) * (notes.length - notesInViewport) +
+      (activeNote > -1 ? width * 4 : 0) +
+      5
+    );
+  }, [selectedNote, hoveredNote, notes.length, notesInViewport]);
 
-    setIsScrolling(true)
-    scrollIntervalRef.current = setInterval(() => {
-      setScrollPosition(prev => {
-        const newPos = direction === 'right' 
-          ? Math.min(maxScroll, prev + 3)
-          : Math.max(0, prev - 3)
-        return newPos
-      })
-    }, 10)
-  }
+  const boundedScroll = (scrollX: number) => {
+    setScroll(Math.max(minScroll, Math.min(maxScroll, scrollX)));
+  };
 
-  const stopScroll = () => {
-    if (scrollIntervalRef.current) {
-      clearInterval(scrollIntervalRef.current)
-      scrollIntervalRef.current = null
-    }
-    setIsScrolling(false)
-  }
+  const boundedRelativeScroll = React.useCallback(
+    (incrementX: number) => {
+      setScroll((_scroll) =>
+        Math.max(minScroll, Math.min(maxScroll, _scroll + incrementX))
+      );
+    },
+    [maxScroll]
+  );
 
-  const selectBook = (index: number) => {
-    if (selectedBook === index) {
-      setSelectedBook(null)
-    } else {
-      setSelectedBook(index)
-      // Auto-scroll to center the selected book
-      const centerPosition = (index - 2.5) * (bookWidth + 12)
-      setScrollPosition(Math.max(0, Math.min(maxScroll, centerPosition)))
-    }
-  }
-
+  // Calculate viewport dimensions
   useEffect(() => {
-    return () => {
-      if (scrollIntervalRef.current) {
-        clearInterval(scrollIntervalRef.current)
-      }
+    if (viewportRef.current) {
+      const viewportWidth = viewportRef.current.offsetWidth;
+      const numberOfNotes = viewportWidth / (width + 11);
+      setNotesInViewport(numberOfNotes);
     }
-  }, [])
+  }, []);
+
+  // Auto-scroll to selected or hovered note
+  useEffect(() => {
+    const activeNote = selectedNote > -1 ? selectedNote : hoveredNote;
+    if (activeNote === -1) {
+      boundedRelativeScroll(0);
+    } else {
+      boundedScroll((activeNote - (notesInViewport - 4.5) / 2) * (width + 11));
+    }
+  }, [selectedNote, hoveredNote, boundedRelativeScroll, notesInViewport]);
+
+  // Mobile/Desktop responsive scroll events
+  useEffect(() => {
+    const currentScrollRightRef = scrollRightRef.current;
+    const currentScrollLeftRef = scrollLeftRef.current;
+
+    if (!currentScrollRightRef || !currentScrollLeftRef) return;
+
+    let scrollInterval: NodeJS.Timeout | null = null;
+
+    const setScrollRightInterval = () => {
+      setIsScrolling(true);
+      scrollInterval = setInterval(() => {
+        boundedRelativeScroll(3);
+      }, 10);
+    };
+
+    const setScrollLeftInterval = () => {
+      setIsScrolling(true);
+      scrollInterval = setInterval(() => {
+        boundedRelativeScroll(-3);
+      }, 10);
+    };
+
+    const clearScrollInterval = () => {
+      setIsScrolling(false);
+      if (scrollInterval) {
+        clearInterval(scrollInterval);
+      }
+    };
+
+    // Function to determine scroll events based on screen size
+    const getScrollEvents = () => {
+      const isMobile = window.innerWidth < 640; // sm breakpoint
+      return isMobile 
+        ? { start: "touchstart", stop: "touchend" }
+        : { start: "mouseenter", stop: "mouseleave" };
+    };
+
+    // Create a copy of the scroll events to save for clean-up
+    const currentScrollEvents = getScrollEvents();
+
+    const addEventListeners = () => {
+      currentScrollRightRef.addEventListener(
+        currentScrollEvents.start,
+        setScrollRightInterval
+      );
+      currentScrollRightRef.addEventListener(
+        currentScrollEvents.stop,
+        clearScrollInterval
+      );
+
+      currentScrollLeftRef.addEventListener(
+        currentScrollEvents.start,
+        setScrollLeftInterval
+      );
+      currentScrollLeftRef.addEventListener(
+        currentScrollEvents.stop,
+        clearScrollInterval
+      );
+    };
+
+    const removeEventListeners = () => {
+      currentScrollRightRef.removeEventListener(
+        currentScrollEvents.start,
+        setScrollRightInterval
+      );
+      currentScrollRightRef.removeEventListener(
+        currentScrollEvents.stop,
+        clearScrollInterval
+      );
+      currentScrollLeftRef.removeEventListener(
+        currentScrollEvents.start,
+        setScrollLeftInterval
+      );
+      currentScrollLeftRef.removeEventListener(
+        currentScrollEvents.stop,
+        clearScrollInterval
+      );
+    };
+
+    addEventListeners();
+
+    // Handle window resize to switch between mobile/desktop events
+    const handleResize = () => {
+      removeEventListeners();
+      const newScrollEvents = getScrollEvents();
+      Object.assign(currentScrollEvents, newScrollEvents);
+      addEventListeners();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      clearScrollInterval();
+      removeEventListeners();
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [boundedRelativeScroll]);
+
+  // Handle mouse leave on the entire bookshelf to clear hover
+  const handleBookshelfMouseLeave = () => {
+    setHoveredNote(-1);
+    setIsHovering(false);
+  };
+
+  const handleBookshelfMouseEnter = () => {
+    setIsHovering(true);
+  };
 
   return (
-    <div className="relative w-full py-8">
-      <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">My Bookshelf</h2>
-        <p className="text-gray-600 dark:text-gray-400">Click on a book to see details</p>
-      </div>
-      {/* Paper texture filter */}
-      <svg className="absolute inset-0 invisible" width="0" height="0">
+    <>
+      {/* SVG filter for paper texture */}
+      <svg
+        style={{
+          position: "absolute",
+          inset: 0,
+          visibility: "hidden",
+        }}
+      >
         <defs>
           <filter id="paper" x="0%" y="0%" width="100%" height="100%">
             <feTurbulence
@@ -102,199 +245,210 @@ export default function Bookshelf({ books }: BookshelfProps) {
             </feDiffuseLighting>
           </filter>
         </defs>
-      </svg>
+        </svg>
 
-      {/* Left scroll button */}
-      {scrollPosition > 0 && (
-        <button
-          className="absolute left-[-28px] md:left-[-36px] top-0 h-full w-7 md:w-9 flex items-center justify-center rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors z-10"
-          onMouseDown={() => handleScroll('left')}
-          onMouseUp={stopScroll}
-          onMouseLeave={stopScroll}
-          onTouchStart={() => handleScroll('left')}
-          onTouchEnd={stopScroll}
-          title="Scroll left"
-          aria-label="Scroll left"
+      <div 
+        className="relative" 
+        ref={bookshelfRef}
+        onMouseLeave={handleBookshelfMouseLeave}
+        onMouseEnter={handleBookshelfMouseEnter}
+      >
+        {/* Left scroll button */}
+        <div
+          className={`absolute h-full -left-7 md:-left-9 ${
+            scroll > minScroll ? "block" : "hidden"
+          }`}
         >
-          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
-          </svg>
-        </button>
-      )}
-
-      {/* Books container */}
-      <div className="overflow-hidden bg-gray-50 dark:bg-gray-900 rounded-lg p-6 shadow-lg">
-        <div 
-          className="flex items-center gap-3 cursor-grab active:cursor-grabbing"
-          style={{
-            transform: `translateX(-${scrollPosition}px)`,
-            transition: isScrolling ? 'transform 100ms linear' : 'transform 500ms ease'
-          }}
-        >
-          {books.map((book, index) => (
-            <div
-              key={book.slug}
-              className="flex items-center flex-shrink-0"
-              style={{
-                width: selectedBook === index ? `${bookWidth * 5}px` : `${spineWidth}px`,
-                transition: 'all 500ms ease'
-              }}
-            >
-              {/* Book spine */}
-              <div
-                className="flex items-center justify-center flex-shrink-0 relative"
-                style={{
-                  width: `${spineWidth}px`,
-                  height: `${bookHeight}px`,
-                  backgroundColor: book.spineColor,
-                  color: book.textColor,
-                  transform: `rotateY(${selectedBook === index ? '-60deg' : '0deg'})`,
-                  transformStyle: 'preserve-3d',
-                  filter: 'brightness(0.8) contrast(2)',
-                  transition: 'all 500ms ease'
-                }}
-                onClick={() => selectBook(index)}
-              >
-                {/* Paper texture overlay */}
-                <div
-                  className="absolute inset-0 pointer-events-none opacity-40"
-                  style={{ filter: 'url(#paper)' }}
-                />
-                
-                {/* Book title */}
-                <h3
-                  className="text-xs font-medium px-2 text-center"
-                  style={{
-                    writingMode: 'vertical-rl',
-                    textOrientation: 'mixed',
-                    maxHeight: `${bookHeight - 24}px`,
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap'
-                  }}
-                >
-                  {book.title}
-                </h3>
-              </div>
-
-              {/* Book cover */}
-              {selectedBook === index && (
-                <div
-                  className="flex-shrink-0 relative overflow-hidden"
-                  style={{
-                    width: `${coverWidth}px`,
-                    height: `${bookHeight}px`,
-                    transform: `rotateY(30deg)`,
-                    transformStyle: 'preserve-3d',
-                    filter: 'brightness(0.8) contrast(2)',
-                    transition: 'all 500ms ease'
-                  }}
-                >
-                  {/* Paper texture overlay */}
-                  <div
-                    className="absolute inset-0 pointer-events-none opacity-40 z-10"
-                    style={{ filter: 'url(#paper)' }}
-                  />
-                  
-                  {/* Book binding effect */}
-                  <div
-                    className="absolute inset-0 pointer-events-none z-20"
-                    style={{
-                      background: `linear-gradient(to right, rgba(255, 255, 255, 0) 2px, rgba(255, 255, 255, 0.5) 3px, rgba(255, 255, 255, 0.25) 4px, rgba(255, 255, 255, 0.25) 6px, transparent 7px, transparent 9px, rgba(255, 255, 255, 0.25) 9px, transparent 12px)`
-                    }}
-                  />
-                  
-                  {/* Book cover image */}
-                  <Image
-                    src={book.coverImage}
-                    alt={book.title}
-                    width={coverWidth}
-                    height={bookHeight}
-                    className="object-cover"
-                    style={{ transition: 'all 500ms ease' }}
-                  />
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Right scroll button */}
-      {scrollPosition < maxScroll && (
-        <button
-          className="absolute right-[-28px] md:right-[-36px] top-0 h-full w-7 md:w-9 flex items-center justify-center rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors z-10"
-          onMouseDown={() => handleScroll('right')}
-          onMouseUp={stopScroll}
-          onMouseLeave={stopScroll}
-          onTouchStart={() => handleScroll('right')}
-          onTouchEnd={stopScroll}
-          title="Scroll right"
-          aria-label="Scroll right"
-        >
-          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-          </svg>
-        </button>
-      )}
-
-      {/* Book details panel */}
-      {selectedBook !== null && (
-        <div className="mt-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
-          <div className="flex gap-6">
-            <div className="flex-shrink-0">
-              <Image
-                src={books[selectedBook].coverImage}
-                alt={books[selectedBook].title}
-                width={120}
-                height={160}
-                className="rounded-lg shadow-md"
-              />
-            </div>
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-                {books[selectedBook].title}
-              </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-400 mb-2">
-                by {books[selectedBook].author}
-              </p>
-              <div className="flex items-center gap-4 mb-4">
-                <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm">
-                  {books[selectedBook].category}
-                </span>
-                <div className="flex items-center">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <span
-                      key={i}
-                      className={`text-sm ${
-                        i < books[selectedBook].rating / 2
-                          ? 'text-yellow-400'
-                          : 'text-gray-300 dark:text-gray-600'
-                      }`}
-                    >
-                      ★
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                {books[selectedBook].summary}
-              </p>
-              <div className="mt-4">
-                <Link
-                  href={`/notes/${books[selectedBook].slug}`}
-                  className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition-colors"
-                >
-                  Read Notes
-                  <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-              </div>
-            </div>
+          <div
+            ref={scrollLeftRef}
+            className="flex items-center justify-center h-full w-7 md:w-9 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95"
+            style={{
+              borderTopRightRadius: 0, // Mobile: no right border radius
+              borderBottomRightRadius: 0,
+              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+            }}
+          >
+            <ChevronLeft className="w-3 h-3" />
           </div>
         </div>
-      )}
-    </div>
-  )
+
+        {/* Bookshelf viewport */}
+        <div
+          ref={viewportRef}
+          className={`flex items-center gap-1 overflow-x-hidden cursor-grab transition-all duration-300 ${
+            isHovering ? 'bg-gray-50/30 dark:bg-gray-800/30 rounded-lg' : ''
+          }`}
+          style={{
+            padding: isHovering ? '8px' : '0px',
+            margin: isHovering ? '-8px' : '0px',
+          }}
+        >
+          {notes.map((note, index) => {
+            const isActive = selectedNote === index || hoveredNote === index;
+            const isHovered = hoveredNote === index;
+            return (
+              <button
+                key={note.title}
+                onClick={() => {
+                  if (index === selectedNote) {
+                    setSelectedNote(-1);
+                    router.push(`/notes`);
+                  } else {
+                    setSelectedNote(index);
+                    router.push(`/notes/${note.slug}`);
+                  }
+                }}
+                onMouseEnter={() => setHoveredNote(index)}
+                onMouseLeave={() => setHoveredNote(-1)}
+                className={`flex flex-row items-center justify-start outline-none flex-shrink-0 gap-0 group ${
+                  isHovered ? 'z-10' : ''
+                }`}
+                style={{
+                  transform: `translateX(-${scroll}px) translateZ(${isHovered ? '10px' : '0px'})`,
+                  width: isActive ? bookWidth : spineWidth,
+                  perspective: "1000px",
+                  WebkitPerspective: "1000px",
+                  transition: isScrolling
+                    ? `transform 100ms linear`
+                    : `all 500ms cubic-bezier(0.4, 0, 0.2, 1)`,
+                  willChange: "auto",
+                  filter: isHovered ? 'drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15))' : 'none',
+                }}
+              >
+              {/* Book spine */}
+              <div
+                className="flex items-start justify-center flex-shrink-0 relative"
+                style={{
+                  width: spineWidth,
+                  height: bookHeight,
+                  backgroundColor: note.spineColor,
+                  color: note.textColor,
+                  transform: `translate3d(0px, 0px, 0px) scale3d(${isHovered ? '1.02' : '1'}, 1, 1) rotateX(0deg) rotateY(${
+                    isActive ? "-60deg" : isHovered ? "-15deg" : "0deg"
+                  }) rotateZ(0deg) skew(0deg, 0deg)`,
+                  transition: "all 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+                  willChange: "auto",
+                  filter: `brightness(${isHovered ? '0.9' : '0.8'}) contrast(${isHovered ? '2.2' : '2'})`,
+                  transformStyle: "preserve-3d",
+                  transformOrigin: "right",
+                  boxShadow: isHovered ? 'inset -2px 0 4px rgba(0, 0, 0, 0.1)' : 'none',
+                }}
+              >
+                {/* Paper texture overlay */}
+                  <span 
+                  className="pointer-events-none fixed top-0 left-0 z-50 opacity-40"
+                  style={{
+                    height: bookHeight,
+                    width: spineWidth,
+                    filter: "url(#paper)",
+                  }}
+                />
+                <h2
+                  className="mt-3 text-xs font-sans select-none text-ellipsis whitespace-nowrap overflow-hidden"
+                    style={{ 
+                    writingMode: "vertical-rl",
+                    maxHeight: `${height - 24}px`,
+                    }}
+                  >
+                  {note.title}
+                </h2>
+                </div>
+                
+              {/* Book cover */}
+              <div
+                className="relative flex-shrink-0 overflow-hidden"
+                style={{
+                  transform: `translate3d(0px, 0px, 0px) scale3d(${isHovered ? '1.02' : '1'}, 1, 1) rotateX(0deg) rotateY(${
+                    isActive ? "30deg" : isHovered ? "75deg" : "88.8deg"
+                  }) rotateZ(0deg) skew(0deg, 0deg)`,
+                  transition: "all 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+                  willChange: "auto",
+                  filter: `brightness(${isHovered ? '0.9' : '0.8'}) contrast(${isHovered ? '2.2' : '2'})`,
+                  transformStyle: "preserve-3d",
+                  transformOrigin: "left",
+                  boxShadow: isHovered ? 'inset 2px 0 4px rgba(0, 0, 0, 0.1)' : 'none',
+                }}
+              >
+                {/* Paper texture overlay */}
+                <span
+                  className="pointer-events-none fixed top-0 right-0 z-50"
+                  style={{
+                    height: bookHeight,
+                    width: coverWidth,
+                    filter: "url(#paper)",
+                    opacity: isHovered ? 0.5 : 0.4,
+                    transition: "opacity 300ms ease",
+                  }}
+                />
+                {/* Book binding effect */}
+                <span
+                  className="pointer-events-none absolute top-0 left-0 z-50"
+                  style={{
+                    height: bookHeight,
+                    width: coverWidth,
+                    background: `linear-gradient(to right, 
+                      rgba(255, 255, 255, 0) 2px, 
+                      rgba(255, 255, 255, ${isHovered ? '0.6' : '0.5'}) 3px, 
+                      rgba(255, 255, 255, ${isHovered ? '0.35' : '0.25'}) 4px, 
+                      rgba(255, 255, 255, ${isHovered ? '0.35' : '0.25'}) 6px, 
+                      transparent 7px, 
+                      transparent 9px, 
+                      rgba(255, 255, 255, ${isHovered ? '0.35' : '0.25'}) 9px, 
+                      transparent 12px)`,
+                    transition: "all 300ms ease",
+                  }}
+                />
+                {/* Additional depth effect */}
+                <span
+                  className="pointer-events-none absolute top-0 left-0 z-40"
+                  style={{
+                    height: bookHeight,
+                    width: coverWidth,
+                    background: `linear-gradient(135deg, 
+                      rgba(0, 0, 0, 0.1) 0%, 
+                      transparent 20%, 
+                      transparent 80%, 
+                      rgba(0, 0, 0, 0.1) 100%)`,
+                    opacity: isHovered ? 0.8 : 0.5,
+                    transition: "opacity 300ms ease",
+                  }}
+                />
+                <img
+                  src={note.coverImage}
+                  alt={note.title}
+                  className="transition-all duration-500 ease-in-out"
+                  style={{
+                    width: coverWidth,
+                    height: bookHeight,
+                    willChange: "auto",
+                  }}
+                />
+              </div>
+            </button>
+            );
+          })}
+        </div>
+
+        {/* Right scroll button */}
+        <div
+          className={`absolute h-full top-0 -right-7 md:-right-9 pl-2.5 ${
+            scroll < maxScroll ? "block" : "hidden"
+          }`}
+        >
+          <div
+            ref={scrollRightRef}
+            className="flex items-center justify-center h-full w-7 md:w-9 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95"
+            style={{
+              borderTopLeftRadius: 0, // Mobile: no left border radius
+              borderBottomLeftRadius: 0,
+              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+            }}
+          >
+            <ChevronRight className="w-3 h-3" />
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
+/* eslint-enable react/forbid-dom-props */

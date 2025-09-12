@@ -297,6 +297,15 @@
     text-orientation: mixed;
   }
 
+  .rotate-180 {
+    transform: rotate(180deg);
+  }
+
+  .book-spine {
+    background-color: var(--spine-color);
+  }
+
+
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;

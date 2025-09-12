@@ -157,6 +157,14 @@ export default function MorePage() {
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Fun & Misc</h2>
                 <div className="space-y-3">
                   <div>
+                    <Link href="/more/hackers-manifesto" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors text-lg">
+                      The Hacker's Manifesto
+                    </Link>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      A cultural artifact from the early days of computer hacking
+                    </p>
+                  </div>
+                  <div>
                     <Link href="/disclaimer" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors text-lg">
                       Disclaimer
                     </Link>

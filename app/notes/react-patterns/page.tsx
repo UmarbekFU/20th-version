@@ -1,9 +1,23 @@
 import Navigation from '@/components/Navigation'
 import PlumBackground from '@/components/PlumBackground'
 import { Lora } from 'next/font/google'
-import Link from 'next/link'
 
 const lora = Lora({ subsets: ['latin'], display: 'swap' })
+
+// Note metadata - self-contained
+export const noteMetadata = {
+  title: "Advanced React Patterns",
+  author: "Kent C. Dodds",
+  date: "2024",
+  rating: 9,
+  category: "course" as const,
+  summary: "An in-depth course covering advanced React patterns, performance optimization, and modern development practices.",
+  spineColor: "#10b981",
+  textColor: "#ffffff",
+  coverImage: "https://via.placeholder.com/300x400/10b981/ffffff?text=Advanced+React+Patterns+by+Kent+C.+Dodds",
+  duration: "8 hours",
+  url: "https://kentcdodds.com/"
+}
 
 export default function ReactPatternsPage() {
   return (
@@ -48,17 +62,6 @@ export default function ReactPatternsPage() {
             </div>
           </div>
 
-          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-            <Link
-              href="/notes"
-              className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium"
-            >
-              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              Back to Notes
-            </Link>
-          </div>
         </div>
       </main>
     </>
