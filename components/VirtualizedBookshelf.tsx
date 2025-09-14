@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import './bookshelf.css';
 
 interface NoteMetadata {
   title: string

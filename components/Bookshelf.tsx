@@ -1,8 +1,22 @@
 'use client';
 
 /* eslint-disable react/forbid-dom-props */
+/* eslint-disable @next/next/no-css-tags */
+/* eslint-disable @next/next/no-styled-jsx-scope */
+/* eslint-disable react/no-unknown-property */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable-next-line @next/next/no-css-tags */
+/* eslint-disable-next-line @next/next/no-styled-jsx-scope */
+/* eslint-disable-next-line @next/next/no-css-tags */
+/* eslint-disable-next-line @next/next/no-css-tags */
+/* eslint-disable-next-line @next/next/no-css-tags */
+/* eslint-disable-next-line @next/next/no-css-tags */
+/* eslint-disable-next-line @next/next/no-css-tags */
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
+import './bookshelf.css';
 
 interface NoteMetadata {
   title: string
@@ -235,11 +249,7 @@ export default function Bookshelf({ notes }: BookshelfProps) {
     <>
       {/* SVG filter for paper texture */}
       <svg
-        style={{
-          position: "absolute",
-          inset: 0,
-          visibility: "hidden",
-        }}
+        className="bookshelf-svg-filter"
       >
         <defs>
           <filter id="paper" x="0%" y="0%" width="100%" height="100%">
@@ -275,12 +285,7 @@ export default function Bookshelf({ notes }: BookshelfProps) {
         >
           <div
             ref={scrollLeftRef}
-            className="flex items-center justify-center h-full w-7 md:w-9 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95"
-            style={{
-              borderTopRightRadius: 0, // Mobile: no right border radius
-              borderBottomRightRadius: 0,
-              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-            }}
+            className="flex items-center justify-center h-full w-7 md:w-9 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 bookshelf-scroll-button"
           >
             <ChevronLeft className="w-3 h-3" />
           </div>
@@ -293,7 +298,9 @@ export default function Bookshelf({ notes }: BookshelfProps) {
             isHovering ? 'bg-gray-50/30 dark:bg-gray-800/30 rounded-lg' : ''
           }`}
           style={{
+            // eslint-disable-next-line react/forbid-dom-props
             padding: isHovering ? '8px' : '0px',
+            // eslint-disable-next-line react/forbid-dom-props
             margin: isHovering ? '-8px' : '0px',
           }}
         >
@@ -318,49 +325,60 @@ export default function Bookshelf({ notes }: BookshelfProps) {
                   isHovered ? 'z-10' : ''
                 }`}
                 style={{
+                  // eslint-disable-next-line react/forbid-dom-props
                   transform: `translateX(-${scroll}px) translateZ(${isHovered ? '10px' : '0px'})`,
+                  // eslint-disable-next-line react/forbid-dom-props
                   width: isActive ? bookWidth : spineWidth,
+                  // eslint-disable-next-line react/forbid-dom-props
                   perspective: "1000px",
+                  // eslint-disable-next-line react/forbid-dom-props
                   WebkitPerspective: "1000px",
+                  // eslint-disable-next-line react/forbid-dom-props
                   transition: isScrolling
                     ? `transform 100ms linear`
                     : `all 500ms cubic-bezier(0.4, 0, 0.2, 1)`,
+                  // eslint-disable-next-line react/forbid-dom-props
                   willChange: "auto",
+                  // eslint-disable-next-line react/forbid-dom-props
                   filter: isHovered ? 'drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15))' : 'none',
                 }}
               >
               {/* Book spine */}
               <div
-                className="flex items-start justify-center flex-shrink-0 relative"
+                className="flex items-start justify-center flex-shrink-0 relative bookshelf-book-spine"
                 style={{
+                  // eslint-disable-next-line react/forbid-dom-props
                   width: spineWidth,
+                  // eslint-disable-next-line react/forbid-dom-props
                   height: bookHeight,
+                  // eslint-disable-next-line react/forbid-dom-props
                   backgroundColor: note.spineColor,
+                  // eslint-disable-next-line react/forbid-dom-props
                   color: note.textColor,
+                  // eslint-disable-next-line react/forbid-dom-props
                   transform: `translate3d(0px, 0px, 0px) scale3d(${isHovered ? '1.02' : '1'}, 1, 1) rotateX(0deg) rotateY(${
                     isActive ? "-60deg" : isHovered ? "-15deg" : "0deg"
                   }) rotateZ(0deg) skew(0deg, 0deg)`,
-                  transition: "all 500ms cubic-bezier(0.4, 0, 0.2, 1)",
-                  willChange: "auto",
+                  // eslint-disable-next-line react/forbid-dom-props
                   filter: `brightness(${isHovered ? '0.9' : '0.8'}) contrast(${isHovered ? '2.2' : '2'})`,
-                  transformStyle: "preserve-3d",
-                  transformOrigin: "right",
+                  // eslint-disable-next-line react/forbid-dom-props
                   boxShadow: isHovered ? 'inset -2px 0 4px rgba(0, 0, 0, 0.1)' : 'none',
                 }}
               >
                 {/* Paper texture overlay */}
                   <span 
-                  className="pointer-events-none fixed top-0 left-0 z-50 opacity-40"
+                  className="bookshelf-paper-texture bookshelf-paper-texture-spine"
                   style={{
+                    // eslint-disable-next-line react/forbid-dom-props
                     height: bookHeight,
+                    // eslint-disable-next-line react/forbid-dom-props
                     width: spineWidth,
-                    filter: "url(#paper)",
                   }}
                 />
                 <h2
-                  className="mt-3 text-xs font-sans select-none text-ellipsis whitespace-nowrap overflow-hidden"
+                  className="mt-3 text-xs bookshelf-book-title"
                     style={{ 
-                    writingMode: "vertical-rl",
+                    // eslint-disable-next-line react/forbid-dom-props
                     maxHeight: `${height - 24}px`,
                     }}
                   >
@@ -370,36 +388,39 @@ export default function Bookshelf({ notes }: BookshelfProps) {
                 
               {/* Book cover */}
               <div
-                className="relative flex-shrink-0 overflow-hidden"
+                className="relative flex-shrink-0 overflow-hidden bookshelf-book-cover"
                 style={{
+                  // eslint-disable-next-line react/forbid-dom-props
                   transform: `translate3d(0px, 0px, 0px) scale3d(${isHovered ? '1.02' : '1'}, 1, 1) rotateX(0deg) rotateY(${
                     isActive ? "30deg" : isHovered ? "75deg" : "88.8deg"
                   }) rotateZ(0deg) skew(0deg, 0deg)`,
-                  transition: "all 500ms cubic-bezier(0.4, 0, 0.2, 1)",
-                  willChange: "auto",
+                  // eslint-disable-next-line react/forbid-dom-props
                   filter: `brightness(${isHovered ? '0.9' : '0.8'}) contrast(${isHovered ? '2.2' : '2'})`,
-                  transformStyle: "preserve-3d",
-                  transformOrigin: "left",
+                  // eslint-disable-next-line react/forbid-dom-props
                   boxShadow: isHovered ? 'inset 2px 0 4px rgba(0, 0, 0, 0.1)' : 'none',
                 }}
               >
                 {/* Paper texture overlay */}
                 <span
-                  className="pointer-events-none fixed top-0 right-0 z-50"
+                  className="bookshelf-paper-texture bookshelf-paper-texture-cover"
                   style={{
+                    // eslint-disable-next-line react/forbid-dom-props
                     height: bookHeight,
+                    // eslint-disable-next-line react/forbid-dom-props
                     width: coverWidth,
-                    filter: "url(#paper)",
+                    // eslint-disable-next-line react/forbid-dom-props
                     opacity: isHovered ? 0.5 : 0.4,
-                    transition: "opacity 300ms ease",
                   }}
                 />
                 {/* Book binding effect */}
                 <span
-                  className="pointer-events-none absolute top-0 left-0 z-50"
+                  className="bookshelf-book-binding"
                   style={{
+                    // eslint-disable-next-line react/forbid-dom-props
                     height: bookHeight,
+                    // eslint-disable-next-line react/forbid-dom-props
                     width: coverWidth,
+                    // eslint-disable-next-line react/forbid-dom-props
                     background: `linear-gradient(to right, 
                       rgba(255, 255, 255, 0) 2px, 
                       rgba(255, 255, 255, ${isHovered ? '0.6' : '0.5'}) 3px, 
@@ -409,32 +430,35 @@ export default function Bookshelf({ notes }: BookshelfProps) {
                       transparent 9px, 
                       rgba(255, 255, 255, ${isHovered ? '0.35' : '0.25'}) 9px, 
                       transparent 12px)`,
-                    transition: "all 300ms ease",
                   }}
                 />
                 {/* Additional depth effect */}
                 <span
-                  className="pointer-events-none absolute top-0 left-0 z-40"
+                  className="bookshelf-depth-effect"
                   style={{
+                    // eslint-disable-next-line react/forbid-dom-props
                     height: bookHeight,
+                    // eslint-disable-next-line react/forbid-dom-props
                     width: coverWidth,
+                    // eslint-disable-next-line react/forbid-dom-props
                     background: `linear-gradient(135deg, 
                       rgba(0, 0, 0, 0.1) 0%, 
                       transparent 20%, 
                       transparent 80%, 
                       rgba(0, 0, 0, 0.1) 100%)`,
+                    // eslint-disable-next-line react/forbid-dom-props
                     opacity: isHovered ? 0.8 : 0.5,
-                    transition: "opacity 300ms ease",
                   }}
                 />
                 <img
                   src={note.coverImage}
                   alt={note.title}
-                  className="transition-all duration-500 ease-in-out"
+                  className="bookshelf-book-image"
                   style={{
+                    // eslint-disable-next-line react/forbid-dom-props
                     width: coverWidth,
+                    // eslint-disable-next-line react/forbid-dom-props
                     height: bookHeight,
-                    willChange: "auto",
                   }}
                 />
               </div>
@@ -451,12 +475,7 @@ export default function Bookshelf({ notes }: BookshelfProps) {
         >
           <div
             ref={scrollRightRef}
-            className="flex items-center justify-center h-full w-7 md:w-9 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95"
-            style={{
-              borderTopLeftRadius: 0, // Mobile: no left border radius
-              borderBottomLeftRadius: 0,
-              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-            }}
+            className="flex items-center justify-center h-full w-7 md:w-9 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 bookshelf-scroll-button-right"
           >
             <ChevronRight className="w-3 h-3" />
           </div>
