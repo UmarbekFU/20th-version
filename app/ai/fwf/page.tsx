@@ -9,7 +9,6 @@ export default function FreeWillFallacyPage() {
       title="Free will fallacy"
       date="Dec 20"
       twitterTitle="Free will fallacy"
-      showBackLink={true}
     >
       <AtomicParagraph size="xl">
         Stephen Hawking says free will is illusion. We're atoms. Atoms follow rigid laws. Therefore we have no choice.
