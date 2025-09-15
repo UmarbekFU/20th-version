@@ -23,7 +23,11 @@ export default function HomePage() {
               </p>
               
               <p>
-                I write <Link href="/essays" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors underline decoration-blue-300 dark:decoration-blue-600 hover:decoration-blue-500 dark:hover:decoration-blue-400">essays</Link> when I try to explain something to myself. My <Link href="/ai" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors underline decoration-blue-300 dark:decoration-blue-600 hover:decoration-blue-500 dark:hover:decoration-blue-400">atomic ideas</Link> are half-formed thoughts I'm working through.
+                I write <Link href="/essays" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors underline decoration-blue-300 dark:decoration-blue-600 hover:decoration-blue-500 dark:hover:decoration-blue-400">essays</Link> when I try to explain something to myself.
+              </p>
+              
+              <p>
+                My <Link href="/ai" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors underline decoration-blue-300 dark:decoration-blue-600 hover:decoration-blue-500 dark:hover:decoration-blue-400">atomic ideas</Link> are half-formed thoughts I'm working through.
               </p>
               
               <p>
@@ -40,11 +44,15 @@ export default function HomePage() {
               </p>
               
               <p>
-                I <Link href="/notes" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors underline decoration-blue-300 dark:decoration-blue-600 hover:decoration-blue-500 dark:hover:decoration-blue-400">take notes</Link> when I read. Not polished summaries, just the parts that made me stop and think. I <Link href="/list" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors underline decoration-blue-300 dark:decoration-blue-600 hover:decoration-blue-500 dark:hover:decoration-blue-400">list everything I consume</Link>—books, films, podcasts etc.
+                I take <Link href="/notes" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors underline decoration-blue-300 dark:decoration-blue-600 hover:decoration-blue-500 dark:hover:decoration-blue-400">notes</Link> when I read. Not polished summaries, just the parts that made me stop and think.
               </p>
               
               <p>
-                If you care about <Link href="/uses" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors underline decoration-blue-300 dark:decoration-blue-600 hover:decoration-blue-500 dark:hover:decoration-blue-400">tools I use</Link>, I keep that updated.
+                I <Link href="/list" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors underline decoration-blue-300 dark:decoration-blue-600 hover:decoration-blue-500 dark:hover:decoration-blue-400">list</Link> everything I consume—books, films, podcasts etc.
+              </p>
+              
+              <p>
+                If you care about tools I <Link href="/uses" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors underline decoration-blue-300 dark:decoration-blue-600 hover:decoration-blue-500 dark:hover:decoration-blue-400">use</Link>, I keep that updated.
               </p>
               
               <p>
