@@ -24,7 +24,7 @@ export default function StartPage() {
 
           {/* Welcome Message */}
           <div className="prose prose-lg dark:prose-invert max-w-none mb-12">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">Greetings, friend!</h2>
+            <p className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">Greetings, friend!</p>
             <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
               Welcome to my website, my home on the interwebs. I'm Umarbek. I <Link href="/projects" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">build tools</Link> and <Link href="/essays" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">write essays</Link>. And I love meeting new people. <Link href="/contact" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">Say hello!</Link>
             </p>
