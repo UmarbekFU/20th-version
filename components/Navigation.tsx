@@ -46,6 +46,12 @@ export default function Navigation() {
   }, [openSearch])
 
   const goBack = () => {
+    // If we're on the start page, always go to home
+    if (pathname === '/start') {
+      router.push('/')
+      return
+    }
+    
     if (typeof window !== 'undefined') {
       const referrer = document.referrer
       const isFromSameSite = referrer && referrer.includes(window.location.hostname)
