@@ -34,6 +34,25 @@ export default function AboutPage() {
               </p>
             </section>
             
+            {/* How I Work */}
+            <section className="space-y-6">
+              <p className="mb-6">
+                I <Link href="/notes" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors underline decoration-gray-300 dark:decoration-gray-600 hover:decoration-blue-400 dark:hover:decoration-blue-500">take notes</Link> when I read. Not polished summaries, just the parts that made me stop and think.
+              </p>
+              
+              <p className="mb-6">
+                I <Link href="/list" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors underline decoration-gray-300 dark:decoration-gray-600 hover:decoration-blue-400 dark:hover:decoration-blue-500">list everything I consume</Link>—books, films, podcasts etc.
+              </p>
+              
+              <p className="mb-6">
+                If you care about <Link href="/uses" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors underline decoration-gray-300 dark:decoration-gray-600 hover:decoration-blue-400 dark:hover:decoration-blue-500">tools I use</Link>, I keep that updated.
+              </p>
+              
+              <p className="mb-6">
+                You can find screenshots that made me think, code snippets I might need later, memes that contain truth on <Link href="/scrapbook" className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors underline decoration-gray-300 dark:decoration-gray-600 hover:decoration-blue-400 dark:hover:decoration-blue-500">scrapbook</Link>.
+              </p>
+            </section>
+            
             {/* My Favorite Days */}
             <section>
               <p>
