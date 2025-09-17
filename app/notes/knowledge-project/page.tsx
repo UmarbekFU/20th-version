@@ -1,5 +1,4 @@
 import Navigation from '@/components/Navigation'
-import PlumBackground from '@/components/PlumBackground'
 import { Lora } from 'next/font/google'
 import { noteMetadata } from './metadata'
 
@@ -8,7 +7,6 @@ const lora = Lora({ subsets: ['latin'], display: 'swap' })
 export default function KnowledgeProjectPage() {
   return (
     <>
-      <PlumBackground />
       <Navigation />
       <main className="min-h-screen pt-32">
         <div className="max-w-4xl mx-auto px-8">

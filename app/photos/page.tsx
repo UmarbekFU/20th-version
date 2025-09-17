@@ -1,6 +1,4 @@
 import Navigation from '@/components/Navigation'
-import PlumBackground from '@/components/PlumBackground'
-
 type Photo = {
   id: number
   src: string
@@ -64,7 +62,6 @@ export default function PhotosPage() {
 
   return (
     <>
-      <PlumBackground />
       <Navigation />
       <main className="min-h-screen pt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

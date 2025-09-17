@@ -1,6 +1,6 @@
 import Navigation from '@/components/Navigation'
-import PlumBackground from '@/components/PlumBackground'
 import { NotesTabs } from '@/components/NotesTabs'
+import PageErrorBoundary from '@/components/PageErrorBoundary'
 import fs from 'fs'
 import path from 'path'
 
@@ -97,7 +97,6 @@ export default function NotesPage() {
 
   return (
     <>
-      <PlumBackground />
       <Navigation />
       <main className="min-h-screen pt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -108,7 +107,9 @@ export default function NotesPage() {
               
           {/* Sliding Tabs for All Content Types */}
           <div className="notes-content">
-            <NotesTabs books={books} podcasts={podcasts} courses={courses} />
+            <PageErrorBoundary pageName="Notes">
+              <NotesTabs books={books} podcasts={podcasts} courses={courses} />
+            </PageErrorBoundary>
           </div>
 
         </div>

@@ -164,9 +164,8 @@ describe('/api/search', () => {
     const response = await GET(request)
     const data = await response.json()
 
-    expect(response.status).toBe(200)
-    expect(data.results).toBeDefined()
-    expect(Array.isArray(data.results)).toBe(true)
-    expect(data.error).toBeNull()
+    expect(response.status).toBe(400)
+    expect(data.results).toEqual([])
+    expect(data.error).toBe('Search query too long')
   })
 })

@@ -1,11 +1,9 @@
 import Navigation from '@/components/Navigation'
-import PlumBackground from '@/components/PlumBackground'
 import Link from 'next/link'
 
 export default function HomePage() {
   return (
     <>
-      <PlumBackground />
       <Navigation />
       
       {/* Main Content */}

@@ -1,22 +1,24 @@
 import Navigation from '@/components/Navigation'
-import PlumBackground from '@/components/PlumBackground'
 import { Mail, MessageCircle, Github, Linkedin, Twitter, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function StartPage() {
   return (
     <>
-      <PlumBackground />
       <Navigation />
       <main className="min-h-screen pt-32">
         <div className="max-w-2xl mx-auto px-8">
           {/* Header */}
           <div className="text-center mb-12">
             <div className="w-24 h-24 rounded-full mx-auto mb-6 overflow-hidden ring-4 ring-gray-200 dark:ring-gray-700">
-              <img
+              <Image
                 src="/profile.jpg"
                 alt="Umarbek Fazliddinovich"
+                width={96}
+                height={96}
                 className="w-full h-full object-cover"
+                priority
               />
             </div>
             <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">Umarbek</h1>

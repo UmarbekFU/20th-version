@@ -1,6 +1,4 @@
 import Navigation from '@/components/Navigation'
-import PlumBackground from '@/components/PlumBackground'
-
 export default function PodcastsListPage() {
   // My actual podcasts with ratings
   const podcasts = [
@@ -38,7 +36,6 @@ export default function PodcastsListPage() {
 
   return (
     <>
-      <PlumBackground />
       <Navigation />
       <main className="min-h-screen pt-32">
         <div className="max-w-4xl mx-auto px-8">

@@ -35,21 +35,46 @@ async function loadSearchIndex(): Promise<SearchResult[]> {
       if (fs.existsSync(indexPath)) {
         const indexData = fs.readFileSync(indexPath, 'utf-8')
         const searchIndex: SearchIndex = JSON.parse(indexData)
+        
+        // Validate search index structure
+        if (!searchIndex.pages || !Array.isArray(searchIndex.pages)) {
+          throw new Error('Invalid search index structure')
+        }
+        
         return searchIndex.pages
       }
     }
     
     // In production, fetch from public URL
-    const response = await fetch('/search-index.json')
-    if (response.ok) {
-      const searchIndex: SearchIndex = await response.json()
-      return searchIndex.pages
+    const response = await fetch('/search-index.json', {
+      headers: {
+        'Cache-Control': 'no-cache'
+      }
+    })
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch search index: ${response.status} ${response.statusText}`)
     }
     
-    throw new Error('Failed to load search index')
+    const searchIndex: SearchIndex = await response.json()
+    
+    // Validate search index structure
+    if (!searchIndex.pages || !Array.isArray(searchIndex.pages)) {
+      throw new Error('Invalid search index structure')
+    }
+    
+    return searchIndex.pages
   } catch (error) {
-    console.warn('Could not load search index, falling back to empty results:', error)
-    return []
+    console.error('Search index loading failed:', error)
+    // Return a minimal fallback instead of empty array
+    return [{
+      path: '/',
+      title: 'Homepage',
+      description: 'Umarbek\'s personal website',
+      content: 'Welcome to Umarbek\'s website',
+      score: 0,
+      matches: []
+    }]
   }
 }
 

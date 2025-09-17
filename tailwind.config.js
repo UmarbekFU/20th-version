@@ -40,6 +40,10 @@ module.exports = {
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
       },
+      backgroundImage: {
+        'gradient-radial-98': 'radial-gradient(ellipse at bottom left, #ffffff 0%, #fefefe 70%, #88888855 98%)',
+        'gradient-radial-85': 'radial-gradient(ellipse at bottom left, #ffffff 0%, #fefefe 70%, #88888855 85%)',
+      },
     },
   },
   plugins: [],

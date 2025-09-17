@@ -1,6 +1,4 @@
 import Navigation from '@/components/Navigation'
-import PlumBackground from '@/components/PlumBackground'
-
 export default function MoviesListPage() {
   // My actual movies with ratings
   const movies = [
@@ -194,7 +192,6 @@ export default function MoviesListPage() {
 
   return (
     <>
-      <PlumBackground />
       <Navigation />
       <main className="min-h-screen pt-32">
         <div className="max-w-4xl mx-auto px-8">

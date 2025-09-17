@@ -318,7 +318,7 @@
 
   .scrollbar-hide {
     -ms-overflow-style: none;
-    scrollbar-width: none;
+    /* scrollbar-width: none; */ /* Not supported in older browsers */
   }
 
   .scrollbar-hide::-webkit-scrollbar {
@@ -379,5 +379,63 @@
   @keyframes plumShift {
     0% { transform: translateX(0px); }
     100% { transform: translateX(20px); }
+  }
+
+  /* UnoCSS-like utility classes for backgrounds */
+  .z--1 {
+    z-index: -1;
+  }
+
+  .op-50 {
+    opacity: 0.5;
+  }
+
+  .op-100 {
+    opacity: 1;
+  }
+
+  .op-0 {
+    opacity: 0;
+  }
+
+  .w-200px {
+    width: 200px;
+  }
+
+  .h-200px {
+    height: 200px;
+  }
+
+  .translate--50\% {
+    transform: translate(-50%, -50%);
+  }
+
+  .left-50\% {
+    left: 50%;
+  }
+
+  .transition-\(transform\s+duration-60000\s+ease-out\) {
+    transition: transform 60000ms ease-out;
+  }
+
+  .origin-bottom-center {
+    transform-origin: bottom center;
+  }
+
+  /* Rose petal styling */
+  .petal::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: solid 0.6px #22222260;
+    border-radius: 50% 35% 35% 50% / 45% 10% 45% 10%;
+    background-image: radial-gradient(ellipse at bottom left, #ffffff 0%, #fefefe 70%, #88888855 98%);
+    transform: rotate(-45deg);
+  }
+
+  .dark .petal::before {
+    border: solid 0.8px #88888860;
+    background-image: radial-gradient(ellipse at bottom left, #ffffff 0%, #fefefe 70%, #88888855 85%);
   }
 }

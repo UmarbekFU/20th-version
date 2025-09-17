@@ -1,5 +1,4 @@
 import Navigation from '@/components/Navigation'
-import PlumBackground from '@/components/PlumBackground'
 import TwitterComments from '@/components/TwitterComments'
 import Link from 'next/link'
 import { generateMetadata as genMeta } from '@/lib/metadata'
@@ -9,7 +8,6 @@ export const metadata = genMeta('/ai/emf/uz')
 export default function EverythingIsMyFaultUzbekPage() {
   return (
     <>
-      <PlumBackground />
       <Navigation />
       <main className="min-h-screen pt-32">
         <div className="max-w-3xl mx-auto px-8">

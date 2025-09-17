@@ -1,5 +1,4 @@
 import Navigation from '@/components/Navigation'
-import PlumBackground from '@/components/PlumBackground'
 import { notFound } from 'next/navigation'
 import { Lora } from 'next/font/google'
 import fs from 'fs'
@@ -113,7 +112,6 @@ export default function NotePage({ params }: NotePageProps) {
 
   return (
     <>
-      <PlumBackground />
       <Navigation />
       <main className="min-h-screen pt-32">
         <div className="max-w-4xl mx-auto px-8">

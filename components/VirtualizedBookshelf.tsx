@@ -103,11 +103,7 @@ export default function VirtualizedBookshelf({
       <>
         {/* SVG filter for paper texture */}
         <svg
-          style={{
-            position: "absolute",
-            inset: 0,
-            visibility: "hidden",
-          }}
+          className="bookshelf-svg-filter"
         >
           <defs>
             <filter id="paper" x="0%" y="0%" width="100%" height="100%">
@@ -163,7 +159,7 @@ export default function VirtualizedBookshelf({
               >
                 {/* Book spine */}
                 <div
-                  className="flex items-start justify-center flex-shrink-0 relative"
+                  className="bookshelf-book-spine flex items-start justify-center flex-shrink-0 relative"
                   style={{
                     width: `${itemWidth}px`,
                     height: `${height}px`,
@@ -172,27 +168,21 @@ export default function VirtualizedBookshelf({
                     transform: `translate3d(0px, 0px, 0px) scale3d(${isHovered ? '1.02' : '1'}, 1, 1) rotateX(0deg) rotateY(${
                       isActive ? "-60deg" : isHovered ? "-15deg" : "0deg"
                     }) rotateZ(0deg) skew(0deg, 0deg)`,
-                    transition: "all 500ms cubic-bezier(0.4, 0, 0.2, 1)",
-                    willChange: "auto",
                     filter: `brightness(${isHovered ? '0.9' : '0.8'}) contrast(${isHovered ? '2.2' : '2'})`,
-                    transformStyle: "preserve-3d",
-                    transformOrigin: "right",
                     boxShadow: isHovered ? 'inset -2px 0 4px rgba(0, 0, 0, 0.1)' : 'none',
                   }}
                 >
                   {/* Paper texture overlay */}
                   <span 
-                    className="pointer-events-none fixed top-0 left-0 z-50 opacity-40"
+                    className="bookshelf-paper-texture bookshelf-paper-texture-spine"
                     style={{
                       height: `${height}px`,
                       width: `${itemWidth}px`,
-                      filter: "url(#paper)",
                     }}
                   />
                   <h2
-                    className="mt-3 text-xs font-sans select-none text-ellipsis whitespace-nowrap overflow-hidden"
+                    className="bookshelf-book-title mt-3 text-xs"
                     style={{ 
-                      writingMode: "vertical-rl",
                       maxHeight: `${height - 24}px`,
                     }}
                   >
@@ -202,33 +192,27 @@ export default function VirtualizedBookshelf({
                 
                 {/* Book cover */}
                 <div
-                  className="relative flex-shrink-0 overflow-hidden"
+                  className="bookshelf-book-cover relative flex-shrink-0 overflow-hidden"
                   style={{
                     transform: `translate3d(0px, 0px, 0px) scale3d(${isHovered ? '1.02' : '1'}, 1, 1) rotateX(0deg) rotateY(${
                       isActive ? "30deg" : isHovered ? "75deg" : "88.8deg"
                     }) rotateZ(0deg) skew(0deg, 0deg)`,
-                    transition: "all 500ms cubic-bezier(0.4, 0, 0.2, 1)",
-                    willChange: "auto",
                     filter: `brightness(${isHovered ? '0.9' : '0.8'}) contrast(${isHovered ? '2.2' : '2'})`,
-                    transformStyle: "preserve-3d",
-                    transformOrigin: "left",
                     boxShadow: isHovered ? 'inset 2px 0 4px rgba(0, 0, 0, 0.1)' : 'none',
                   }}
                 >
                   {/* Paper texture overlay */}
                   <span
-                    className="pointer-events-none fixed top-0 right-0 z-50"
+                    className="bookshelf-paper-texture bookshelf-paper-texture-cover"
                     style={{
                       height: `${height}px`,
                       width: `${itemWidth * 4}px`,
-                      filter: "url(#paper)",
                       opacity: isHovered ? 0.5 : 0.4,
-                      transition: "opacity 300ms ease",
                     }}
                   />
                   {/* Book binding effect */}
                   <span
-                    className="pointer-events-none absolute top-0 left-0 z-50"
+                    className="bookshelf-book-binding"
                     style={{
                       height: `${height}px`,
                       width: `${itemWidth * 4}px`,
@@ -241,12 +225,11 @@ export default function VirtualizedBookshelf({
                         transparent 9px, 
                         rgba(255, 255, 255, ${isHovered ? '0.35' : '0.25'}) 9px, 
                         transparent 12px)`,
-                      transition: "all 300ms ease",
                     }}
                   />
                   {/* Additional depth effect */}
                   <span
-                    className="pointer-events-none absolute top-0 left-0 z-40"
+                    className="bookshelf-depth-effect"
                     style={{
                       height: `${height}px`,
                       width: `${itemWidth * 4}px`,
@@ -256,17 +239,15 @@ export default function VirtualizedBookshelf({
                         transparent 80%, 
                         rgba(0, 0, 0, 0.1) 100%)`,
                       opacity: isHovered ? 0.8 : 0.5,
-                      transition: "opacity 300ms ease",
                     }}
                   />
                   <img
                     src={note.coverImage}
                     alt={note.title}
-                    className="transition-all duration-500 ease-in-out"
+                    className="bookshelf-book-image"
                     style={{
                       width: `${itemWidth * 4}px`,
                       height: `${height}px`,
-                      willChange: "auto",
                     }}
                   />
                 </div>
@@ -452,11 +433,7 @@ export default function VirtualizedBookshelf({
     <>
       {/* SVG filter for paper texture */}
       <svg
-        style={{
-          position: "absolute",
-          inset: 0,
-          visibility: "hidden",
-        }}
+        className="bookshelf-svg-filter"
       >
         <defs>
           <filter id="paper" x="0%" y="0%" width="100%" height="100%">
@@ -492,12 +469,7 @@ export default function VirtualizedBookshelf({
         >
           <div
             ref={scrollLeftRef}
-            className="flex items-center justify-center h-full w-7 md:w-9 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95"
-            style={{
-              borderTopRightRadius: 0, // Mobile: no right border radius
-              borderBottomRightRadius: 0,
-              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-            }}
+            className="bookshelf-scroll-button flex items-center justify-center h-full w-7 md:w-9 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95"
           >
             <ChevronLeft className="w-3 h-3" />
           </div>
@@ -682,12 +654,7 @@ export default function VirtualizedBookshelf({
         >
           <div
             ref={scrollRightRef}
-            className="flex items-center justify-center h-full w-7 md:w-9 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95"
-            style={{
-              borderTopLeftRadius: 0, // Mobile: no left border radius
-              borderBottomLeftRadius: 0,
-              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-            }}
+            className="bookshelf-scroll-button-right flex items-center justify-center h-full w-7 md:w-9 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95"
           >
             <ChevronRight className="w-3 h-3" />
           </div>

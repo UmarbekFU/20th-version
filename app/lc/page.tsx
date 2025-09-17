@@ -1,7 +1,6 @@
 'use client'
 
 import Navigation from '@/components/Navigation'
-import PlumBackground from '@/components/PlumBackground'
 import { useState, useEffect } from 'react'
 
 export default function LifeCalendarPage() {
@@ -79,7 +78,6 @@ export default function LifeCalendarPage() {
 
   return (
     <>
-      <PlumBackground />
       <Navigation />
       <main className="min-h-screen pt-32">
         <div className="max-w-6xl mx-auto px-8">

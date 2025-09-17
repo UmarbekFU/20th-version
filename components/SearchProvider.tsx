@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, ReactNode } from 'react'
 import Search from './Search'
+import PageErrorBoundary from './PageErrorBoundary'
 
 interface SearchContextType {
   isSearchOpen: boolean
@@ -32,7 +33,9 @@ export default function SearchProvider({ children }: SearchProviderProps) {
   return (
     <SearchContext.Provider value={{ isSearchOpen, openSearch, closeSearch }}>
       {children}
-      <Search isOpen={isSearchOpen} onClose={closeSearch} />
+      <PageErrorBoundary pageName="Search">
+        <Search isOpen={isSearchOpen} onClose={closeSearch} />
+      </PageErrorBoundary>
     </SearchContext.Provider>
   )
 }

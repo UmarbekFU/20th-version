@@ -6,7 +6,7 @@ import StructuredData from '@/components/StructuredData'
 import ProgressBar from '@/components/ProgressBar'
 import SearchProvider from '@/components/SearchProvider'
 import ErrorBoundary from '@/components/ErrorBoundary'
-import ServiceWorkerRegistration from '@/components/ServiceWorkerRegistration'
+import BackgroundSwitcher from '@/components/BackgroundSwitcher'
 
 const inter = Inter({ subsets: ['latin'] })
 const lora = Lora({ subsets: ['latin'], display: 'swap' })
@@ -59,6 +59,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} antialiased`}>
         <ErrorBoundary>
+          <BackgroundSwitcher />
           <ProgressBar />
           <ThemeProvider>
             <SearchProvider>
@@ -66,7 +67,6 @@ export default function RootLayout({
             </SearchProvider>
           </ThemeProvider>
           <StructuredData />
-          <ServiceWorkerRegistration />
         </ErrorBoundary>
       </body>
     </html>

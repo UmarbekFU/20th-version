@@ -1,12 +1,10 @@
 import Navigation from '@/components/Navigation'
-import PlumBackground from '@/components/PlumBackground'
 import { Mail, MessageCircle } from 'lucide-react'
 import Link from 'next/link'
 
 export default function ContactPage() {
   return (
     <>
-      <PlumBackground />
       <Navigation />
       <main className="min-h-screen pt-32">
         <div className="max-w-3xl mx-auto px-8">

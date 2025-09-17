@@ -1,6 +1,4 @@
 import Navigation from '@/components/Navigation'
-import PlumBackground from '@/components/PlumBackground'
-
 export default function TweetsPage() {
   // My actual tweets
   const tweets = [
@@ -133,7 +131,6 @@ export default function TweetsPage() {
 
   return (
     <>
-      <PlumBackground />
       <Navigation />
       <main className="min-h-screen pt-32">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

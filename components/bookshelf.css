@@ -89,8 +89,10 @@
 .bookshelf-book-title {
   writing-mode: vertical-rl;
   font-family: ui-sans-serif, system-ui, sans-serif;
+  -webkit-user-select: none;
   user-select: none;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
+

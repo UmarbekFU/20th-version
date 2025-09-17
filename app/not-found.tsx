@@ -1,11 +1,8 @@
 import Link from 'next/link'
 import Navigation from '@/components/Navigation'
-import PlumBackground from '@/components/PlumBackground'
-
 export default function NotFound() {
   return (
     <>
-      <PlumBackground />
       <Navigation />
       <main className="min-h-screen pt-32 flex items-center justify-center">
         <div className="text-center max-w-2xl mx-auto px-8">

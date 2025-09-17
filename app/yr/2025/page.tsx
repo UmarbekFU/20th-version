@@ -1,10 +1,7 @@
 import Navigation from '@/components/Navigation'
-import PlumBackground from '@/components/PlumBackground'
-
 export default function YearReview2025Page() {
   return (
     <>
-      <PlumBackground />
       <Navigation />
       <main className="min-h-screen pt-32">
         <div className="max-w-3xl mx-auto px-8">

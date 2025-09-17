@@ -11,14 +11,18 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "generate-search-index": "node scripts/generate-search-index.mjs",
-    "test:performance": "node scripts/performance-test.mjs"
+    "test:performance": "node scripts/performance-test.mjs",
+    "analyze": "ANALYZE=true npm run build",
+    "bundle-size": "npx @next/bundle-analyzer"
   },
   "dependencies": {
     "@types/nprogress": "^0.2.3",
+    "@types/p5": "^1.7.6",
     "critters": "^0.0.25",
     "lucide-react": "^0.542.0",
     "next": "14.2.32",
     "nprogress": "^0.2.0",
+    "p5": "^2.0.5",
     "react": "^18",
     "react-dom": "^18"
   },

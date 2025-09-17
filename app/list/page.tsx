@@ -1,5 +1,4 @@
 import Navigation from '@/components/Navigation'
-import PlumBackground from '@/components/PlumBackground'
 import Link from 'next/link'
 
 export default function ListPage() {
@@ -26,7 +25,6 @@ export default function ListPage() {
 
   return (
     <>
-      <PlumBackground />
       <Navigation />
       <main className="min-h-screen pt-32">
         <div className="max-w-4xl mx-auto px-8">

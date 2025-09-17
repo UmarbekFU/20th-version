@@ -1,6 +1,4 @@
 import Navigation from '@/components/Navigation'
-import PlumBackground from '@/components/PlumBackground'
-
 export default function ThingsIOwnPage() {
   // My actual items
   const items = [
@@ -21,7 +19,6 @@ export default function ThingsIOwnPage() {
 
   return (
     <>
-      <PlumBackground />
       <Navigation />
       <main className="min-h-screen pt-32">
         <div className="max-w-4xl mx-auto px-8">
