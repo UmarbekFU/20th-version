@@ -40,6 +40,9 @@ export default function Search({ isOpen, onClose }: SearchProps) {
   const [isSearching, setIsSearching] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [abortController, setAbortController] = useState<AbortController | null>(null)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(0)
+  const [totalResults, setTotalResults] = useState(0)
   const router = useRouter()
 
   // Keyboard shortcuts
@@ -54,11 +57,14 @@ export default function Search({ isOpen, onClose }: SearchProps) {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [isOpen])
 
-  // Search function
-  const performSearch = async (searchQuery: string) => {
+  // Search function with pagination
+  const performSearch = async (searchQuery: string, page: number = 1) => {
     if (!searchQuery.trim() || searchQuery.length < 2) {
       setResults([])
       setError(null)
+      setTotalPages(0)
+      setTotalResults(0)
+      setCurrentPage(1)
       return
     }
 
@@ -74,7 +80,7 @@ export default function Search({ isOpen, onClose }: SearchProps) {
     setError(null)
     
     try {
-      const response = await fetch(`/api/search?q=${encodeURIComponent(searchQuery)}`, {
+      const response = await fetch(`/api/search?q=${encodeURIComponent(searchQuery)}&page=${page}&limit=10`, {
         signal: controller.signal
       })
       
@@ -89,6 +95,9 @@ export default function Search({ isOpen, onClose }: SearchProps) {
       }
       
       setResults(data.results || [])
+      setTotalPages(data.totalPages || 0)
+      setTotalResults(data.totalResults || 0)
+      setCurrentPage(data.currentPage || 1)
     } catch (error) {
       if (error instanceof Error && error.name === 'AbortError') {
         return
@@ -96,6 +105,9 @@ export default function Search({ isOpen, onClose }: SearchProps) {
       console.error('Search error:', error)
       setResults([])
       setError('Search temporarily unavailable')
+      setTotalPages(0)
+      setTotalResults(0)
+      setCurrentPage(1)
     } finally {
       setIsSearching(false)
       setAbortController(null)
@@ -106,9 +118,13 @@ export default function Search({ isOpen, onClose }: SearchProps) {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (query) {
-        performSearch(query)
+        setCurrentPage(1) // Reset to first page when query changes
+        performSearch(query, 1)
       } else {
         setResults([])
+        setTotalPages(0)
+        setTotalResults(0)
+        setCurrentPage(1)
       }
     }, 300)
 
@@ -124,6 +140,9 @@ export default function Search({ isOpen, onClose }: SearchProps) {
     setQuery('')
     setResults([])
     setError(null)
+    setCurrentPage(1)
+    setTotalPages(0)
+    setTotalResults(0)
     onClose()
   }
 
@@ -182,7 +201,8 @@ export default function Search({ isOpen, onClose }: SearchProps) {
             {!isSearching && results.length > 0 && (
               <div className="space-y-2">
                 <div className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-                  Found {results.length} result{results.length !== 1 ? 's' : ''}
+                  Found {totalResults} result{totalResults !== 1 ? 's' : ''} 
+                  {totalPages > 1 && ` (page ${currentPage} of ${totalPages})`}
                 </div>
                 {results.map((result) => (
                   <div
@@ -201,6 +221,29 @@ export default function Search({ isOpen, onClose }: SearchProps) {
                     </p>
                   </div>
                 ))}
+                
+                {/* Pagination Controls */}
+                {totalPages > 1 && (
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <button
+                      onClick={() => performSearch(query, currentPage - 1)}
+                      disabled={currentPage <= 1}
+                      className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      Previous
+                    </button>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">
+                      Page {currentPage} of {totalPages}
+                    </span>
+                    <button
+                      onClick={() => performSearch(query, currentPage + 1)}
+                      disabled={currentPage >= totalPages}
+                      className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-200 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      Next
+                    </button>
+                  </div>
+                )}
               </div>
             )}
 

@@ -28,24 +28,20 @@ afterAll(() => {
 })
 
 describe('/api/random', () => {
-  it('should redirect to a valid page', async () => {
+  it('should return a valid page', async () => {
     const request = createMockRequest()
     const response = await GET(request)
+    const data = await response.json()
 
-    expect(response.status).toBe(307) // Temporary redirect
-    expect(response.headers.get('location')).toBeDefined()
+    expect(response.status).toBe(200)
+    expect(data.page).toBeDefined()
+    expect(data.success).toBe(true)
   })
 
-  it('should redirect to a page from the allowed list', async () => {
+  it('should return a page from the allowed list', async () => {
     const request = createMockRequest()
     const response = await GET(request)
-    
-    const location = response.headers.get('location')
-    expect(location).toBeDefined()
-    
-    // Extract path from full URL
-    const url = new URL(location!)
-    const path = url.pathname
+    const data = await response.json()
     
     const allowedPages = [
       '/essays', '/projects', '/notes', '/ai', '/list', '/uses', '/scrapbook',
@@ -53,7 +49,7 @@ describe('/api/random', () => {
       '/yr', '/secret', '/disclaimer', '/contact', '/about', '/now', '/more'
     ]
     
-    expect(allowedPages).toContain(path)
+    expect(allowedPages).toContain(data.page)
   })
 
   it('should handle multiple requests without errors', async () => {
@@ -68,13 +64,15 @@ describe('/api/random', () => {
       GET(request)
     ])
 
-    responses.forEach(response => {
-      expect(response.status).toBe(307)
-      expect(response.headers.get('location')).toBeDefined()
+    responses.forEach(async response => {
+      expect(response.status).toBe(200)
+      const data = await response.json()
+      expect(data.page).toBeDefined()
+      expect(data.success).toBe(true)
     })
   })
 
-  it('should have different redirects on multiple calls', async () => {
+  it('should have different pages on multiple calls', async () => {
     const request = createMockRequest()
     
     const responses = await Promise.all([
@@ -85,10 +83,13 @@ describe('/api/random', () => {
       GET(request)
     ])
 
-    const locations = responses.map(response => response.headers.get('location'))
+    const pages = await Promise.all(responses.map(async response => {
+      const data = await response.json()
+      return data.page
+    }))
     
     // At least one should be different (very high probability with 20+ pages)
-    const uniqueLocations = new Set(locations)
-    expect(uniqueLocations.size).toBeGreaterThan(1)
+    const uniquePages = new Set(pages)
+    expect(uniquePages.size).toBeGreaterThan(1)
   })
 })

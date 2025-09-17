@@ -76,18 +76,22 @@ export function clearSearchCache(): void {
   console.log('Search cache cleared')
 }
 
-// Main search function - maintains exact same API as original
-export async function searchContent(query: string): Promise<SearchResult[]> {
+// Main search function with pagination support
+export async function searchContent(
+  query: string, 
+  page: number = 1, 
+  limit: number = 10
+): Promise<{ results: SearchResult[], totalResults: number, totalPages: number, currentPage: number }> {
   const searchIndex = await getSearchIndex()
   
   if (!query || query.length < 2) {
-    return []
+    return { results: [], totalResults: 0, totalPages: 0, currentPage: 1 }
   }
   
   const queryWords = query.split(/\s+/).filter(word => word.length >= 2)
   
   if (queryWords.length === 0) {
-    return []
+    return { results: [], totalResults: 0, totalPages: 0, currentPage: 1 }
   }
   
   const results: SearchResult[] = searchIndex.map(page => {
@@ -142,14 +146,21 @@ export async function searchContent(query: string): Promise<SearchResult[]> {
     }
   })
   
-  return results
-    .filter(result => result.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 10)
+  const filteredResults = results.filter(result => result.score > 0)
+  const sortedResults = filteredResults.sort((a, b) => b.score - a.score)
+  
+  const totalResults = sortedResults.length
+  const totalPages = Math.ceil(totalResults / limit)
+  const startIndex = (page - 1) * limit
+  const endIndex = startIndex + limit
+  const paginatedResults = sortedResults.slice(startIndex, endIndex)
+  
+  return {
+    results: paginatedResults,
+    totalResults,
+    totalPages,
+    currentPage: page
+  }
 }
 
-// Backward compatibility: sync version for existing code
-export function searchContentSync(query: string): SearchResult[] {
-  console.warn('searchContentSync is deprecated, use searchContent instead')
-  return []
-}
+// Removed deprecated searchContentSync function - use searchContent instead
