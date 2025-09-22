@@ -181,8 +181,8 @@ export default function SelfHostedNewsletterTutorialPage() {
                     </p>
                     <div className="bg-gray-900 dark:bg-gray-800 rounded-lg p-4">
                       <code className="text-green-400 text-sm">
-                        git clone https://github.com/your-username/self-hosted-newsletter.git<br/>
-                        cd self-hosted-newsletter<br/>
+                        git clone https://github.com/UmarbekFU/self-host.git<br/>
+                        cd self-host<br/>
                         cp .env.example .env
                       </code>
                     </div>
@@ -563,10 +563,20 @@ export default function SelfHostedNewsletterTutorialPage() {
                   <p className="text-blue-800 dark:text-blue-200 text-sm mb-4">
                     The complete self-hosted newsletter platform is available on GitHub with full documentation.
                   </p>
-                  <div className="bg-gray-900 dark:bg-gray-800 rounded-lg p-3">
+                  <div className="bg-gray-900 dark:bg-gray-800 rounded-lg p-3 mb-4">
                     <code className="text-green-400 text-sm">
-                      git clone https://github.com/your-username/self-hosted-newsletter.git
+                      git clone https://github.com/UmarbekFU/self-host.git
                     </code>
+                  </div>
+                  <div className="text-center">
+                    <a 
+                      href="https://github.com/UmarbekFU/self-host" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 transition-colors text-sm font-medium"
+                    >
+                      View on GitHub →
+                    </a>
                   </div>
                 </div>
                 
