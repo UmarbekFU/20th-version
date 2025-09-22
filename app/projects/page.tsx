@@ -49,6 +49,48 @@ export default function ProjectsPage() {
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <Link 
+                      href="/projects/newspaper" 
+                      className="text-2xl font-semibold text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-sans"
+                    >
+                      Self-Hosted Newsletter Platform
+                    </Link>
+                    <span className="text-sm text-green-600 dark:text-green-400 font-medium font-sans">
+                      Production Ready
+                    </span>
+                  </div>
+                  <p className="text-gray-700 dark:text-gray-300 mb-4 text-lg font-sans">
+                    Complete self-hosted newsletter platform with email deliverability optimization. 
+                    Own your audience data, control your costs, master email deliverability with a comprehensive tutorial.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-2">
+                    <span className="text-sm text-gray-500 dark:text-gray-400 font-sans">
+                      Go
+                    </span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400 font-sans">•</span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400 font-sans">
+                      SvelteKit
+                    </span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400 font-sans">•</span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400 font-sans">
+                      Docker
+                    </span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400 font-sans">•</span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400 font-sans">
+                      SQLite
+                    </span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400 font-sans">•</span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400 font-sans">
+                      Email Deliverability
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 font-sans">
+                    Last updated: December 2024
+                  </p>
+                </div>
+
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <Link 
                       href="/projects/tw" 
                       className="text-2xl font-semibold text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-sans"
                     >
