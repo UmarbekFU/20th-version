@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { searchContent } from '@/lib/search-optimized'
+import { searchContent } from '@/lib/search'
 
 export async function GET(request: NextRequest) {
   try {
@@ -16,23 +16,12 @@ export async function GET(request: NextRequest) {
       })
     }
 
-    // Sanitize query to prevent injection attacks
-    const sanitizedQuery = query.replace(/[<>\"'&]/g, (match) => {
-      const escapeMap: { [key: string]: string } = {
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#x27;',
-        '&': '&amp;'
-      }
-      return escapeMap[match] || match
-    })
-
-    if (sanitizedQuery !== query) {
+    // Check query length to prevent abuse
+    if (query.length > 500) {
       return NextResponse.json({ 
         results: [], 
         query: '', 
-        error: 'Invalid characters in search query',
+        error: 'Search query too long',
         totalResults: 0 
       }, { status: 400 })
     }

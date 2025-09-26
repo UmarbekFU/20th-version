@@ -128,7 +128,7 @@
       "path": "/more",
       "title": "More",
       "description": "Atomic Ideas - Half-formed thoughts I'm working through. Questions - Questions I'm asking myself. Collections: List, Scrapbook, Photos, Tweets.",
-      "content": "Additional pages and sections that might interest you. Current: Now - What I'm doing and not doing right now. Ideas & Thoughts: Atomic Ideas - Half-formed thoughts I'm working through. Questions - Questions I'm asking myself. NAQ - Never Asked Questions. Collections: List - Things I consume, own, and do. Scrapbook - Screenshots, snippets, and unfinished thoughts. Photos - Visual moments that caught my attention. Tweets - My thoughts in 280 characters or less. Tools & Setup: Uses - My complete setup and tools. Life & Time: Life Calendar - My life visualized week by week. Year in Review - Annual reflection on what I've learned. Fun & Misc: Impossible Page - Things that seem impossible but might not be. Secret - Hidden things for those who discover them. Click Me - Go to a random page on this website. Disclaimer - Important information about this website.",
+      "content": "Additional pages and sections that might interest you. Current: Now - What I'm doing and not doing right now. Ideas & Thoughts: Atomic Ideas - Half-formed thoughts I'm working through. Questions - Questions I'm asking myself. NAQ - Never Asked Questions. Collections: List - Things I consume, own, and do. Scrapbook - Screenshots, snippets, and unfinished thoughts. Photos - Visual moments that caught my attention. Tweets - My thoughts in 280 characters or less. Tools & Setup: Uses - My complete setup and tools. Life & Time: Life Calendar - My life visualized week by week. Year in Review - Annual reflection on what I've learned. Fun & Misc: Impossible Page - Things that seem impossible but might not be. Secret - Hidden things for those who discover them. Disclaimer - Important information about this website.",
       "keywords": [
         "more",
         "additional",
@@ -290,6 +290,18 @@
       "matches": []
     },
     {
+      "path": "/projects/newspaper",
+      "title": "Self-Hosted Newsletter Platform",
+      "description": "projects page: Self-Hosted Newsletter Platform",
+      "content": "/* Project Header */ Complete Tutorial Self-Hosted Newsletter Platform Complete step-by-step guide to set up your own newsletter platform. Own your audience, control your costs, master email deliverability. /* What is this? */ What is this? A complete self-hosted newsletter platform that runs entirely on your server. No monthly subscriptions, no external dependencies, no vendor lock-in. You own your audience data and control every aspect of your newsletter. Built with Go backend, SvelteKit frontend, and Docker deployment. Includes email deliverability optimization, subscriber management, campaign creation, and analytics - everything you need to run a professional newsletter. Why Self-Hosted? • Complete ownership of your subscriber data • No monthly fees or usage limits • Full control over ",
+      "keywords": [
+        "self-hosted newsletter platform",
+        "projects"
+      ],
+      "score": 0,
+      "matches": []
+    },
+    {
       "path": "/projects/tw",
       "title": "This Website",
       "description": "projects page: This Website",
@@ -302,7 +314,7 @@
       "matches": []
     }
   ],
-  "generatedAt": "2025-09-17T13:51:25.966Z",
-  "totalPages": 20,
+  "generatedAt": "2025-09-26T19:48:43.339Z",
+  "totalPages": 21,
   "version": "1.0.0"
 }
